@@ -20,6 +20,7 @@
     "dev": "tsc --watch",
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",
+    "push": "drizzle-kit push",
     "studio": "drizzle-kit studio",
     "seed": "tsx src/seed.ts",
     "test": "vitest run"
