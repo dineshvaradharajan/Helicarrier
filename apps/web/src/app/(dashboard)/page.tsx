@@ -70,17 +70,15 @@ export default async function OverviewPage() {
           </div>
           <div className="flex items-center gap-3">
             <code className="hidden rounded-lg bg-background/80 px-3 py-1.5 font-mono text-xs text-primary sm:block">
-              npm i -g @helicarrier/cli
+              cd packages/cli && npm link
             </code>
-            <a
-              href="https://github.com/helicarrier/cli"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/cli"
               className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:bg-primary/90 hover:shadow-md hover:shadow-primary/20"
             >
               <Download className="h-4 w-4" />
               Install CLI
-            </a>
+            </Link>
           </div>
         </div>
       </div>

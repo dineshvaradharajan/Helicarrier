@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -59,6 +59,14 @@ const TESTING_OPTIONS = [
 ];
 
 export default function NewRecipePage() {
+  return (
+    <Suspense>
+      <NewRecipeForm />
+    </Suspense>
+  );
+}
+
+function NewRecipeForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
