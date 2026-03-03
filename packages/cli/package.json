@@ -1,0 +1,42 @@
+{
+  "name": "@helicarrier/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "helicarrier": "./bin/run.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@helicarrier/core": "workspace:*",
+    "@helicarrier/shared": "workspace:*",
+    "@oclif/core": "^4.2.0",
+    "@oclif/plugin-help": "^6.2.0",
+    "open": "^10.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "oclif": "^4.17.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  },
+  "oclif": {
+    "bin": "helicarrier",
+    "dirname": "helicarrier",
+    "commands": "./dist/commands",
+    "hooks": {
+      "init": "./dist/hooks/init",
+      "prerun": "./dist/hooks/prerun"
+    },
+    "plugins": [
+      "@oclif/plugin-help"
+    ],
+    "topicSeparator": " "
+  }
+}

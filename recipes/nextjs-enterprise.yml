@@ -1,0 +1,48 @@
+name: nextjs-enterprise
+description: Enterprise Next.js application with strict governance
+version: "1.0.0"
+
+stack:
+  framework: next.js
+  language: typescript
+  styling: tailwindcss
+  testing: vitest
+
+libraries:
+  allowed:
+    - next
+    - react
+    - react-dom
+    - tailwindcss
+    - zod
+    - drizzle-orm
+    - zustand
+    - "@tanstack/react-query"
+  denied:
+    - moment
+    - lodash
+    - jquery
+    - request
+
+agents:
+  - license-compliance
+
+scaffold:
+  template: nextjs-enterprise
+  postCreate:
+    - pnpm install
+    - pnpm build
+
+pipeline:
+  - name: UAT
+    type: uat
+    required: true
+  - name: Security Testing
+    type: security_testing
+    required: true
+  - name: SOC 2 Compliance
+    type: soc_2
+    required: true
+  - name: Pen Testing
+    type: pen_testing
+    required: false

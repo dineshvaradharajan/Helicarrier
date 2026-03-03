@@ -1,0 +1,31 @@
+name: react-spa-basic
+description: Basic React SPA with minimal governance
+version: "1.0.0"
+
+stack:
+  framework: react
+  language: typescript
+  styling: css-modules
+  testing: vitest
+
+libraries:
+  allowed: []
+  denied:
+    - jquery
+    - request
+
+agents:
+  - license-compliance
+
+scaffold:
+  template: react-spa
+  postCreate:
+    - pnpm install
+
+pipeline:
+  - name: UAT
+    type: uat
+    required: true
+  - name: GDPR Check
+    type: gdpr
+    required: false
