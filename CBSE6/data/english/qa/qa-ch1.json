@@ -1,0 +1,142 @@
+{
+  "chapter": 1,
+  "title": "A Bottle of Dew",
+  "marks_1": [
+    {
+      "id": "1.1",
+      "type": "mcq",
+      "question": "What was Rama Natha searching for?",
+      "options": ["A) Gold coins", "B) A banana plantation", "C) A magic potion", "D) Morning dew"],
+      "answer": "C) A magic potion",
+      "explanation": "Rama Natha believed there was a magic potion that could turn any object into gold."
+    },
+    {
+      "id": "1.2",
+      "type": "mcq",
+      "question": "What did sage Mahipati ask Rama Natha to collect every morning?",
+      "options": ["A) River water", "B) Morning dew", "C) Rain water", "D) Coconut milk"],
+      "answer": "B) Morning dew",
+      "explanation": "The sage asked Rama Natha to collect morning dew from banana leaves in winter."
+    },
+    {
+      "id": "1.3",
+      "type": "mcq",
+      "question": "How many litres of dew did Rama Natha need to collect?",
+      "options": ["A) Two", "B) Three", "C) Five", "D) Ten"],
+      "answer": "C) Five",
+      "explanation": "The sage told him to collect five litres of dew and bring it to him."
+    },
+    {
+      "id": "1.4",
+      "type": "mcq",
+      "question": "Which crop did Mahipati instruct Rama Natha to plant?",
+      "options": ["A) Mango", "B) Coconut", "C) Paddy", "D) Banana"],
+      "answer": "D) Banana",
+      "explanation": "The sage told him to plant banana plants and water them regularly with his own hands."
+    },
+    {
+      "id": "1.5",
+      "type": "mcq",
+      "question": "Who sold the banana crop in the market?",
+      "options": ["A) Rama Natha", "B) Mahipati", "C) Madhumati", "D) A neighbour"],
+      "answer": "C) Madhumati",
+      "explanation": "Madhumati gathered the banana crop, took it to the market, and got a good price for it."
+    },
+    {
+      "id": "1.6",
+      "type": "mcq",
+      "question": "What happened when Rama Natha sprinkled dew on a copper vessel?",
+      "options": ["A) It turned to gold", "B) It broke", "C) Nothing happened", "D) It shone brightly"],
+      "answer": "C) Nothing happened",
+      "explanation": "To his surprise, nothing happened because there was no real magic potion."
+    },
+    {
+      "id": "1.7",
+      "type": "mcq",
+      "question": "The moral of 'A Bottle of Dew' is:",
+      "options": ["A) Magic is real", "B) Trust everyone you meet", "C) Hard work creates wealth", "D) Collect dew every day"],
+      "answer": "C) Hard work creates wealth",
+      "explanation": "The sage revealed that Rama Natha's hard work — not magic — created the wealth."
+    },
+    {
+      "id": "1.8",
+      "type": "mcq",
+      "question": "How long did it take Rama Natha to collect five litres of dew?",
+      "options": ["A) One year", "B) Three years", "C) Six years", "D) Ten years"],
+      "answer": "C) Six years",
+      "explanation": "At the end of six years, he finally had his five litres of dew."
+    },
+    {
+      "id": "1.9",
+      "type": "fill-blank",
+      "question": "Rama Natha did not 'give up' because he believed in the ___.",
+      "answer": "magic potion",
+      "explanation": "He was so obsessed with the magic potion that he never stopped trying to find it."
+    },
+    {
+      "id": "1.10",
+      "type": "fill-blank",
+      "question": "A ___ is a liquid with magical properties.",
+      "answer": "potion",
+      "explanation": "The word 'potion' means a liquid with magical properties, as defined in the story."
+    },
+    {
+      "id": "1.11",
+      "type": "true-false",
+      "question": "Madhumati was troubled about what her husband was doing.",
+      "answer": "True",
+      "explanation": "His wife was tired of his obsession and worried they would soon be without money."
+    },
+    {
+      "id": "1.12",
+      "type": "true-false",
+      "question": "The sage wanted to show the right path to Rama Natha.",
+      "answer": "True",
+      "explanation": "The sage played a trick to teach Rama Natha the value of hard work."
+    },
+    {
+      "id": "1.13",
+      "type": "true-false",
+      "question": "Rama Natha was very happy digging his fields.",
+      "answer": "False",
+      "explanation": "Rama Natha did it only because he wanted the magic potion, not because he enjoyed farming."
+    }
+  ],
+  "marks_2": [
+    {
+      "id": "2.1",
+      "type": "short",
+      "question": "Why did the sage play a trick on Rama Natha instead of telling him the truth directly?",
+      "answer": "The sage knew that Rama Natha was lazy and would not listen if told directly that hard work creates wealth. So the sage gave him a task that required hard work — planting banana trees and collecting dew — knowing that by the time he finished, he would already be wealthy from the plantation.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.2",
+      "type": "short",
+      "question": "How did Rama Natha and Madhumati create their wealth?",
+      "answer": "Rama Natha planted rows of banana plants on his empty fields and tended them carefully. He collected morning dew from the leaves every day. His wife Madhumati gathered the banana crop, sold it in the market, and got a good price. Over six years, they grew a huge banana plantation and accumulated gold coins from the profits.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.3",
+      "type": "short",
+      "question": "What was inside the big box that Madhumati showed the sage? Where did the money come from?",
+      "answer": "Inside the big box were stacks of gold coins. The money came from selling bananas in the market over six years. While Rama Natha was busy collecting dew and tending the plantation, Madhumati sold the fruits and saved the earnings.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.4",
+      "type": "short",
+      "question": "Fill in the 'before and after' table about Rama Natha.",
+      "answer": "Before meeting the sage: (i) Rama Natha spent all his time searching for a magic potion, (ii) His fields were lying empty and he was losing money. After meeting the sage: (i) He started working hard, planting and tending banana trees, (ii) He and his wife became wealthy through their hard work.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.5",
+      "type": "short",
+      "question": "What does 'a bottle of dew' symbolize in the story?",
+      "answer": "The bottle of dew symbolizes the illusion of easy wealth — the idea that something magical can make you rich without effort. The real 'magic' was the honest effort and hard work Rama Natha put into his plantation every single day. The dew was just an excuse to make him work.",
+      "source": "extra"
+    }
+  ]
+}

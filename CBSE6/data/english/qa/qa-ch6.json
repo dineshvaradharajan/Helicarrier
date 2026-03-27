@@ -1,0 +1,112 @@
+{
+  "chapter": 6,
+  "title": "What a Bird Thought",
+  "marks_1": [
+    {
+      "id": "1.1",
+      "type": "mcq",
+      "question": "What was the bird's first 'house'?",
+      "options": ["A) A tree branch", "B) A pale blue egg", "C) A straw nest", "D) A leaf"],
+      "answer": "B) A pale blue egg",
+      "explanation": "The bird says 'I lived first in a little house... made of pale, blue shell.'"
+    },
+    {
+      "id": "1.2",
+      "type": "mcq",
+      "question": "What was the bird's second home made of?",
+      "options": ["A) Leaves", "B) Mud", "C) Straw", "D) Wood"],
+      "answer": "C) Straw",
+      "explanation": "The bird's second home was a nest made of straw where it lived with its mother."
+    },
+    {
+      "id": "1.3",
+      "type": "mcq",
+      "question": "Who lived with the baby bird in the nest?",
+      "options": ["A) Its father", "B) Other birds", "C) Its mother", "D) No one"],
+      "answer": "C) Its mother",
+      "explanation": "The poem says 'I thought the world was made of straw, and nestled by my mother.'"
+    },
+    {
+      "id": "1.4",
+      "type": "mcq",
+      "question": "What did the bird see when it fluttered out of its nest?",
+      "options": ["A) The sky", "B) Other birds", "C) Leaves", "D) Water"],
+      "answer": "C) Leaves",
+      "explanation": "When the bird fluttered from its nest, it said 'the world is made of leaves' — that's all it could see."
+    },
+    {
+      "id": "1.5",
+      "type": "mcq",
+      "question": "What is the main theme of the poem?",
+      "options": ["A) The life of birds", "B) Growth and expanding perspective", "C) How to build nests", "D) Forest life"],
+      "answer": "B) Growth and expanding perspective",
+      "explanation": "As the bird grows and sees more, its understanding of the world expands — teaching that knowledge grows with experience."
+    },
+    {
+      "id": "1.6",
+      "type": "mcq",
+      "question": "What did the bird conclude about the world at the end?",
+      "options": ["A) The world is made of leaves", "B) The world is round", "C) It doesn't know how the world is made", "D) The world is small"],
+      "answer": "C) It doesn't know how the world is made",
+      "explanation": "The bird says 'I don't know how the world is made, and neither do my neighbours.'"
+    },
+    {
+      "id": "1.7",
+      "type": "fill-blank",
+      "question": "The bird thought the world was ___ and round when it was inside the egg.",
+      "answer": "small",
+      "explanation": "The bird thought the world was small and round because the egg was small and round."
+    },
+    {
+      "id": "1.8",
+      "type": "fill-blank",
+      "question": "The bird called itself 'very ___' after seeing the leaves.",
+      "answer": "blind",
+      "explanation": "The bird realized it had been blind to the bigger world — it could not see beyond leaves from the nest."
+    },
+    {
+      "id": "1.9",
+      "type": "true-false",
+      "question": "The bird changed its house two times.",
+      "answer": "False",
+      "explanation": "The bird had four stages: egg, nest, tree branch, and then beyond the tree — not just two."
+    },
+    {
+      "id": "1.10",
+      "type": "true-false",
+      "question": "The neighbours tell the bird how the world is made.",
+      "answer": "False",
+      "explanation": "The bird says 'neither do my neighbours' — even they don't know how the world is made."
+    }
+  ],
+  "marks_2": [
+    {
+      "id": "2.1",
+      "type": "short",
+      "question": "How did the bird's understanding of the world change at each stage?",
+      "answer": "Stage 1 (egg): The bird thought the world was small, round, and made of pale blue shell. Stage 2 (nest): It thought the world was made of straw and was warm and cosy. Stage 3 (tree branch): It saw only leaves and thought the world was made of leaves. Stage 4 (beyond the tree): It flew far and realized the world is too vast to understand.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.2",
+      "type": "short",
+      "question": "Why did the baby bird think its first world was small, round, and blue?",
+      "answer": "Because the baby bird was inside a pale blue eggshell — that was all it knew of the world at birth. The egg was small, round, and blue in colour, so the bird thought the entire world looked like that.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.3",
+      "type": "short",
+      "question": "What quality did the bird show by the final stanza?",
+      "answer": "The bird showed humility — it admitted it didn't fully understand the world and neither did its neighbours. This shows the importance of recognizing the limits of one's knowledge and being humble about what we don't know.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.4",
+      "type": "short",
+      "question": "Write the rhyming words from each stanza of the poem.",
+      "answer": "Stanza 1: well / shell. Stanza 2: other / mother. Stanza 3: find / blind. Stanza 4: labours / neighbours (and also made/made). These rhyming pairs create a pleasant rhythm and musical quality in the poem.",
+      "source": "ncert"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "chapter": 2,
+  "title": "The Raven and the Fox",
+  "marks_1": [
+    {
+      "id": "1.1",
+      "type": "mcq",
+      "question": "What did Mr Raven hold in his beak?",
+      "options": ["A) A bunch of leaves", "B) A piece of food", "C) A shiny stone", "D) A feather"],
+      "answer": "B) A piece of food",
+      "explanation": "The Raven held a morsel (small piece of food) in his great big beak."
+    },
+    {
+      "id": "1.2",
+      "type": "mcq",
+      "question": "What is the Fox's name in the poem?",
+      "options": ["A) Raven", "B) Reynard", "C) Robin", "D) Rex"],
+      "answer": "B) Reynard",
+      "explanation": "The Fox is called Reynard in this poem by Jean de La Fontaine."
+    },
+    {
+      "id": "1.3",
+      "type": "mcq",
+      "question": "Why did the Raven open his beak?",
+      "options": ["A) To eat the food", "B) To call for help", "C) To sing for the Fox", "D) To fly away"],
+      "answer": "C) To sing for the Fox",
+      "explanation": "The Fox flattered the Raven into believing he had a beautiful voice, so he opened his beak to sing."
+    },
+    {
+      "id": "1.4",
+      "type": "mcq",
+      "question": "What fell when the Raven opened his beak?",
+      "options": ["A) A leaf", "B) A feather", "C) The morsel of food", "D) A twig"],
+      "answer": "C) The morsel of food",
+      "explanation": "When the Raven opened his beak in foolish pride, the morsel of food fell down."
+    },
+    {
+      "id": "1.5",
+      "type": "mcq",
+      "question": "What is the moral of the poem?",
+      "options": ["A) Birds can sing well", "B) Foxes are always kind", "C) Pride and flattery lead to loss", "D) Ravens should not eat"],
+      "answer": "C) Pride and flattery lead to loss",
+      "explanation": "The poem teaches that excessive pride makes one easy to deceive through flattery."
+    },
+    {
+      "id": "1.6",
+      "type": "mcq",
+      "question": "Which animal is shown as cunning in this poem?",
+      "options": ["A) Tiger", "B) Fox", "C) Bear", "D) Raven"],
+      "answer": "B) Fox",
+      "explanation": "The fox (Reynard) is traditionally depicted as cunning in folk tales."
+    },
+    {
+      "id": "1.7",
+      "type": "mcq",
+      "question": "The Raven forgot that his voice was just a ___.",
+      "options": ["A) whistle", "B) croak", "C) song", "D) hum"],
+      "answer": "B) croak",
+      "explanation": "The Raven forgot that his real voice was just a croak, not a beautiful song."
+    },
+    {
+      "id": "1.8",
+      "type": "fill-blank",
+      "question": "The Fox looked up at the Raven who was ___ upon a limb.",
+      "answer": "perched",
+      "explanation": "'Perched' means sat on a branch."
+    },
+    {
+      "id": "1.9",
+      "type": "fill-blank",
+      "question": "A ___ is a small piece of food.",
+      "answer": "morsel",
+      "explanation": "The word 'morsel' means a small piece of food."
+    },
+    {
+      "id": "1.10",
+      "type": "true-false",
+      "question": "The Fox genuinely admired the Raven's singing voice.",
+      "answer": "False",
+      "explanation": "The Fox was using flattery to trick the Raven into dropping the food."
+    },
+    {
+      "id": "1.11",
+      "type": "true-false",
+      "question": "The Raven learned a lesson about pride.",
+      "answer": "True",
+      "explanation": "The poem ends with the teaching that 'pride, my friend, is rather unwise.'"
+    },
+    {
+      "id": "1.12",
+      "type": "fill-blank",
+      "question": "Fox : clever :: Raven : ___.",
+      "answer": "foolish",
+      "explanation": "The Fox was clever while the Raven was foolish because he fell for flattery."
+    }
+  ],
+  "marks_2": [
+    {
+      "id": "2.1",
+      "type": "short",
+      "question": "How did Reynard make the Raven sing? What was his plan?",
+      "answer": "Reynard flattered the Raven by calling him 'a handsome bird' with beautiful feathers and said the birds of the woods would call him King if he could sing. The Raven, filled with pride, forgot his voice was just a croak and opened his beak to sing. The morsel fell, and the Fox grabbed it.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.2",
+      "type": "short",
+      "question": "Why does Reynard say that pride is 'rather unwise'?",
+      "answer": "Reynard says pride is unwise because it makes people vulnerable to flattery and deception. The Raven lost his food because his pride made him believe the Fox's false compliments. Excessive pride clouds judgement and makes us easy to manipulate.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.3",
+      "type": "short",
+      "question": "Why does the Fox address the Raven as 'Sir'?",
+      "answer": "The Fox addressed the Raven as 'Sir' to flatter him and make him feel important and respected. His real intention was to trick the Raven into opening his beak so the food would fall and the Fox could eat it.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.4",
+      "type": "short",
+      "question": "Imagine someone praises you too much. How would you react?",
+      "answer": "If someone praises me too much, I would be cautious and think about why they are saying such things. I would not let the flattery go to my head. I would remember the lesson from this poem — that sometimes people use sweet words to take advantage of us.",
+      "source": "extra"
+    }
+  ]
+}

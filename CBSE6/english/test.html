@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Chapter Test - CBSE Class 6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;600;700&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/football-theme.css">
+<style>
+:root {
+  --subject-color: #b8860b;
+  --subject-bg: #fefce8;
+  --subject-border: #fde68a;
+  --subject-text: #92400e;
+}
+.ch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0 }
+.ch-card {
+  background: #fff; border: 2px solid var(--sand-200); border-radius: 14px;
+  padding: 1.25rem; cursor: pointer; transition: all .2s; text-align: center;
+}
+.ch-card:hover { border-color: var(--subject-color); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.08) }
+.ch-card .ch-no { font-family: 'Newsreader', serif; font-size: 1.8rem; font-weight: 700; color: var(--subject-color) }
+.ch-card .ch-name { font-size: .78rem; color: var(--ink-2); margin-top: .3rem; line-height: 1.4 }
+.progress-bar { height: 6px; background: var(--sand-200); border-radius: 3px; margin-bottom: 1.5rem; overflow: hidden }
+.progress-fill { height: 100%; background: var(--subject-color); border-radius: 3px; transition: width .3s }
+.test-q-num { font-size: .75rem; font-weight: 700; color: var(--ink-3); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .5rem }
+.test-question { font-family: 'Newsreader', serif; font-size: 1.15rem; font-weight: 600; color: var(--ink); line-height: 1.5; margin-bottom: 1.25rem }
+.test-options { display: flex; flex-direction: column; gap: .6rem }
+.test-opt {
+  display: flex; align-items: center; gap: .75rem;
+  padding: .85rem 1.1rem; border: 2px solid var(--sand-200); border-radius: 12px;
+  background: #fff; cursor: pointer; transition: all .2s; font-size: .9rem; color: var(--ink-2);
+}
+.test-opt:hover { border-color: var(--sand-400); background: var(--sand-50) }
+.test-opt.selected { border-color: var(--subject-color); background: var(--subject-bg) }
+.test-opt.correct { border-color: #16a34a; background: #f0fdf4; color: #15803d }
+.test-opt.wrong { border-color: #dc2626; background: #fef2f2; color: #991b1b }
+.test-opt.disabled { pointer-events: none; opacity: .7 }
+.opt-letter {
+  width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: .8rem; background: var(--sand-100); color: var(--ink-3); flex-shrink: 0;
+}
+.test-opt.correct .opt-letter { background: #16a34a; color: #fff }
+.test-opt.wrong .opt-letter { background: #dc2626; color: #fff }
+.test-explanation {
+  margin-top: 1rem; padding: .75rem 1rem; background: #f0fdf4; border: 1px solid #bbf7d0;
+  border-radius: 10px; font-size: .84rem; color: #15803d; line-height: 1.6; display: none;
+}
+.test-explanation.show { display: block }
+.test-next {
+  margin-top: 1.25rem; padding: .65rem 2rem; background: var(--subject-color); color: #fff;
+  border: none; border-radius: 10px; font-family: 'Lato', sans-serif; font-size: .88rem;
+  font-weight: 700; cursor: pointer; display: none; transition: opacity .2s;
+}
+.test-next.show { display: inline-block }
+.test-next:hover { opacity: .9 }
+.test-timer { font-size: .75rem; font-weight: 700; color: var(--ink-3); text-align: right; margin-bottom: .5rem }
+.result-card {
+  text-align: center; padding: 2.5rem 1.5rem; background: #fff;
+  border: 1px solid var(--sand-200); border-radius: 16px; margin: 1.5rem 0;
+}
+.result-score { font-family: 'Newsreader', serif; font-size: 3rem; font-weight: 700 }
+.result-pct { font-size: 1.1rem; font-weight: 700; margin-top: .3rem }
+.result-time { font-size: .82rem; color: var(--ink-3); margin-top: .5rem }
+.result-actions { display: flex; gap: .75rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap }
+.result-btn {
+  padding: .6rem 1.5rem; border-radius: 10px; font-family: 'Lato', sans-serif;
+  font-size: .82rem; font-weight: 700; cursor: pointer; border: 2px solid var(--sand-300);
+  background: #fff; color: var(--ink-2); transition: all .2s;
+}
+.result-btn:hover { border-color: var(--ink-3) }
+.result-btn.primary { background: var(--subject-color); color: #fff; border-color: var(--subject-color) }
+.review-list { margin-top: 1.5rem }
+.review-item {
+  padding: .75rem 1rem; border: 1px solid var(--sand-200); border-radius: 10px;
+  margin-bottom: .5rem; background: #fff; font-size: .84rem;
+  border-left: 4px solid #16a34a;
+}
+.review-item.wrong { border-left-color: #dc2626 }
+.review-q { font-weight: 700; color: var(--ink); margin-bottom: .25rem }
+.review-a { color: var(--ink-3) }
+.test-area { margin: 1.5rem 0 }
+.loading { text-align: center; padding: 2rem; color: var(--ink-3); font-size: .88rem }
+.error-msg { text-align: center; padding: 2rem; color: #dc2626; font-size: .88rem }
+.test-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem }
+/* Mode selector */
+.mode-selector { text-align: center; padding: 2rem 0; }
+.mode-selector h3 { font-family: 'Newsreader', serif; font-size: 1.2rem; color: var(--ink); margin-bottom: 1.25rem; }
+.mode-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; max-width: 600px; margin: 0 auto; }
+.mode-card {
+  background: #fff; border: 2px solid var(--sand-200); border-radius: 14px;
+  padding: 1.5rem 1rem; cursor: pointer; transition: all .25s; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  font-family: 'Lato', sans-serif; color: var(--ink);
+}
+.mode-card:hover { border-color: var(--subject-color); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
+.mode-icon { font-size: 2rem; }
+.mode-title { font-size: .9rem; font-weight: 700; }
+.mode-desc { font-size: .72rem; color: var(--ink-3); }
+.wq-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.wq-num { font-size: .75rem; font-weight: 700; color: var(--ink-3); text-transform: uppercase; letter-spacing: .05em; }
+.wq-marks {
+  font-size: .72rem; font-weight: 700; padding: .25rem .75rem; border-radius: 999px;
+  background: var(--subject-bg); color: var(--subject-color); border: 1px solid var(--subject-border);
+}
+.wq-question {
+  font-family: 'Newsreader', serif; font-size: 1.1rem; font-weight: 600;
+  color: var(--ink); line-height: 1.5; margin-bottom: 1.25rem;
+}
+.wq-textarea {
+  width: 100%; padding: .85rem; border: 2px solid var(--sand-200);
+  border-radius: 12px; font-family: 'Lato', sans-serif; font-size: .9rem;
+  background: #fff; color: var(--ink); resize: vertical; min-height: 120px;
+  outline: none; transition: border-color .2s; box-sizing: border-box;
+}
+.wq-textarea:focus { border-color: var(--subject-color); }
+.wq-textarea::placeholder { color: var(--sand-400); }
+.wq-submit {
+  margin-top: 1rem; padding: .7rem 2rem;
+  background: var(--subject-color); color: #fff;
+  border: none; border-radius: 10px;
+  font-family: 'Lato', sans-serif; font-size: .88rem; font-weight: 700;
+  cursor: pointer; transition: opacity .2s;
+}
+.wq-submit:hover { opacity: .9; }
+.wq-submit:disabled { opacity: .4; cursor: not-allowed; }
+.wq-result { margin-top: 1.25rem; }
+.wq-score-bar { margin-bottom: .75rem; }
+.wq-your-score { font-size: .9rem; font-weight: 700; color: var(--ink); }
+.wq-score-visual {
+  height: 10px; background: var(--sand-200); border-radius: 5px;
+  margin-top: .4rem; overflow: hidden;
+}
+.wq-score-fill { height: 100%; border-radius: 5px; transition: width .5s; }
+.wq-score-fill.high { background: #16a34a; }
+.wq-score-fill.mid { background: #ca8a04; }
+.wq-score-fill.low { background: #dc2626; }
+.wq-feedback {
+  font-size: .85rem; color: #15803d; margin-bottom: .75rem;
+  padding: .6rem .85rem; background: #f0fdf4;
+  border: 1px solid #bbf7d0; border-radius: 8px;
+}
+.wq-keywords { margin-bottom: .75rem; font-size: .75rem; }
+.wq-kw-label { color: var(--ink-3); font-weight: 700; margin-right: .4rem; }
+.wq-kw {
+  display: inline-block; padding: .1rem .45rem; border-radius: 4px;
+  margin: .1rem .15rem; font-weight: 600;
+}
+.wq-kw.matched { background: #f0fdf4; color: #16a34a; }
+.wq-kw.missed { background: #fef2f2; color: #dc2626; text-decoration: line-through; }
+.wq-model {
+  background: var(--sand-50); border: 1px solid var(--sand-200);
+  border-radius: 10px; padding: .85rem; margin-bottom: 1rem;
+}
+.wq-model strong { color: var(--subject-color); font-size: .8rem; display: block; margin-bottom: .35rem; }
+.wq-model p { color: var(--ink-2); font-size: .84rem; line-height: 1.6; white-space: pre-line; margin: 0; }
+.wq-next {
+  padding: .65rem 2rem; background: var(--subject-color); color: #fff;
+  border: none; border-radius: 10px;
+  font-family: 'Lato', sans-serif; font-size: .88rem; font-weight: 700;
+  cursor: pointer;
+}
+.wq-next:hover { opacity: .9; }
+/* Test navigation */
+.test-nav {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .75rem;
+}
+.tn-btn {
+  font-family: 'Lato', sans-serif;
+  font-size: .72rem;
+  font-weight: 700;
+  padding: .35rem .75rem;
+  border: 2px solid var(--sand-200);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all .2s;
+  flex-shrink: 0;
+}
+.tn-btn:hover { border-color: var(--subject-color); color: var(--subject-color) }
+.tn-btn:disabled { opacity: .3; cursor: not-allowed }
+.tn-dots {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  flex: 1;
+  justify-content: center;
+}
+.tn-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--sand-200);
+  background: #fff;
+  color: var(--ink-3);
+  font-size: .6rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: 'Lato', sans-serif;
+}
+.tn-dot:hover { border-color: var(--subject-color) }
+.tn-dot.current { border-color: var(--subject-color); background: var(--subject-bg); color: var(--subject-color) }
+.tn-dot.correct { border-color: #16a34a; background: #f0fdf4; color: #16a34a }
+.tn-dot.wrong { border-color: #dc2626; background: #fef2f2; color: #dc2626 }
+.tn-dot.unanswered { border-color: var(--sand-200); color: var(--sand-400) }
+
+.test-score-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .75rem;
+  color: var(--ink-2);
+  font-weight: 600;
+  margin-bottom: .75rem;
+  padding: .4rem .75rem;
+  background: var(--sand-50);
+  border: 1px solid var(--sand-200);
+  border-radius: 8px;
+}
+.test-score-bar strong { color: var(--subject-color); font-size: .9rem }
+.ts-marks { color: var(--ink-3); font-size: .68rem }
+
+@media (max-width: 640px) {
+  .ch-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: .75rem }
+  .ch-card { padding: .85rem }
+  .ch-card .ch-no { font-size: 1.4rem }
+  .ch-card .ch-name { font-size: .7rem }
+  .result-score { font-size: 2.2rem }
+  .mode-grid { grid-template-columns: repeat(2, 1fr); max-width: 400px; }
+  .mode-card { padding: 1rem .75rem; }
+  .wq-textarea { min-height: 100px; font-size: .82rem; }
+  .tn-dot { width: 20px; height: 20px; font-size: .5rem }
+  .tn-btn { font-size: .65rem; padding: .25rem .5rem }
+}
+
+/* Voice input */
+.voice-input-wrap { position: relative; }
+.mic-btn {
+  position: absolute; right: .75rem; bottom: .75rem;
+  width: 3rem; height: 3rem; border-radius: 50%;
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
+  border: 2px solid rgba(253,216,53,.3); color: #fff;
+  font-size: 1.3rem; cursor: pointer; transition: all .2s;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+}
+.mic-btn:hover { transform: scale(1.05); }
+.mic-btn.recording {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  border-color: #fca5a5;
+  animation: micPulse 1s ease-in-out infinite;
+}
+@keyframes micPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220,38,38,.4); }
+  50% { box-shadow: 0 0 0 12px rgba(220,38,38,0); }
+}
+
+/* Voice recording waveform */
+.voice-overlay {
+  position: absolute;
+  inset: 0;
+  background: #0d1b0e;
+  border: 2px solid #4caf50;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  z-index: 5;
+  animation: voiceOverlayIn .3s ease;
+  overflow: hidden;
+}
+@keyframes voiceOverlayIn { from { opacity: 0 } to { opacity: 1 } }
+
+.vo-canvas-wrap {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  min-height: 80px;
+}
+.vo-canvas-wrap canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.vo-bottom {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .5rem 1rem .75rem;
+  width: 100%;
+}
+
+.vo-mic-icon {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #9333ea, #ec4899);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #fff;
+  flex-shrink: 0;
+  animation: micGlow 1.5s ease-in-out infinite;
+}
+@keyframes micGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(147,51,234,.5) }
+  50% { box-shadow: 0 0 0 10px rgba(147,51,234,0) }
+}
+
+.vo-info {
+  flex: 1;
+  min-width: 0;
+}
+.vo-text {
+  color: #e2e8f0;
+  font-size: .82rem;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+}
+.vo-timer {
+  color: #a5d6a7;
+  font-size: .7rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  margin-top: .15rem;
+}
+
+.vo-stop {
+  padding: .45rem 1.25rem;
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-family: 'Lato', sans-serif;
+  font-size: .78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .2s;
+  flex-shrink: 0;
+}
+.vo-stop:hover { opacity: .85 }
+
+.voice-input-wrap.recording .wq-textarea {
+  color: transparent !important;
+}
+
+.mic-status {
+  font-size: .72rem; color: #a5d6a7; text-align: center;
+  margin-top: .35rem; min-height: 1rem;
+}
+.mic-status.error { color: #fca5a5; }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="../index.html" class="back-link">&larr; Home</a>
+  <div class="hero">
+    <div class="badge">English</div>
+    <h1>Chapter Test</h1>
+    <p class="sub">Pick a chapter and test your knowledge</p>
+  </div>
+
+  <div id="screen-select" class="test-area">
+    <div class="ch-grid" id="chGrid"></div>
+  </div>
+
+  <div id="screen-mode" class="test-area" style="display:none">
+    <div class="mode-selector">
+      <h3>Choose Your Challenge</h3>
+      <div class="mode-grid">
+        <button class="mode-card" onclick="beginTest('mcq')">
+          <span class="mode-icon">&#9889;</span>
+          <span class="mode-title">Quick Fire MCQs</span>
+          <span class="mode-desc">1-mark multiple choice questions</span>
+        </button>
+        <button class="mode-card" onclick="beginTest('written-2')">
+          <span class="mode-icon">&#9996;&#65039;</span>
+          <span class="mode-title">2-Mark Answers</span>
+          <span class="mode-desc">Short answer questions</span>
+        </button>
+        <button class="mode-card" onclick="beginTest('written-3')">
+          <span class="mode-icon">&#127919;</span>
+          <span class="mode-title">3-Mark Answers</span>
+          <span class="mode-desc">Explain &amp; describe questions</span>
+        </button>
+        <button class="mode-card" onclick="beginTest('written-5')">
+          <span class="mode-icon">&#11088;</span>
+          <span class="mode-title">5-Mark Answers</span>
+          <span class="mode-desc">Long answer &amp; HOTS questions</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="screen-written" class="test-area" style="display:none">
+    <div class="test-header">
+      <div class="wq-num" id="wqNum"></div>
+      <div class="test-timer" id="wTimer">00:00</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="wProgressFill"></div></div>
+    <div class="test-nav">
+      <button class="tn-btn" id="wPrevBtn" onclick="prevWrittenQ()">&#8592; Prev</button>
+      <div class="tn-dots" id="wqDots"></div>
+      <button class="tn-btn" id="wNextBtnNav" onclick="nextWrittenQuestion()">Next &#8594;</button>
+    </div>
+    <div class="test-score-bar">
+      <span>Score: <strong id="wRunningScore">0</strong> / <span id="wTotalMarks">0</span> marks</span>
+      <span class="ts-marks" id="wMarksLabel"></span>
+    </div>
+    <div class="wq-header">
+      <span></span>
+      <span class="wq-marks" id="wqMarks"></span>
+    </div>
+    <div class="wq-question" id="wqText"></div>
+    <div class="voice-input-wrap">
+      <textarea class="wq-textarea" id="studentAnswer" placeholder="Type your answer or tap the mic to speak..." rows="6"></textarea>
+      <button class="mic-btn" id="micBtn" onclick="isRecording ? stopRecording() : startRecording()" title="Tap to record">&#127908;</button>
+      <div class="mic-status" id="micStatus"></div>
+    </div>
+    <button class="wq-submit" id="wqSubmitBtn" onclick="submitWrittenAnswer()">Submit Answer</button>
+    <div id="wqResultPanel" style="display:none">
+      <div class="wq-result">
+        <div class="wq-score-bar">
+          <span class="wq-your-score" id="wqScoreText"></span>
+          <div class="wq-score-visual"><div class="wq-score-fill" id="wqScoreFill"></div></div>
+        </div>
+        <div class="wq-feedback" id="wqFeedback"></div>
+        <div class="wq-keywords" id="wqKeywords"></div>
+        <div class="wq-model">
+          <strong>Model Answer:</strong>
+          <p id="wqModelAns"></p>
+        </div>
+        <button class="wq-next" id="wqNextBtn" onclick="nextWrittenQuestion()">Next Question &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="screen-test" class="test-area" style="display:none">
+    <div class="test-header">
+      <div class="test-q-num" id="qNum"></div>
+      <div class="test-timer" id="timer">00:00</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="test-nav">
+      <button class="tn-btn" id="prevBtn" onclick="prevQuestion()">&#8592; Prev</button>
+      <div class="tn-dots" id="qDots"></div>
+      <button class="tn-btn" id="nextBtnNav" onclick="nextQuestion()">Next &#8594;</button>
+    </div>
+    <div class="test-score-bar">
+      <span>Score: <strong id="runningScore">0</strong> / <span id="totalQs">0</span></span>
+      <span class="ts-marks">1 mark each</span>
+    </div>
+    <div class="test-question" id="qText"></div>
+    <div class="test-options" id="optionsBox"></div>
+    <div class="test-explanation" id="explanation"></div>
+    <button class="test-next" id="nextBtn" onclick="nextQuestion()">Next Question &rarr;</button>
+  </div>
+
+  <div id="screen-results" class="test-area" style="display:none">
+    <div class="result-card">
+      <div class="result-score" id="rScore"></div>
+      <div class="result-pct" id="rPct"></div>
+      <div class="result-time" id="rTime"></div>
+      <div class="result-actions">
+        <button class="result-btn primary" onclick="retryTest()">Try Again</button>
+        <button class="result-btn" onclick="backToChapters()">Choose Another Chapter</button>
+      </div>
+    </div>
+    <h3 style="font-family:'Newsreader',serif; font-size:1.1rem; margin-bottom:.75rem">Review</h3>
+    <div class="review-list" id="reviewList"></div>
+  </div>
+</div>
+
+<footer class="site-footer">CBSE Class 6 Prep</footer>
+
+<script src="../js/gamification.js"></script>
+<script src="../js/auth.js"></script>
+<script>
+const chapters = [
+  {n:1, name:'A Bottle of Dew'},
+  {n:2, name:'The Raven and the Fox'},
+  {n:3, name:'The Unlikely Best Friends'},
+  {n:4, name:"A Friend's Prayer"},
+  {n:5, name:'Neem Baba'},
+  {n:6, name:'What a Bird Thought'},
+  {n:7, name:'Change of Heart'},
+  {n:8, name:'The Winner'},
+  {n:9, name:'Kalakritiyon ka Bharat'},
+  {n:10, name:'The Kites'}
+];
+const dataPath = '../data/english/qa/qa-ch';
+
+let questions = [], currentQ = 0, score = 0, answered = false, startTime, timerInterval, userAnswers = [], currentChapter = 0;
+let testMode = 'mcq', allQA = null, writtenQuestions = [], writtenScore = 0, totalPossibleMarks = 0, writtenAnswers = [], wTimerInterval;
+var answers = [];
+var wNavAnswers = [];
+
+function init() {
+  const grid = document.getElementById('chGrid');
+  grid.innerHTML = chapters.map(c =>
+    `<div class="ch-card" onclick="selectChapter(${c.n})"><div class="ch-no">${c.n}</div><div class="ch-name">${c.name}</div></div>`
+  ).join('');
+}
+
+function show(id) {
+  ['screen-select','screen-mode','screen-test','screen-written','screen-results'].forEach(s => document.getElementById(s).style.display = s === id ? 'block' : 'none');
+}
+
+async function selectChapter(chNum) {
+  currentChapter = chNum;
+  show('screen-mode');
+  try {
+    const res = await fetch(`${dataPath}${chNum}.json`);
+    if (!res.ok) throw new Error('File not found');
+    allQA = await res.json();
+  } catch(e) { allQA = null; }
+}
+
+function beginTest(mode) {
+  testMode = mode;
+  if (mode === 'mcq') {
+    startMCQTest();
+  } else {
+    var marksLevel = mode.split('-')[1] || 'all';
+    startWrittenTest(marksLevel);
+  }
+}
+
+function startMCQTest() {
+  show('screen-test');
+  document.getElementById('qText').textContent = 'Loading questions...';
+  document.getElementById('optionsBox').innerHTML = '';
+  document.getElementById('explanation').className = 'test-explanation';
+  document.getElementById('nextBtn').className = 'test-next';
+  if (!allQA) { document.getElementById('qText').textContent = 'Could not load questions. Please try another chapter.'; return; }
+  questions = (allQA.marks_1 || []).filter(q => q.type === 'mcq');
+  if (questions.length === 0) { document.getElementById('qText').textContent = 'No MCQ questions found for this chapter.'; return; }
+  shuffle(questions);
+  currentQ = 0; score = 0; answered = false; userAnswers = []; answers = [];
+  startTime = Date.now();
+  clearInterval(timerInterval);
+  timerInterval = setInterval(updateTimer, 1000);
+  showQuestion();
+}
+
+async function startTest(chNum) {
+  currentChapter = chNum;
+  show('screen-test');
+  document.getElementById('qText').textContent = 'Loading questions...';
+  document.getElementById('optionsBox').innerHTML = '';
+  document.getElementById('explanation').className = 'test-explanation';
+  document.getElementById('nextBtn').className = 'test-next';
+  try {
+    const res = await fetch(`${dataPath}${chNum}.json`);
+    if (!res.ok) throw new Error('File not found');
+    const data = await res.json();
+    allQA = data;
+    questions = (data.marks_1 || []).filter(q => q.type === 'mcq');
+    if (questions.length === 0) { document.getElementById('qText').textContent = 'No MCQ questions found for this chapter.'; return; }
+    shuffle(questions);
+    currentQ = 0; score = 0; answered = false; userAnswers = [];
+    startTime = Date.now();
+    clearInterval(timerInterval);
+    timerInterval = setInterval(updateTimer, 1000);
+    showQuestion();
+  } catch(e) {
+    document.getElementById('qText').textContent = 'Could not load questions. Please try another chapter.';
+  }
+}
+
+function startWrittenTest(marksLevel) {
+  if (!allQA) { show('screen-select'); return; }
+  var written = [];
+  var keys = marksLevel === 'all' ? ['marks_2','marks_3','marks_5'] : ['marks_' + marksLevel];
+  keys.forEach(function(key) {
+    (allQA[key] || []).forEach(function(q) { var c = Object.assign({}, q); c._marks = parseInt(key.split('_')[1]); written.push(c); });
+  });
+  if (written.length === 0) { alert('No written questions available for this chapter.'); show('screen-select'); return; }
+  shuffle(written);
+  writtenQuestions = written.slice(0, 8);
+  totalPossibleMarks = writtenQuestions.reduce(function(s, q) { return s + q._marks; }, 0);
+  writtenScore = 0; currentQ = 0; writtenAnswers = []; wNavAnswers = [];
+  startTime = Date.now();
+  clearInterval(wTimerInterval);
+  wTimerInterval = setInterval(updateWrittenTimer, 1000);
+  show('screen-written');
+  showWrittenQuestion();
+}
+function updateWrittenTimer() {
+  var s = Math.floor((Date.now() - startTime) / 1000);
+  document.getElementById('wTimer').textContent = String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
+}
+function showWrittenQuestion() {
+  var q = writtenQuestions[currentQ];
+  document.getElementById('wqNum').textContent = 'Question ' + (currentQ+1) + ' of ' + writtenQuestions.length;
+  document.getElementById('wProgressFill').style.width = ((currentQ) / writtenQuestions.length * 100) + '%';
+  document.getElementById('wqMarks').textContent = q._marks + ' Marks';
+  document.getElementById('wqText').textContent = q.question;
+  document.getElementById('studentAnswer').value = '';
+  document.getElementById('studentAnswer').disabled = false;
+  document.getElementById('wqSubmitBtn').style.display = '';
+  document.getElementById('wqSubmitBtn').disabled = false;
+  document.getElementById('wqResultPanel').style.display = 'none';
+  document.getElementById('wqNextBtn').style.display = 'none';
+}
+function scoreAnswer(studentAns, modelAns, maxMarks) {
+  if (!studentAns || studentAns.trim().length < 3) {
+    return { score: 0, feedback: 'No answer provided. Try speaking or typing your answer!', matched: [], missed: [], ratio: 0, total: maxMarks };
+  }
+  var stopWords = new Set(['the','a','an','is','are','was','were','be','been','being',
+    'have','has','had','do','does','did','will','would','shall','should','may','might',
+    'can','could','must','of','in','to','for','with','on','at','by','from','as','into',
+    'through','during','before','after','above','below','between','out','off','over',
+    'under','again','further','then','once','here','there','when','where','why','how',
+    'all','both','each','few','more','most','other','some','such','no','nor','not',
+    'only','own','same','so','than','too','very','just','because','but','and','or',
+    'if','while','about','it','its','this','that','these','those','we','they','them',
+    'their','our','your','which','what','who','whom','also','like','one','two','called',
+    'used','using','get','got','make','made','many','much','well','even','way','take',
+    'say','said','know','need','want','give','given','use','come','comes','another',
+    'example','answer','question','following','hence','therefore','thus','since',
+    'etc','eg','ie','means','meaning','refer','refers','known']);
+  var normalize = function(s) {
+    return s.toLowerCase().replace(/['']/g, "'").replace(/[^a-z0-9\s']/g, ' ').replace(/\s+/g, ' ').trim();
+  };
+  var studentNorm = normalize(studentAns), modelNorm = normalize(modelAns);
+  var modelWords = modelNorm.split(' ').filter(function(w) { return w.length > 2 && !stopWords.has(w); });
+  var numbers = modelAns.match(/\d+\.?\d*/g) || [];
+  var conceptSet = {};
+  modelWords.forEach(function(w) {
+    var stem = w.length > 5 ? w.substring(0, Math.ceil(w.length * 0.7)) : w;
+    conceptSet[w] = stem;
+  });
+  numbers.forEach(function(n) { conceptSet[n] = n; });
+  var concepts = Object.keys(conceptSet);
+  if (concepts.length === 0) {
+    return { score: maxMarks, feedback: 'Answer accepted!', matched: [], missed: [], ratio: 1, total: maxMarks };
+  }
+  var matched = 0, matchedWords = [], missedWords = [];
+  concepts.forEach(function(concept) {
+    var stem = conceptSet[concept];
+    if (studentNorm.indexOf(concept) !== -1 || studentNorm.indexOf(stem) !== -1) {
+      matched++; matchedWords.push(concept);
+    } else { missedWords.push(concept); }
+  });
+  var ratio = matched / concepts.length;
+  var score, feedback;
+  if (ratio >= 0.5) {
+    score = maxMarks;
+    feedback = '\u26bd GOAL! Excellent answer \u2014 you nailed the key concepts!';
+  } else if (ratio >= 0.3) {
+    score = Math.ceil(maxMarks * 0.75);
+    feedback = '\ud83d\udc4f Great effort! You covered most of the important points.';
+  } else if (ratio >= 0.15) {
+    score = Math.ceil(maxMarks * 0.5);
+    feedback = '\ud83d\udcaa Good try! You got some key points. Check the model answer for more.';
+  } else if (matched > 0) {
+    score = Math.min(Math.ceil(maxMarks * 0.3), maxMarks);
+    if (score < 1) score = 1;
+    feedback = '\ud83d\udcdd Partial answer. You mentioned some relevant points. Review the model answer.';
+  } else if (studentAns.trim().length > 15) {
+    score = 0.5;
+    feedback = '\ud83d\udcdd You wrote an answer but missed the key concepts. Study the model answer.';
+  } else {
+    score = 0;
+    feedback = '\u274c Your answer doesn\'t seem to address the question. Check the model answer.';
+  }
+  if (studentAns.trim().length > 100 && score < maxMarks) {
+    score = Math.min(score + 0.5, maxMarks);
+  }
+  score = Math.round(score * 2) / 2;
+  score = Math.min(score, maxMarks);
+  return { score: score, total: maxMarks, ratio: ratio, feedback: feedback, matched: matchedWords.slice(0, 8), missed: missedWords.slice(0, 5) };
+}
+async function submitWrittenAnswer() {
+  if (isRecording) { stopRecording(); return; }
+  var q = writtenQuestions[currentQ];
+  var studentAns = document.getElementById('studentAnswer').value;
+  if (!studentAns.trim()) return;
+  document.getElementById('studentAnswer').disabled = true;
+  var submitBtn = document.getElementById('wqSubmitBtn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Evaluating...';
+  var result;
+  try {
+    var res = await fetch('/api/evaluate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question: q.question, modelAnswer: q.answer, studentAnswer: studentAns, maxMarks: q._marks }) });
+    var data = await res.json();
+    if (data.score !== undefined && !data.fallback && !data.error) {
+      result = { score: data.score, total: data.total || q._marks, ratio: data.score / q._marks, feedback: data.feedback, suggestion: data.suggestion || '', ai: true, matched: [], missed: [] };
+    } else { throw new Error('Fallback'); }
+  } catch(e) {
+    result = scoreAnswer(studentAns, q.answer, q._marks);
+    result.ai = false;
+  }
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'Submit Answer';
+  writtenScore += result.score;
+  writtenAnswers.push({ question: q.question, studentAns: studentAns, modelAns: q.answer, marks: q._marks, result: result });
+  submitBtn.style.display = 'none';
+  var panel = document.getElementById('wqResultPanel');
+  panel.style.display = 'block';
+  document.getElementById('wqScoreText').textContent = 'Your Score: ' + result.score + '/' + result.total;
+  var pctWidth = (result.score / result.total) * 100;
+  var fill = document.getElementById('wqScoreFill');
+  fill.style.width = pctWidth + '%';
+  fill.className = 'wq-score-fill ' + (result.ratio >= 0.7 ? 'high' : result.ratio >= 0.4 ? 'mid' : 'low');
+  var feedbackHtml = result.feedback;
+  if (result.suggestion) feedbackHtml += '<br><span style="color:#fdd835;font-size:.78rem">\ud83d\udca1 Tip: ' + result.suggestion + '</span>';
+  if (result.ai) feedbackHtml += '<br><span style="color:rgba(255,255,255,.4);font-size:.65rem">Evaluated by AI</span>';
+  document.getElementById('wqFeedback').innerHTML = feedbackHtml;
+  var kwDiv = document.getElementById('wqKeywords');
+  if (!result.ai && result.matched && result.matched.length > 0) {
+    var kwHtml = '<span class="wq-kw-label">Key points:</span>';
+    result.matched.slice(0, 5).forEach(function(w) { kwHtml += '<span class="wq-kw matched">' + w + '</span>'; });
+    result.missed.forEach(function(w) { kwHtml += '<span class="wq-kw missed">' + w + '</span>'; });
+    kwDiv.innerHTML = kwHtml; kwDiv.style.display = '';
+  } else { kwDiv.innerHTML = ''; kwDiv.style.display = 'none'; }
+  document.getElementById('wqModelAns').textContent = q.answer;
+  document.getElementById('wqNextBtn').style.display = 'inline-block';
+  if (currentQ >= writtenQuestions.length - 1) document.getElementById('wqNextBtn').textContent = 'See Results';
+  else document.getElementById('wqNextBtn').innerHTML = 'Next Question &rarr;';
+}
+function nextWrittenQuestion() {
+  currentQ++;
+  if (currentQ >= writtenQuestions.length) showWrittenResults(); else showWrittenQuestion();
+}
+function showWrittenResults() {
+  clearInterval(wTimerInterval);
+  show('screen-results');
+  var pct = Math.round((writtenScore / totalPossibleMarks) * 100);
+  var elapsed = Math.floor((Date.now() - startTime) / 1000);
+  var mins = Math.floor(elapsed / 60), secs = elapsed % 60;
+  document.getElementById('rScore').textContent = writtenScore + ' / ' + totalPossibleMarks;
+  var pctEl = document.getElementById('rPct');
+  pctEl.textContent = pct + '%';
+  pctEl.style.color = pct >= 70 ? '#16a34a' : pct >= 50 ? '#ca8a04' : '#dc2626';
+  document.getElementById('rTime').textContent = 'Time: ' + mins + 'm ' + secs + 's';
+  var currentChapterTitle = (chapters.find(function(c) { return c.n === currentChapter; }) || {}).name || 'Chapter ' + currentChapter;
+  var resultObj = { subject: 'english', chapter: currentChapter, chapterTitle: currentChapterTitle, score: writtenScore, total: totalPossibleMarks, pct: pct, mode: 'written', date: new Date().toISOString() };
+  var history = JSON.parse(localStorage.getItem('cbse6-test-history') || '[]');
+  history.push(resultObj);
+  localStorage.setItem('cbse6-test-history', JSON.stringify(history));
+  if (typeof GameEngine !== 'undefined') GameEngine.recordTestResult('english', currentChapter, writtenScore, totalPossibleMarks);
+  if (typeof AuthManager !== 'undefined' && AuthManager.isLoggedIn()) AuthManager.submitScore('english', currentChapter, currentChapterTitle, writtenScore, totalPossibleMarks);
+  document.getElementById('reviewList').innerHTML = writtenAnswers.map(function(a, i) {
+    var cls = a.result.ratio >= 0.6 ? '' : 'wrong';
+    return '<div class="review-item ' + cls + '"><div class="review-q">' + (i+1) + '. ' + a.question + ' <span style="font-weight:400;color:var(--ink-3)">(' + a.marks + ' marks)</span></div><div class="review-a">Your score: ' + a.result.score + '/' + a.marks + ' &mdash; ' + a.result.feedback + '</div></div>';
+  }).join('');
+}
+
+function shuffle(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i+1)); [arr[i],arr[j]] = [arr[j],arr[i]]; } }
+
+function updateTimer() {
+  const s = Math.floor((Date.now() - startTime) / 1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+}
+
+function showQuestion() {
+  var q = questions[currentQ];
+  document.getElementById('qNum').textContent = 'Question ' + (currentQ + 1) + ' of ' + questions.length;
+  document.getElementById('progressFill').style.width = ((currentQ + 1) / questions.length * 100) + '%';
+  document.getElementById('qText').textContent = q.question;
+
+  document.getElementById('runningScore').textContent = score;
+  document.getElementById('totalQs').textContent = questions.length;
+
+  document.getElementById('prevBtn').disabled = currentQ === 0;
+  document.getElementById('nextBtnNav').textContent = currentQ === questions.length - 1 ? 'Finish \u2192' : 'Next \u2192';
+
+  var dotsHtml = '';
+  for (var i = 0; i < questions.length; i++) {
+    var cls = 'tn-dot';
+    if (i === currentQ) cls += ' current';
+    else if (answers[i] && answers[i].correct) cls += ' correct';
+    else if (answers[i] && answers[i].answered) cls += ' wrong';
+    else cls += ' unanswered';
+    dotsHtml += '<button class="' + cls + '" onclick="goToQuestion(' + i + ')">' + (i + 1) + '</button>';
+  }
+  document.getElementById('qDots').innerHTML = dotsHtml;
+
+  var opts = q.options || [];
+  var html = '';
+  var letters = ['A','B','C','D'];
+  for (var i = 0; i < opts.length; i++) {
+    html += '<div class="test-opt" onclick="selectOption(' + i + ')" data-idx="' + i + '">' +
+      '<span class="opt-letter">' + letters[i] + '</span><span>' + opts[i].replace(/^[A-D]\)\s*/, '') + '</span></div>';
+  }
+  document.getElementById('optionsBox').innerHTML = html;
+
+  var exp = document.getElementById('explanation');
+  exp.className = 'test-explanation';
+  exp.textContent = '';
+  document.getElementById('nextBtn').className = 'test-next';
+
+  if (answers[currentQ] && answers[currentQ].answered) {
+    answered = true;
+    var a = answers[currentQ];
+    var correctIdx = 'ABCD'.indexOf(q.answer.charAt(0));
+    var allOpts = document.querySelectorAll('.test-opt');
+    allOpts.forEach(function(o, i) {
+      o.classList.add('disabled');
+      if (i === correctIdx) o.classList.add('correct');
+      if (i === a.selectedIdx && !a.correct) o.classList.add('wrong');
+    });
+    exp.textContent = q.explanation;
+    exp.classList.add('show');
+    document.getElementById('nextBtn').classList.add('show');
+  } else {
+    answered = false;
+  }
+}
+
+function selectOption(idx) {
+  if (answered) return;
+  answered = true;
+  var q = questions[currentQ];
+  var correctLetter = q.answer.charAt(0);
+  var correctIdx = 'ABCD'.indexOf(correctLetter);
+  var opts = document.querySelectorAll('.test-opt');
+
+  var isCorrect = idx === correctIdx;
+  if (isCorrect) score++;
+  userAnswers[currentQ] = { q: q.question, selected: idx, correct: correctIdx, isCorrect: isCorrect, options: q.options, explanation: q.explanation };
+
+  answers[currentQ] = { answered: true, correct: isCorrect, selectedIdx: idx };
+
+  document.getElementById('runningScore').textContent = score;
+
+  opts.forEach(function(o, i) {
+    o.classList.add('disabled');
+    if (i === correctIdx) o.classList.add('correct');
+    if (i === idx && !isCorrect) o.classList.add('wrong');
+  });
+
+  var dots = document.querySelectorAll('.tn-dot');
+  if (dots[currentQ]) {
+    dots[currentQ].className = 'tn-dot current ' + (isCorrect ? 'correct' : 'wrong');
+  }
+
+  var exp = document.getElementById('explanation');
+  exp.textContent = q.explanation;
+  exp.classList.add('show');
+  document.getElementById('nextBtn').classList.add('show');
+}
+
+function prevQuestion() {
+  if (currentQ > 0) { currentQ--; showQuestion(); }
+}
+
+function goToQuestion(idx) {
+  if (idx >= 0 && idx < questions.length) { currentQ = idx; showQuestion(); }
+}
+
+function nextQuestion() {
+  if (currentQ >= questions.length - 1) {
+    var allAnswered = answers.filter(function(a) { return a && a.answered; }).length === questions.length;
+    if (!allAnswered && !confirm('You have unanswered questions. Finish anyway?')) return;
+    showResults();
+  } else {
+    currentQ++;
+    showQuestion();
+  }
+}
+
+function showResults() {
+  clearInterval(timerInterval);
+  show('screen-results');
+  const total = questions.length;
+  const pct = Math.round((score / total) * 100);
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const mins = Math.floor(elapsed / 60), secs = elapsed % 60;
+
+  document.getElementById('rScore').textContent = `${score} / ${total}`;
+  const pctEl = document.getElementById('rPct');
+  pctEl.textContent = `${pct}%`;
+  pctEl.style.color = pct >= 70 ? '#16a34a' : pct >= 50 ? '#ca8a04' : '#dc2626';
+  document.getElementById('rTime').textContent = `Time: ${mins}m ${secs}s`;
+
+  // Save result to localStorage
+  var currentChapterTitle = (chapters.find(c => c.n === currentChapter) || {}).name || 'Chapter ' + currentChapter;
+  var result = {
+    subject: 'english',
+    chapter: currentChapter,
+    chapterTitle: currentChapterTitle,
+    score: score,
+    total: total,
+    pct: pct,
+    date: new Date().toISOString()
+  };
+  var history = JSON.parse(localStorage.getItem('cbse6-test-history') || '[]');
+  history.push(result);
+  localStorage.setItem('cbse6-test-history', JSON.stringify(history));
+
+  if (typeof GameEngine !== 'undefined') {
+    GameEngine.recordTestResult('english', currentChapter, score, questions.length);
+  }
+
+  if (typeof AuthManager !== 'undefined' && AuthManager.isLoggedIn()) {
+    AuthManager.submitScore('english', currentChapter, currentChapterTitle, score, questions.length);
+  }
+
+  var reviewHtml = '';
+  for (var ri = 0; ri < questions.length; ri++) {
+    var a = userAnswers[ri];
+    if (a) {
+      reviewHtml += '<div class="review-item ' + (a.isCorrect ? '' : 'wrong') + '">' +
+        '<div class="review-q">' + (ri+1) + '. ' + a.q + '</div>' +
+        '<div class="review-a">Your answer: ' + a.options[a.selected] + ' ' + (a.isCorrect ? '&#10003;' : '&#10007;') +
+        (!a.isCorrect ? ' | Correct: ' + a.options[a.correct] : '') + '</div></div>';
+    } else {
+      reviewHtml += '<div class="review-item wrong"><div class="review-q">' + (ri+1) + '. ' + questions[ri].question + '</div>' +
+        '<div class="review-a">Not answered | Correct: ' + questions[ri].answer + '</div></div>';
+    }
+  }
+  document.getElementById('reviewList').innerHTML = reviewHtml;
+}
+
+function retryTest() { if (testMode !== 'mcq') startWrittenTest(testMode.split('-')[1] || 'all'); else startMCQTest(); }
+function backToChapters() { clearInterval(timerInterval); clearInterval(wTimerInterval); show('screen-select'); }
+
+/* ---- Voice Input (MediaRecorder + Gemini) ---- */
+var mediaRecorder = null;
+var audioChunks = [];
+var micStream = null;
+var isRecording = false;
+var recordingStartTime = null;
+var voTimerInterval = null;
+
+var audioCtx = null;
+var analyser = null;
+var animFrameId = null;
+
+function startVisualizer() {
+  var canvas = document.getElementById('voiceCanvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+
+  if (!micStream) return;
+  (function(stream) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    var source = audioCtx.createMediaStreamSource(stream);
+    analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 256;
+    source.connect(analyser);
+
+    var bufferLength = analyser.frequencyBinCount;
+    var dataArray = new Uint8Array(bufferLength);
+
+    function draw() {
+      if (!analyser) return;
+      animFrameId = requestAnimationFrame(draw);
+
+      var wrap = canvas.parentElement;
+      canvas.width = wrap.clientWidth;
+      canvas.height = wrap.clientHeight;
+
+      analyser.getByteFrequencyData(dataArray);
+
+      var w = canvas.width;
+      var h = canvas.height;
+      var barCount = 120;
+      var barWidth = Math.max(1, (w / barCount) - 1);
+      var gap = 1;
+
+      ctx.clearRect(0, 0, w, h);
+
+      var centerY = h / 2;
+
+      for (var i = 0; i < barCount; i++) {
+        var dataIndex = Math.floor(i * bufferLength / barCount);
+        var value = dataArray[dataIndex];
+        var barHeight = (value / 255) * (h * 0.8);
+        if (barHeight < 3) barHeight = 3;
+
+        var x = i * (barWidth + gap) + gap;
+
+        var ratio = i / barCount;
+        var r = Math.round(147 + (236 - 147) * ratio);
+        var g = Math.round(51 + (72 - 51) * ratio);
+        var b = Math.round(234 + (153 - 234) * ratio);
+        ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+
+        var halfBar = barHeight / 2;
+        ctx.fillRect(x, centerY - halfBar, barWidth, halfBar);
+        ctx.fillRect(x, centerY, barWidth, halfBar);
+      }
+    }
+
+    draw();
+  })(micStream);
+}
+
+function showFallbackBars(canvas) {
+  var ctx = canvas.getContext('2d');
+  var barCount = 120;
+
+  function draw() {
+    animFrameId = requestAnimationFrame(draw);
+    var w = canvas.parentElement.clientWidth;
+    var h = canvas.parentElement.clientHeight;
+    canvas.width = w;
+    canvas.height = h;
+
+    ctx.clearRect(0, 0, w, h);
+    var centerY = h / 2;
+    var barWidth = Math.max(1, (w / barCount) - 1);
+
+    for (var i = 0; i < barCount; i++) {
+      var t = Date.now() / 1000;
+      var val = Math.sin(t * 3 + i * 0.5) * 0.5 + 0.5;
+      val *= Math.sin(t * 1.5 + i * 0.3) * 0.3 + 0.7;
+      var barH = val * h * 0.6;
+      if (barH < 2) barH = 2;
+
+      var ratio = i / barCount;
+      var r = Math.round(147 + 89 * ratio);
+      var g = Math.round(51 + 21 * ratio);
+      var b = Math.round(234 - 81 * ratio);
+      ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+
+      var x = i * (barWidth + 2) + 2;
+      ctx.fillRect(x, centerY - barH/2, barWidth, barH/2);
+      ctx.fillRect(x, centerY, barWidth, barH/2);
+    }
+  }
+  draw();
+}
+
+function stopVisualizer() {
+  if (animFrameId) { cancelAnimationFrame(animFrameId); animFrameId = null; }
+  if (analyser) { analyser.disconnect(); analyser = null; }
+  if (audioCtx) { audioCtx.close().catch(function(){}); audioCtx = null; }
+}
+
+function getMimeType() {
+  if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) return 'audio/webm;codecs=opus';
+  if (MediaRecorder.isTypeSupported('audio/webm')) return 'audio/webm';
+  if (MediaRecorder.isTypeSupported('audio/mp4')) return 'audio/mp4';
+  if (MediaRecorder.isTypeSupported('audio/ogg')) return 'audio/ogg';
+  return 'audio/webm';
+}
+
+function startRecording() {
+  navigator.mediaDevices.getUserMedia({ audio: true }).then(function(stream) {
+    micStream = stream;
+    isRecording = true;
+    audioChunks = [];
+    recordingStartTime = Date.now();
+
+    mediaRecorder = new MediaRecorder(stream, { mimeType: getMimeType() });
+
+    mediaRecorder.ondataavailable = function(event) {
+      if (event.data.size > 0) audioChunks.push(event.data);
+    };
+
+    mediaRecorder.onstop = function() {
+      var blob = new Blob(audioChunks, { type: mediaRecorder.mimeType });
+      processAudioBlob(blob, mediaRecorder.mimeType);
+    };
+
+    mediaRecorder.start(1000);
+
+    var wrap = document.querySelector('.voice-input-wrap');
+    wrap.classList.add('recording');
+
+    var overlay = document.createElement('div');
+    overlay.className = 'voice-overlay';
+    overlay.id = 'voiceOverlay';
+    overlay.innerHTML =
+      '<div class="vo-canvas-wrap"><canvas id="voiceCanvas"></canvas></div>' +
+      '<div class="vo-bottom">' +
+        '<div class="vo-mic-icon">\ud83c\udfa4</div>' +
+        '<div class="vo-info">' +
+          '<div class="vo-text">Recording... Speak your answer!</div>' +
+          '<div class="vo-timer" id="voTimer">00:00</div>' +
+        '</div>' +
+        '<button class="vo-stop" onclick="stopRecording()">\u23f9 Stop & Submit</button>' +
+      '</div>';
+    wrap.appendChild(overlay);
+
+    startVisualizer();
+
+    voTimerInterval = setInterval(function() {
+      var secs = Math.floor((Date.now() - recordingStartTime) / 1000);
+      var el = document.getElementById('voTimer');
+      if (el) el.textContent = String(Math.floor(secs/60)).padStart(2,'0') + ':' + String(secs%60).padStart(2,'0');
+    }, 1000);
+
+  }).catch(function(err) {
+    console.error('Mic access denied:', err);
+    alert('Please allow microphone access to record your answer.');
+  });
+}
+
+function stopRecording() {
+  isRecording = false;
+
+  if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+    mediaRecorder.stop();
+  }
+
+  stopVisualizer();
+  if (voTimerInterval) { clearInterval(voTimerInterval); voTimerInterval = null; }
+
+  var voText = document.querySelector('.vo-text');
+  if (voText) voText.textContent = 'Processing your answer...';
+  var voStop = document.querySelector('.vo-stop');
+  if (voStop) { voStop.disabled = true; voStop.textContent = 'Processing...'; }
+}
+
+function removeRecordingOverlay() {
+  var wrap = document.querySelector('.voice-input-wrap');
+  if (wrap) wrap.classList.remove('recording');
+  var overlay = document.getElementById('voiceOverlay');
+  if (overlay) {
+    overlay.style.animation = 'voiceOverlayIn .2s ease reverse';
+    setTimeout(function() { overlay.remove(); }, 200);
+  }
+  if (micStream) { micStream.getTracks().forEach(function(t) { t.stop(); }); micStream = null; }
+}
+
+async function processAudioBlob(blob, mimeType) {
+  var reader = new FileReader();
+  reader.onloadend = async function() {
+    var base64 = reader.result.split(',')[1];
+    var q = writtenQuestions[currentQ];
+
+    try {
+      var res = await fetch('/api/voice-evaluate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          audio: base64,
+          mimeType: mimeType.split(';')[0],
+          question: q.question,
+          modelAnswer: q.answer,
+          maxMarks: q._marks
+        })
+      });
+
+      var data = await res.json();
+      removeRecordingOverlay();
+
+      if (data.transcript) {
+        document.getElementById('studentAnswer').value = data.transcript;
+      }
+
+      if (data.score !== undefined && !data.fallback) {
+        showWrittenResult({
+          score: data.score,
+          total: data.total || q._marks,
+          feedback: data.feedback || '',
+          suggestion: data.suggestion || '',
+          ai: true,
+          matched: [],
+          missed: []
+        });
+      } else {
+        if (data.transcript) {
+          document.getElementById('studentAnswer').value = data.transcript;
+        }
+        var status = document.getElementById('micStatus');
+        if (status) status.textContent = data.error || 'Could not evaluate. Please submit manually.';
+      }
+
+    } catch(err) {
+      console.error('Voice evaluation failed:', err);
+      removeRecordingOverlay();
+      var status = document.getElementById('micStatus');
+      if (status) { status.textContent = 'Error processing audio. Type your answer instead.'; status.className = 'mic-status error'; }
+    }
+  };
+  reader.readAsDataURL(blob);
+}
+
+function showWrittenResult(result) {
+  var q = writtenQuestions[currentQ];
+  writtenScore += result.score;
+  writtenAnswers.push({
+    question: q.question,
+    studentAns: document.getElementById('studentAnswer').value,
+    modelAns: q.answer,
+    marks: q._marks,
+    result: result
+  });
+
+  var pct = (result.score / q._marks) * 100;
+  var fillClass = pct >= 70 ? 'high' : (pct >= 40 ? 'mid' : 'low');
+
+  document.getElementById('wqScoreText').textContent = 'Your Score: ' + result.score + '/' + q._marks;
+  var fill = document.getElementById('wqScoreFill');
+  fill.className = 'wq-score-fill ' + fillClass;
+  fill.style.width = pct + '%';
+
+  var feedbackHtml = result.feedback || '';
+  if (result.suggestion) feedbackHtml += '<br><span style="color:#fdd835;font-size:.78rem">\ud83d\udca1 ' + result.suggestion + '</span>';
+  if (result.ai) feedbackHtml += '<br><span style="color:rgba(255,255,255,.4);font-size:.65rem">Evaluated by AI</span>';
+  document.getElementById('wqFeedback').innerHTML = feedbackHtml;
+
+  var kwDiv = document.getElementById('wqKeywords');
+  if (kwDiv) kwDiv.style.display = 'none';
+
+  document.getElementById('wqModelAns').textContent = q.answer;
+  document.getElementById('wqResultPanel').style.display = 'block';
+
+  var submitBtn = document.querySelector('.wq-submit');
+  if (submitBtn) submitBtn.style.display = 'none';
+  document.getElementById('wqNextBtn').style.display = 'inline-block';
+
+  if (currentQ >= writtenQuestions.length - 1) {
+    document.getElementById('wqNextBtn').textContent = 'See Results';
+  } else {
+    document.getElementById('wqNextBtn').innerHTML = 'Next Question &rarr;';
+  }
+}
+
+init();
+</script>
+</body>
+</html>

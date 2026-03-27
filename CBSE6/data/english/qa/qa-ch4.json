@@ -1,0 +1,112 @@
+{
+  "chapter": 4,
+  "title": "A Friend's Prayer",
+  "marks_1": [
+    {
+      "id": "1.1",
+      "type": "mcq",
+      "question": "What does the speaker value most in life?",
+      "options": ["A) Money", "B) Friendship", "C) Studies", "D) Sports"],
+      "answer": "B) Friendship",
+      "explanation": "The speaker prays that friendships will always be the most important thing to her."
+    },
+    {
+      "id": "1.2",
+      "type": "mcq",
+      "question": "How does the poet feel about having special friends?",
+      "options": ["A) Sad", "B) Confused", "C) Blessed", "D) Angry"],
+      "answer": "C) Blessed",
+      "explanation": "The poet says 'With special friends I feel I'm blessed.'"
+    },
+    {
+      "id": "1.3",
+      "type": "mcq",
+      "question": "What does the poet want to use to understand her friends?",
+      "options": ["A) Her eyes", "B) Her ears", "C) Her heart", "D) Her mind"],
+      "answer": "C) Her heart",
+      "explanation": "She says 'Let me use my heart to see, to realise what friends can be.'"
+    },
+    {
+      "id": "1.4",
+      "type": "mcq",
+      "question": "What is the speaker's attitude toward her friends?",
+      "options": ["A) Judgemental", "B) Caring and supportive", "C) Competitive", "D) Indifferent"],
+      "answer": "B) Caring and supportive",
+      "explanation": "The speaker wants to give her best, make friends' wishes come true, and love them as they are."
+    },
+    {
+      "id": "1.5",
+      "type": "mcq",
+      "question": "Which word is closest in meaning to 'blessed'?",
+      "options": ["A) Excited", "B) Grateful", "C) Understood", "D) Relaxed"],
+      "answer": "B) Grateful",
+      "explanation": "Being blessed means feeling grateful and thankful for what one has."
+    },
+    {
+      "id": "1.6",
+      "type": "mcq",
+      "question": "What does 'make no judgements from afar' mean?",
+      "options": ["A) Judge friends from a distance", "B) Not judge friends at all", "C) Accept friends as they are without judging", "D) Stay far from friends"],
+      "answer": "C) Accept friends as they are without judging",
+      "explanation": "The poet wants to love her friends the way they are, without judging them."
+    },
+    {
+      "id": "1.7",
+      "type": "fill-blank",
+      "question": "The speaker does not wish to make any ___. She cares for her friends just as they are.",
+      "answer": "judgements",
+      "explanation": "The poem says 'make no judgements from afar, but love my friends the way they are.'"
+    },
+    {
+      "id": "1.8",
+      "type": "fill-blank",
+      "question": "The poem tells us that the speaker is a ___ person.",
+      "answer": "caring",
+      "explanation": "She wants to do her very best, make friends' wishes come true, and use her heart to understand them."
+    },
+    {
+      "id": "1.9",
+      "type": "true-false",
+      "question": "The speaker wants to share only the happy moments with friends.",
+      "answer": "False",
+      "explanation": "She wants to share hopes, plans, and dreams — and try to make their wishes come true, not just happy moments."
+    },
+    {
+      "id": "1.10",
+      "type": "true-false",
+      "question": "The poem is about the importance and depth of true friendship.",
+      "answer": "True",
+      "explanation": "The poem is a heartfelt prayer about valuing friendship, being supportive, and loving friends unconditionally."
+    }
+  ],
+  "marks_2": [
+    {
+      "id": "2.1",
+      "type": "short",
+      "question": "Why is this poem called 'A Friend's Prayer'? Give one reason.",
+      "answer": "The poem is called 'A Friend's Prayer' because it expresses the speaker's sincere, heartfelt wishes about friendship — just like a prayer expresses deep wishes. She prays that friendship will always be important, that she can be a good friend, and that she can love her friends without judgement.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.2",
+      "type": "short",
+      "question": "How will the speaker make her friends' wishes come true?",
+      "answer": "The speaker says she will try all that a friend can do to make their wishes come true. This means she will put in effort, be supportive, and actively help her friends achieve their dreams — by trying hard and working a lot for them.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.3",
+      "type": "short",
+      "question": "What does the poet want to do 'much more than share'?",
+      "answer": "The poet doesn't just want to listen to her friends' hopes and plans — she wants to actively participate in making those dreams come true. She wants to go beyond sharing words and take real action to help her friends.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.4",
+      "type": "short",
+      "question": "What qualities of a true friend are highlighted in this poem?",
+      "answer": "The poem highlights several qualities: loyalty (friendship as the most important thing), gratitude (feeling blessed), generosity (giving her very best), supportiveness (making wishes come true), empathy (using her heart to see), and unconditional acceptance (loving friends the way they are without judgement).",
+      "source": "extra"
+    }
+  ]
+}

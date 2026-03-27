@@ -1,0 +1,127 @@
+{
+  "chapter": 10,
+  "title": "The Kites",
+  "marks_1": [
+    {
+      "id": "1.1",
+      "type": "mcq",
+      "question": "What are the kites compared to in the poem?",
+      "options": ["A) Butterflies", "B) Coloured birds", "C) Airplanes", "D) Clouds"],
+      "answer": "B) Coloured birds",
+      "explanation": "The poet says 'See the kites fly, like coloured birds in the wind-whipped sky.'"
+    },
+    {
+      "id": "1.2",
+      "type": "mcq",
+      "question": "What does the child wish to be?",
+      "options": ["A) A bird", "B) A kite", "C) Small and light as air", "D) A pilot"],
+      "answer": "C) Small and light as air",
+      "explanation": "The child says 'I wish I were small and light as air' so she could climb on a kite and fly."
+    },
+    {
+      "id": "1.3",
+      "type": "mcq",
+      "question": "What would the child look at from up in the sky?",
+      "options": ["A) Stars", "B) The park and rooftops of town", "C) The sea", "D) Mountains"],
+      "answer": "B) The park and rooftops of town",
+      "explanation": "The child imagines looking 'right down, over the park and the rooftops of town.'"
+    },
+    {
+      "id": "1.4",
+      "type": "mcq",
+      "question": "What songs would the child hear while flying on the kite?",
+      "options": ["A) Bird songs", "B) Songs of the wild wind", "C) School songs", "D) Music from below"],
+      "answer": "B) Songs of the wild wind",
+      "explanation": "The child would 'hear the songs that the wild wind sings.'"
+    },
+    {
+      "id": "1.5",
+      "type": "mcq",
+      "question": "Why would people below stand and stare?",
+      "options": ["A) Because the kite is broken", "B) Because seeing a child on a kite is extraordinary", "C) Because they are scared", "D) Because it is raining"],
+      "answer": "B) Because seeing a child on a kite is extraordinary",
+      "explanation": "Seeing a child flying high on a kite would be an extraordinary and magical sight."
+    },
+    {
+      "id": "1.6",
+      "type": "mcq",
+      "question": "Which poetic device is used in 'wind-whipped'?",
+      "options": ["A) Simile", "B) Personification", "C) Alliteration", "D) Rhyme"],
+      "answer": "C) Alliteration",
+      "explanation": "Alliteration is the repetition of consonant sounds at the beginning — 'w' in 'wind-whipped'."
+    },
+    {
+      "id": "1.7",
+      "type": "mcq",
+      "question": "'Paper wings' in the poem refers to:",
+      "options": ["A) A bird's wings", "B) The kite", "C) A book", "D) An airplane"],
+      "answer": "B) The kite",
+      "explanation": "The child would 'drift upon the paper wings' — the kite is made of paper."
+    },
+    {
+      "id": "1.8",
+      "type": "fill-blank",
+      "question": "The kites have been compared to ___ because they are colourful and fly in the sky.",
+      "answer": "birds",
+      "explanation": "The poet uses a simile: kites fly 'like coloured birds' in the wind-whipped sky."
+    },
+    {
+      "id": "1.9",
+      "type": "fill-blank",
+      "question": "The child wishes to be as light as ___ to climb on a kite.",
+      "answer": "air",
+      "explanation": "The poet says 'I wish I were small and light as air' — using a simile."
+    },
+    {
+      "id": "1.10",
+      "type": "true-false",
+      "question": "The child wants to become a kite.",
+      "answer": "False",
+      "explanation": "The child wants to climb ON a kite and sail through the sky, not become a kite."
+    },
+    {
+      "id": "1.11",
+      "type": "true-false",
+      "question": "The kites look like birds of different colours.",
+      "answer": "True",
+      "explanation": "The poem says kites fly 'like coloured birds in the wind-whipped sky.'"
+    },
+    {
+      "id": "1.12",
+      "type": "true-false",
+      "question": "It was a rainy day in the poem.",
+      "answer": "False",
+      "explanation": "It was a windy day — 'wind-whipped sky' — perfect for flying kites."
+    }
+  ],
+  "marks_2": [
+    {
+      "id": "2.1",
+      "type": "short",
+      "question": "How does the poet describe the kites in the first two lines?",
+      "answer": "The poet describes the kites as 'coloured birds' flying high up in the 'wind-whipped sky'. This simile compares the colourful kites to birds because both fly in the sky and are beautiful to watch. The word 'wind-whipped' creates a vivid image of a windy day perfect for kite flying.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.2",
+      "type": "short",
+      "question": "Why does the child wish to be small and light as air?",
+      "answer": "The child wishes to be small and light as air so that she could climb on a kite and sail up high in the sky. Being light would allow her to ride the kite without weighing it down. This wish shows the child's imagination and desire for freedom and adventure.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.3",
+      "type": "short",
+      "question": "Find examples of simile and alliteration in the poem.",
+      "answer": "Similes: (1) 'Like coloured birds' — kites compared to coloured birds. (2) 'Light as air' — the child wants to be as light as air. Alliteration: (1) 'wild wind' — repetition of 'w' sound. (2) 'stand and stare' — repetition of 'st' sound. (3) 'wind-whipped' — repetition of 'w' sound.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.4",
+      "type": "short",
+      "question": "If you were the kite carrying the child high up in the air, what would you tell them?",
+      "answer": "If I were the kite, I would say: 'Hold on tight and enjoy the ride! Look below — you can see your school, your home, and the park where you play. Feel the wind on your face and listen to its song. But remember, don't be afraid — I will keep you safe up here among the clouds. The world looks very different from up high!'",
+      "source": "ncert"
+    }
+  ]
+}

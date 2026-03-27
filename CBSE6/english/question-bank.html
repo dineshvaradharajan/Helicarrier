@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CBSE Class 6 English Question Bank — Exercises from all 10 chapters of Poorvi plus school Q&A. Comprehension, grammar, vocabulary, writing and speaking.">
+<title>Question Bank — Poorvi | CBSE Class 6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/chapter.css">
+<link rel="stylesheet" href="../css/football-theme.css">
+<style>
+  :root {
+    --subject-color: #b8860b;
+    --subject-bg: #fef9ee;
+    --subject-border: #f0d68a;
+  }
+
+  /* Source toggle tabs */
+  .source-tabs {
+    display: flex; gap: 0; margin: 1rem 0;
+    border-bottom: 2px solid var(--sand-200);
+  }
+  .source-tab {
+    font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 700;
+    padding: .6rem 1.5rem; border: none; background: none;
+    color: var(--ink-3); cursor: pointer; transition: all .2s;
+    border-bottom: 3px solid transparent; margin-bottom: -2px;
+  }
+  .source-tab:hover { color: var(--ink) }
+  .source-tab.active { color: var(--sand-900); border-bottom-color: var(--subject-color) }
+
+  /* Filter tabs */
+  .filter-bar {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin: 1.25rem 0; padding-bottom: 1rem;
+    border-bottom: 1px solid var(--sand-200);
+  }
+  .filter-btn {
+    font-family: 'Lato', sans-serif; font-size: .78rem; font-weight: 700;
+    padding: 6px 14px; border: 2px solid var(--sand-300); border-radius: 10px;
+    background: #fff; color: var(--sand-700); cursor: pointer;
+    transition: all .2s; white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--sand-400); color: var(--sand-900) }
+  .filter-btn.active { background: #b8860b; color: #fff; border-color: #b8860b }
+
+  /* Mobile filter dropdown */
+  .filter-mobile {
+    display: none; width: 100%; font-size: .78rem; font-weight: 700;
+    font-family: 'Lato', sans-serif; padding: .5rem .75rem;
+    border: 1.5px solid var(--sand-300); border-radius: 8px;
+    background: #fff; color: var(--ink);
+    appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' fill='none' stroke='%2378716c' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right .75rem center;
+    padding-right: 2rem; margin: .75rem 0 1rem;
+  }
+
+  /* Chapter group */
+  .qb-chapter { margin-bottom: 2rem }
+  .qb-chapter-head {
+    display: flex; align-items: center; gap: .75rem;
+    padding: .85rem 1.1rem; background: var(--sand-100);
+    border: 1px solid var(--sand-200); border-radius: 12px;
+    margin-bottom: .75rem; cursor: pointer; transition: background .2s; user-select: none;
+  }
+  .qb-chapter-head:hover { background: var(--sand-200) }
+  .qb-chapter-head .ch-label {
+    font-family: 'Newsreader', serif; font-size: 1.05rem; font-weight: 700;
+    color: var(--ink); flex: 1;
+  }
+  .qb-chapter-head .ch-count {
+    font-size: .72rem; font-weight: 700; color: var(--ink-3);
+    background: #fff; border: 1px solid var(--sand-200);
+    border-radius: 999px; padding: .15rem .6rem; white-space: nowrap;
+  }
+  .qb-chapter-head .toggle-icon {
+    font-size: .85rem; color: var(--ink-3); transition: transform .2s;
+  }
+  .qb-chapter.collapsed .toggle-icon { transform: rotate(-90deg) }
+  .qb-chapter.collapsed .qb-sections { display: none }
+
+  /* Section group */
+  .qb-section { margin-bottom: 1rem; margin-left: .5rem }
+  .qb-section-head {
+    font-size: .82rem; font-weight: 800; color: var(--subject-color);
+    letter-spacing: .03em; padding: .4rem 0; margin-bottom: .4rem;
+    border-bottom: 1px dashed var(--sand-200);
+  }
+
+  /* NCERT Question card */
+  .q-card {
+    background: #fff; border: 1px solid var(--sand-200); border-radius: 10px;
+    padding: .75rem 1rem; margin-bottom: .5rem;
+    display: flex; align-items: flex-start; gap: .75rem; transition: border-color .2s;
+  }
+  .q-card:hover { border-color: var(--sand-400) }
+  .q-id {
+    flex-shrink: 0; font-family: 'Lato', sans-serif; font-size: .7rem; font-weight: 800;
+    color: var(--ink-3); background: var(--sand-100); border-radius: 6px;
+    padding: .2rem .45rem; min-width: 2.5rem; text-align: center; margin-top: .1rem;
+  }
+  .q-text { font-size: .87rem; color: var(--ink-2); line-height: 1.65; flex: 1 }
+  .q-type {
+    flex-shrink: 0; font-size: .62rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .05em; padding: .15rem .5rem; border-radius: 999px;
+    white-space: nowrap; margin-top: .15rem;
+  }
+  .q-type--comprehension { background: #dbeafe; color: #1e40af }
+  .q-type--vocabulary    { background: #ede9fe; color: #5b21b6 }
+  .q-type--grammar       { background: #fef3c7; color: #92400e }
+  .q-type--writing       { background: #d1fae5; color: #065f46 }
+  .q-type--speaking      { background: #fce7f3; color: #9d174d }
+  .q-type--reasoning     { background: #ffedd5; color: #9a3412 }
+  .q-type--activity      { background: #ccfbf1; color: #134e4a }
+  .q-type--open          { background: #e0e7ff; color: #3730a3 }
+  .q-type--poetry        { background: #f3e8ff; color: #6b21a8 }
+  .q-type--discuss       { background: #fff7ed; color: #c2410c }
+  .q-type--creative      { background: #fdf4ff; color: #86198f }
+
+  /* ── Q&A card styles ── */
+  .qa-card {
+    background: #fff; border: 1px solid var(--sand-200); border-radius: 10px;
+    padding: .85rem 1rem; margin-bottom: .65rem; transition: border-color .2s;
+  }
+  .qa-card:hover { border-color: var(--sand-400) }
+  .qa-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .45rem; flex-wrap: wrap }
+  .qa-id {
+    font-family: 'Lato', sans-serif; font-size: .7rem; font-weight: 800;
+    color: var(--ink-3); background: var(--sand-100); border-radius: 6px; padding: .2rem .45rem;
+  }
+  .qa-marks {
+    font-size: .62rem; font-weight: 700; color: var(--subject-color);
+    background: var(--subject-bg); border: 1px solid var(--subject-border);
+    border-radius: 999px; padding: .12rem .5rem; white-space: nowrap;
+  }
+  .qa-source {
+    font-size: .58rem; font-weight: 800; color: #065f46; background: #d1fae5;
+    border: 1px solid #6ee7b7; border-radius: 999px; padding: .1rem .45rem;
+    white-space: nowrap; letter-spacing: .03em;
+  }
+  .qa-type {
+    font-size: .62rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .05em; padding: .15rem .5rem; border-radius: 999px; white-space: nowrap;
+  }
+  .qa-type--mcq        { background: #d1fae5; color: #065f46 }
+  .qa-type--fill-blank { background: #f3e8ff; color: #6b21a8 }
+  .qa-type--true-false { background: #fdf4ff; color: #86198f }
+  .qa-type--short      { background: #dbeafe; color: #1e40af }
+  .qa-type--long       { background: #fef3c7; color: #92400e }
+  .qa-type--vocabulary { background: #ede9fe; color: #5b21b6 }
+  .qa-type--grammar    { background: #ffedd5; color: #9a3412 }
+  .qa-type--open       { background: #e0e7ff; color: #3730a3 }
+  .qa-type--reasoning  { background: #ccfbf1; color: #134e4a }
+  .qa-type--activity   { background: #fce7f3; color: #9d174d }
+  .qa-type--comprehension { background: #dbeafe; color: #1e40af }
+  .qa-type--writing    { background: #d1fae5; color: #065f46 }
+  .qa-type--speaking   { background: #fce7f3; color: #9d174d }
+  .qa-type--discuss    { background: #fff7ed; color: #c2410c }
+  .qa-type--creative   { background: #fdf4ff; color: #86198f }
+  .qa-type--poetry     { background: #f3e8ff; color: #6b21a8 }
+
+  .qa-question { font-size: .87rem; color: var(--ink-2); line-height: 1.65; margin-bottom: .5rem }
+  .qa-options {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: .3rem; margin-bottom: .5rem;
+  }
+  .qa-opt {
+    font-size: .82rem; color: var(--ink-2); padding: .3rem .65rem;
+    background: var(--sand-50); border: 1px solid var(--sand-200); border-radius: 6px;
+  }
+  .qa-toggle {
+    font-family: 'Lato', sans-serif; font-size: .75rem; font-weight: 700;
+    padding: .35rem .9rem; border: 1.5px solid var(--sand-300); border-radius: 8px;
+    background: #fff; color: var(--ink-3); cursor: pointer; transition: all .2s;
+  }
+  .qa-toggle:hover { border-color: var(--subject-color); color: var(--subject-color) }
+  .qa-answer {
+    display: none; margin-top: .6rem; padding: .65rem .85rem;
+    background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px;
+  }
+  .qa-answer.show { display: block }
+  .qa-ans-label { font-size: .84rem; font-weight: 700; color: #15803d; margin-bottom: .25rem; white-space: pre-line; line-height: 1.7 }
+  .qa-explanation { font-size: .8rem; color: var(--ink-3); line-height: 1.7; white-space: pre-line; margin-top: .35rem; padding-top: .35rem; border-top: 1px dashed #bbf7d0 }
+
+  /* ── Q&A Toolbar ── */
+  .qa-toolbar {
+    display: none;
+    align-items: center;
+    gap: .5rem;
+    flex-wrap: wrap;
+    padding: .75rem 0;
+    border-bottom: 1px solid var(--sand-200);
+    margin-bottom: 1rem;
+  }
+  .qa-toolbar.visible { display: flex }
+  .qa-toolbar-label {
+    font-size: .72rem;
+    font-weight: 700;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin-right: .25rem;
+  }
+  .marks-pill {
+    font-family: 'Lato', sans-serif;
+    font-size: .72rem;
+    font-weight: 700;
+    padding: .3rem .75rem;
+    border: 2px solid var(--sand-300);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--sand-700);
+    cursor: pointer;
+    transition: all .2s;
+    white-space: nowrap;
+  }
+  .marks-pill:hover { border-color: var(--sand-400); color: var(--sand-900) }
+  .marks-pill.active { background: var(--subject-color); color: #fff; border-color: var(--subject-color) }
+  .marks-pill .pill-count {
+    font-size: .62rem;
+    opacity: .7;
+    margin-left: .2rem;
+  }
+  .qa-toolbar-actions {
+    margin-left: auto;
+    display: flex;
+    gap: .4rem;
+  }
+  .toolbar-btn {
+    font-family: 'Lato', sans-serif;
+    font-size: .68rem;
+    font-weight: 700;
+    padding: .25rem .65rem;
+    border: 1.5px solid var(--sand-300);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--ink-3);
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .toolbar-btn:hover { border-color: var(--ink-3); color: var(--ink) }
+
+  /* Marks section headers — improved */
+  .qb-section-head {
+    font-size: .82rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: .03em;
+    padding: .45rem .85rem;
+    margin-bottom: .5rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .qb-section-head[data-marks="1"] { background: #2563eb }
+  .qb-section-head[data-marks="2"] { background: #7c3aed }
+  .qb-section-head[data-marks="3"] { background: #059669 }
+  .qb-section-head[data-marks="5"] { background: #dc2626 }
+
+  /* Scroll-to-top fab */
+  .scroll-top {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--sand-900);
+    color: #fff;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    z-index: 200;
+    transition: opacity .2s;
+  }
+  .scroll-top.show { display: flex }
+
+  .loading { text-align: center; padding: 3rem 1rem; color: var(--ink-3); font-size: .9rem }
+
+  @media (max-width: 640px) {
+    .filter-bar { display: none }
+    .filter-mobile { display: block }
+    .source-tab { padding: .5rem 1rem; font-size: .75rem }
+    .qb-chapter-head { padding: .65rem .85rem }
+    .qb-chapter-head .ch-label { font-size: .88rem }
+    .qb-section { margin-left: 0 }
+    .q-card { padding: .6rem .75rem; gap: .5rem }
+    .q-id { font-size: .62rem; min-width: 2rem; padding: .15rem .3rem }
+    .q-text { font-size: .8rem }
+    .q-type { font-size: .55rem }
+    .qa-card { padding: .65rem .75rem }
+    .qa-question { font-size: .8rem }
+    .qa-options { grid-template-columns: 1fr }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="../index.html" class="back-link">&larr; Back to Home</a>
+
+  <div class="hero">
+    <div class="badge">English</div>
+    <h1>Question Bank</h1>
+    <p class="sub">Exercises from all 10 chapters of Poorvi &mdash; comprehension, grammar, vocabulary, writing and speaking.</p>
+  </div>
+
+  <!-- Source toggle -->
+  <div class="source-tabs">
+    <button class="source-tab active" onclick="switchSource('ncert',this)">NCERT Exercises</button>
+    <button class="source-tab" onclick="switchSource('qa',this)">School Q&amp;A</button>
+  </div>
+
+  <!-- Desktop filter tabs -->
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" data-ch="all" onclick="filterCh('all',this)">All</button>
+    <button class="filter-btn" data-ch="1" onclick="filterCh('1',this)">Ch 1</button>
+    <button class="filter-btn" data-ch="2" onclick="filterCh('2',this)">Ch 2</button>
+    <button class="filter-btn" data-ch="3" onclick="filterCh('3',this)">Ch 3</button>
+    <button class="filter-btn" data-ch="4" onclick="filterCh('4',this)">Ch 4</button>
+    <button class="filter-btn" data-ch="5" onclick="filterCh('5',this)">Ch 5</button>
+    <button class="filter-btn" data-ch="6" onclick="filterCh('6',this)">Ch 6</button>
+    <button class="filter-btn" data-ch="7" onclick="filterCh('7',this)">Ch 7</button>
+    <button class="filter-btn" data-ch="8" onclick="filterCh('8',this)">Ch 8</button>
+    <button class="filter-btn" data-ch="9" onclick="filterCh('9',this)">Ch 9</button>
+    <button class="filter-btn" data-ch="10" onclick="filterCh('10',this)">Ch 10</button>
+  </div>
+
+  <!-- Mobile filter dropdown -->
+  <select class="filter-mobile" id="filterMobile" onchange="filterCh(this.value, null)">
+    <option value="all">All Chapters</option>
+    <option value="1">Ch 1 — A Bottle of Dew</option>
+    <option value="2">Ch 2 — The Raven and the Fox</option>
+    <option value="3">Ch 3 — The Unlikely Best Friends</option>
+    <option value="4">Ch 4 — A Friend's Prayer</option>
+    <option value="5">Ch 5 — Neem Baba</option>
+    <option value="6">Ch 6 — What a Bird Thought</option>
+    <option value="7">Ch 7 — Change of Heart</option>
+    <option value="8">Ch 8 — The Winner</option>
+    <option value="9">Ch 9 — Kalakritiyon ka Bharat</option>
+    <option value="10">Ch 10 — The Kites</option>
+  </select>
+
+  <!-- Q&A Toolbar — marks filter + actions (visible only in School Q&A mode) -->
+  <div class="qa-toolbar" id="qaToolbar">
+    <span class="qa-toolbar-label">Filter by marks:</span>
+    <button class="marks-pill active" data-m="all" onclick="filterMarks('all',this)">All</button>
+    <button class="marks-pill" data-m="1" onclick="filterMarks('1',this)">1 Mark <span class="pill-count" id="cnt1"></span></button>
+    <button class="marks-pill" data-m="2" onclick="filterMarks('2',this)">2 Marks <span class="pill-count" id="cnt2"></span></button>
+    <button class="marks-pill" data-m="3" onclick="filterMarks('3',this)">3 Marks <span class="pill-count" id="cnt3"></span></button>
+    <button class="marks-pill" data-m="5" onclick="filterMarks('5',this)">5 Marks <span class="pill-count" id="cnt5"></span></button>
+    <div class="qa-toolbar-actions">
+      <button class="toolbar-btn" onclick="toggleAllChapters(true)">Expand All</button>
+      <button class="toolbar-btn" onclick="toggleAllChapters(false)">Collapse All</button>
+      <button class="toolbar-btn" onclick="toggleAllAnswers()">Show All Answers</button>
+    </div>
+  </div>
+
+  <div id="questionsRoot">
+    <div class="loading">Loading questions&hellip;</div>
+  </div>
+
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&uarr;</button>
+
+  <footer class="site-footer">Released under the <a href="https://github.com/dineshvaradharajan/cbse-prep/blob/main/LICENSE" target="_blank">MIT License</a> &middot; &copy; 2026 Dinesh Varadharajan</footer>
+</div>
+
+<script>
+(function() {
+  /* English NCERT = single file with array of chapters */
+  const NCERT_URL = '../data/english/chapters.json';
+  const QA_FILES = Array.from({length:10}, (_,i) => '../data/english/qa/qa-ch' + (i+1) + '.json');
+
+  const root = document.getElementById('questionsRoot');
+  let ncertData = [];
+  let qaData = [];
+  let currentSource = 'ncert';
+  let currentCh = 'all';
+
+  function escHtml(s) {
+    if (!s) return '';
+    const d = document.createElement('div'); d.textContent = s; return d.innerHTML;
+  }
+  function typeClass(type) {
+    return 'q-type--' + (type || 'open').toLowerCase().replace(/[\s_]+/g, '-');
+  }
+  function qaTypeClass(type) {
+    return 'qa-type--' + (type || 'open').toLowerCase().replace(/[\s_]+/g, '-');
+  }
+  function qaTypeLabel(type) {
+    const map = {mcq:'MCQ','fill-blank':'Fill in Blank','true-false':'True / False',short:'Short Answer',long:'Long Answer',vocabulary:'Vocabulary',grammar:'Grammar',open:'Open-ended',reasoning:'Reasoning',activity:'Activity',comprehension:'Comprehension',writing:'Writing',speaking:'Speaking',discuss:'Discussion',creative:'Creative',poetry:'Poetry',diagram:'Diagram',match:'Match'};
+    return map[(type||'').toLowerCase()] || type || 'Question';
+  }
+
+  /* ── Render NCERT ── */
+  function renderNcert() {
+    if (ncertData.length === 0) { root.innerHTML = '<div class="loading">No NCERT questions found.</div>'; return; }
+    let html = '';
+    ncertData.forEach(ch => {
+      const totalQs = ch.sections.reduce((n, s) => n + s.questions.length, 0);
+      html += '<div class="qb-chapter" data-ch="' + ch.chapter + '">';
+      html += '<div class="qb-chapter-head" onclick="toggleChapter(this)">';
+      html += '<span class="ch-label">Chapter ' + ch.chapter + ': ' + escHtml(ch.title) + '</span>';
+      html += '<span class="ch-count">' + totalQs + ' Qs</span>';
+      html += '<span class="toggle-icon">&#9660;</span>';
+      html += '</div><div class="qb-sections">';
+      ch.sections.forEach(sec => {
+        html += '<div class="qb-section">';
+        html += '<div class="qb-section-head">' + escHtml(sec.title) + ' &mdash; ' + escHtml(sec.topic) + '</div>';
+        sec.questions.forEach(q => {
+          html += '<div class="q-card">';
+          html += '<div class="q-id">' + escHtml(q.id) + '</div>';
+          html += '<div class="q-text">' + escHtml(q.question) + '</div>';
+          html += '<div class="q-type ' + typeClass(q.type) + '">' + escHtml(q.type) + '</div>';
+          html += '</div>';
+        });
+        html += '</div>';
+      });
+      html += '</div></div>';
+    });
+    root.innerHTML = html;
+    applyFilter();
+  }
+
+  /* ── Render Q&A ── */
+  const MARKS_SECTIONS = [
+    { key: 'marks_1', label: '1-Mark Questions', marks: 1 },
+    { key: 'marks_2', label: '2-Mark Questions', marks: 2 },
+    { key: 'marks_3', label: '3-Mark Questions', marks: 3 },
+    { key: 'marks_5', label: '5-Mark Questions', marks: 5 }
+  ];
+  let currentMarks = 'all';
+
+  function renderQA() {
+    if (qaData.length === 0) { root.innerHTML = '<div class="loading">No school Q&amp;A found.</div>'; return; }
+    // Update toolbar counts
+    let counts = { '1': 0, '2': 0, '3': 0, '5': 0 };
+    qaData.forEach(ch => {
+      MARKS_SECTIONS.forEach(ms => { counts[ms.marks] += (ch[ms.key] || []).length; });
+    });
+    ['1','2','3','5'].forEach(m => {
+      const el = document.getElementById('cnt' + m);
+      if (el) el.textContent = '(' + counts[m] + ')';
+    });
+
+    let html = '';
+    qaData.forEach(ch => {
+      let totalQs = 0;
+      MARKS_SECTIONS.forEach(ms => { totalQs += (ch[ms.key] || []).length; });
+      html += '<div class="qb-chapter" data-ch="' + ch.chapter + '" id="qa-ch' + ch.chapter + '">';
+      html += '<div class="qb-chapter-head" onclick="toggleChapter(this)">';
+      html += '<span class="ch-label">Chapter ' + ch.chapter + ': ' + escHtml(ch.title) + '</span>';
+      html += '<span class="ch-count">' + totalQs + ' Qs</span>';
+      html += '<span class="toggle-icon">&#9660;</span>';
+      html += '</div><div class="qb-sections">';
+
+      MARKS_SECTIONS.forEach(ms => {
+        const qs = ch[ms.key] || [];
+        if (qs.length === 0) return;
+        html += '<div class="qb-section" data-marks="' + ms.marks + '">';
+        html += '<div class="qb-section-head" data-marks="' + ms.marks + '">' + ms.label + ' <span style="opacity:.7;font-weight:400">(' + qs.length + ')</span></div>';
+        qs.forEach((q, idx) => {
+          html += '<div class="qa-card" data-marks="' + ms.marks + '">';
+          html += '<div class="qa-header">';
+          html += '<span class="qa-id">Q' + (idx+1) + '</span>';
+          html += '<span class="qa-marks">' + ms.marks + ' mark' + (ms.marks>1?'s':'') + '</span>';
+          html += '<span class="qa-type ' + qaTypeClass(q.type) + '">' + escHtml(qaTypeLabel(q.type)) + '</span>';
+          if (q.source === 'ncert') html += '<span class="qa-source">NCERT</span>';
+          html += '</div>';
+          html += '<div class="qa-question">' + escHtml(q.question) + '</div>';
+          if (q.options && q.options.length) {
+            html += '<div class="qa-options">';
+            q.options.forEach(o => { html += '<div class="qa-opt">' + escHtml(o) + '</div>'; });
+            html += '</div>';
+          }
+          html += '<button class="qa-toggle" onclick="this.nextElementSibling.classList.toggle(\'show\');this.textContent=this.nextElementSibling.classList.contains(\'show\')?\'Hide Answer\':\'Show Answer\'">Show Answer</button>';
+          html += '<div class="qa-answer">';
+          html += '<div class="qa-ans-label">Answer: ' + escHtml(q.answer) + '</div>';
+          if (q.explanation) html += '<div class="qa-explanation">' + escHtml(q.explanation) + '</div>';
+          html += '</div></div>';
+        });
+        html += '</div>';
+      });
+
+      html += '</div></div>';
+    });
+    root.innerHTML = html;
+    applyFilter();
+    applyMarksFilter();
+  }
+
+  /* ── Source switching ── */
+  window.switchSource = function(src, btn) {
+    currentSource = src;
+    document.querySelectorAll('.source-tab').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    // Show/hide Q&A toolbar
+    document.getElementById('qaToolbar').classList.toggle('visible', src === 'qa');
+    if (src === 'ncert') renderNcert(); else renderQA();
+  };
+
+  /* ── Marks filter ── */
+  function applyMarksFilter() {
+    if (currentSource !== 'qa') return;
+    document.querySelectorAll('.qb-section[data-marks]').forEach(sec => {
+      sec.style.display = (currentMarks === 'all' || sec.dataset.marks === currentMarks) ? '' : 'none';
+    });
+    document.querySelectorAll('.qa-card[data-marks]').forEach(card => {
+      card.style.display = (currentMarks === 'all' || card.dataset.marks === currentMarks) ? '' : 'none';
+    });
+  }
+
+  window.filterMarks = function(m, btn) {
+    currentMarks = m;
+    document.querySelectorAll('.marks-pill').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    applyMarksFilter();
+  };
+
+  /* ── Expand / Collapse all ── */
+  window.toggleAllChapters = function(expand) {
+    document.querySelectorAll('.qb-chapter').forEach(ch => {
+      if (expand) ch.classList.remove('collapsed');
+      else ch.classList.add('collapsed');
+    });
+  };
+
+  /* ── Show all answers ── */
+  window.toggleAllAnswers = function() {
+    const answers = document.querySelectorAll('.qa-answer');
+    const allShown = Array.from(answers).every(a => a.classList.contains('show'));
+    answers.forEach(a => {
+      if (allShown) a.classList.remove('show');
+      else a.classList.add('show');
+    });
+    document.querySelectorAll('.qa-toggle').forEach(b => {
+      b.textContent = allShown ? 'Show Answer' : 'Hide Answer';
+    });
+  };
+
+  /* ── Scroll-to-top button ── */
+  window.addEventListener('scroll', function() {
+    var btn = document.getElementById('scrollTop');
+    if (btn) btn.classList.toggle('show', window.scrollY > 400);
+  });
+
+  /* ── Chapter filter ── */
+  function applyFilter() {
+    document.querySelectorAll('.qb-chapter').forEach(el => {
+      el.style.display = (currentCh === 'all' || el.dataset.ch === currentCh) ? '' : 'none';
+    });
+  }
+
+  window.filterCh = function(ch, btn) {
+    currentCh = String(ch);
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    else document.querySelectorAll('.filter-btn').forEach(b => { if (b.dataset.ch === currentCh) b.classList.add('active'); });
+    document.getElementById('filterMobile').value = ch;
+    applyFilter();
+  };
+
+  window.toggleChapter = function(head) {
+    head.parentElement.classList.toggle('collapsed');
+  };
+
+  /* ── Load data ── */
+  Promise.all([
+    fetch(NCERT_URL).then(r => r.json()).catch(() => []),
+    Promise.all(QA_FILES.map(f => fetch(f).then(r => r.json()).catch(() => null)))
+  ]).then(([ncertResult, qaResults]) => {
+    /* English NCERT: single file returns an array of chapter objects */
+    ncertData = (Array.isArray(ncertResult) ? ncertResult : []).sort((a,b) => a.chapter - b.chapter);
+    qaData = qaResults.filter(Boolean).sort((a,b) => a.chapter - b.chapter);
+    renderNcert();
+  }).catch(err => {
+    console.error('Failed to load questions:', err);
+    root.innerHTML = '<div class="loading">Failed to load questions. Please try again.</div>';
+  });
+})();
+</script>
+</body>
+</html>

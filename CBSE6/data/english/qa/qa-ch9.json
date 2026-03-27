@@ -1,0 +1,120 @@
+{
+  "chapter": 9,
+  "title": "Kalakritiyon ka Bharat",
+  "marks_1": [
+    {
+      "id": "1.1",
+      "type": "mcq",
+      "question": "What programme connects children across Indian states?",
+      "options": ["A) Swachh Bharat", "B) Ek Bharat Shreshtha Bharat", "C) Digital India", "D) Make in India"],
+      "answer": "B) Ek Bharat Shreshtha Bharat",
+      "explanation": "The Ek Bharat, Shreshtha Bharat programme aims to promote unity in diversity among students."
+    },
+    {
+      "id": "1.2",
+      "type": "mcq",
+      "question": "Aipan is a folk art from which state?",
+      "options": ["A) Kerala", "B) Odisha", "C) Uttarakhand", "D) Andhra Pradesh"],
+      "answer": "C) Uttarakhand",
+      "explanation": "Aipan is Akanksha's folk art from Uttarakhand, drawn on brick-red walls with geru and white rice flour."
+    },
+    {
+      "id": "1.3",
+      "type": "mcq",
+      "question": "How old is the Dhokra metal craft?",
+      "options": ["A) 100 years", "B) 400 years", "C) 4,000 years", "D) 40,000 years"],
+      "answer": "C) 4,000 years",
+      "explanation": "Priyaranjan's tribe practises a 4,000-year-old metal craft named Dhokra from Odisha."
+    },
+    {
+      "id": "1.4",
+      "type": "mcq",
+      "question": "What is 'geru'?",
+      "options": ["A) A type of wood", "B) Red clay used as colour", "C) A metal", "D) A fabric"],
+      "answer": "B) Red clay used as colour",
+      "explanation": "Geru is red clay used to colour the walls on which Aipan designs are drawn."
+    },
+    {
+      "id": "1.5",
+      "type": "mcq",
+      "question": "Kondapalli toys are made from:",
+      "options": ["A) Clay", "B) Metal", "C) Soft wood", "D) Coconut shells"],
+      "answer": "C) Soft wood",
+      "explanation": "Balamurali from Andhra Pradesh makes Kondapalli toys from soft wood from nearby hills."
+    },
+    {
+      "id": "1.6",
+      "type": "mcq",
+      "question": "What do Kondapalli toys and coconut shell craft have in common?",
+      "options": ["A) Both use metal", "B) Both come from Kerala", "C) Both are eco-friendly and biodegradable", "D) Both are painted red"],
+      "answer": "C) Both are eco-friendly and biodegradable",
+      "explanation": "Both are made from natural materials — wood and coconut shells — which are biodegradable."
+    },
+    {
+      "id": "1.7",
+      "type": "mcq",
+      "question": "Which material is used to join parts of Kondapalli toys?",
+      "options": ["A) Glue", "B) Nails", "C) Makku — a paste of tamarind seed and sawdust", "D) Clay"],
+      "answer": "C) Makku — a paste of tamarind seed and sawdust",
+      "explanation": "Makku, a paste of tamarind seed powder and sawdust, is used to join the toy pieces."
+    },
+    {
+      "id": "1.8",
+      "type": "fill-blank",
+      "question": "The designs for Aipan are taken from ___ and nature.",
+      "answer": "cultural traditions",
+      "explanation": "Aipan designs are based on cultural traditions and observations of nature."
+    },
+    {
+      "id": "1.9",
+      "type": "fill-blank",
+      "question": "Dhokra metal craft is very old because it is ___ years old.",
+      "answer": "4,000",
+      "explanation": "Priyaranjan says his tribe practises a 4,000-year-old metal craft."
+    },
+    {
+      "id": "1.10",
+      "type": "true-false",
+      "question": "Aipan is traditionally made by men in Uttarakhand.",
+      "answer": "False",
+      "explanation": "Aipan is an art form made by the women in the family during festivals and functions."
+    },
+    {
+      "id": "1.11",
+      "type": "true-false",
+      "question": "In Dhokra craft, wax comes out of small openings when heated.",
+      "answer": "True",
+      "explanation": "The wax melts when put in fire and flows out through small openings, making space for molten brass."
+    }
+  ],
+  "marks_2": [
+    {
+      "id": "2.1",
+      "type": "short",
+      "question": "Describe the process of making Dhokra metal craft.",
+      "answer": "To make Dhokra: (1) First, a figure is made with clay. (2) It is dried and covered with a layer of wax. (3) Fine details are carved on the wax. (4) The figure is covered again with clay. (5) It is put in fire — the wax melts and comes out through small openings. (6) Molten brass scrap is melted and poured into the empty space. (7) The outer clay layer is removed to reveal the metal figure.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.2",
+      "type": "short",
+      "question": "What is the aim of the 'Ek Bharat, Shreshtha Bharat' programme?",
+      "answer": "The programme aims to enhance interaction and promote mutual understanding between people of different states. Through state pairing, it celebrates the unity in diversity and strengthens emotional bonds between citizens by sharing languages, cuisines, music, dance, art forms, literature, festivals, and cultural traditions.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.3",
+      "type": "short",
+      "question": "What is common in the toys made in Balamurali's village and coconut shell craft in Kerala?",
+      "answer": "Both crafts use natural, eco-friendly materials. Kondapalli toys use soft wood from nearby hills and vegetable dyes. Coconut shell craft uses the brown coconut shell, which is cleaned, smoothed, and polished with wood polish. Both are biodegradable — they will not harm the environment.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.4",
+      "type": "short",
+      "question": "What does India's diversity in art forms tell us about the country?",
+      "answer": "India's diversity in art forms tells us that every state and region has its own unique traditions, crafts, and culture. From Aipan in Uttarakhand to Dhokra in Odisha, coconut shell craft in Kerala, and Kondapalli toys in Andhra Pradesh — each art form reflects local materials, history, and creativity. Yet all these different traditions together make one incredible, united nation.",
+      "source": "extra"
+    }
+  ]
+}

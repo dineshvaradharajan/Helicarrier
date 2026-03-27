@@ -1,0 +1,120 @@
+{
+  "chapter": 5,
+  "title": "Neem Baba",
+  "marks_1": [
+    {
+      "id": "1.1",
+      "type": "mcq",
+      "question": "Who is 'Neem Baba' in the story?",
+      "options": ["A) A farmer", "B) An old man who represents the neem tree", "C) A doctor", "D) A teacher"],
+      "answer": "B) An old man who represents the neem tree",
+      "explanation": "Neem Baba is a personification of the ancient neem tree that Amber speaks to."
+    },
+    {
+      "id": "1.2",
+      "type": "mcq",
+      "question": "What are neem twigs used for?",
+      "options": ["A) Making toys", "B) Cleaning teeth", "C) Writing", "D) Building houses"],
+      "answer": "B) Cleaning teeth",
+      "explanation": "People clean their teeth with neem twigs as mentioned by Amber in the story."
+    },
+    {
+      "id": "1.3",
+      "type": "mcq",
+      "question": "Which parts of the neem tree can be used to make medicines?",
+      "options": ["A) Only leaves", "B) Only bark", "C) Only seeds", "D) All parts — leaves, bark, flowers, fruits, roots"],
+      "answer": "D) All parts — leaves, bark, flowers, fruits, roots",
+      "explanation": "Neem Baba says that leaves, bark, flowers, fruits, and even roots can be used to make medicines."
+    },
+    {
+      "id": "1.4",
+      "type": "mcq",
+      "question": "How does neem seed powder help farmers?",
+      "options": ["A) It makes crops grow faster", "B) It protects crops from insects and mosquitoes", "C) It improves soil colour", "D) It attracts bees"],
+      "answer": "B) It protects crops from insects and mosquitoes",
+      "explanation": "Neem seed powder sprayed on crops protects them from locusts, termites, and stops mosquito breeding."
+    },
+    {
+      "id": "1.5",
+      "type": "mcq",
+      "question": "What does the neem tree symbolize in this story?",
+      "options": ["A) Power", "B) Selfless giving", "C) Competition", "D) Wealth"],
+      "answer": "B) Selfless giving",
+      "explanation": "The neem tree gives shade, medicine, clean air, and protection without asking anything in return."
+    },
+    {
+      "id": "1.6",
+      "type": "mcq",
+      "question": "Why do doctors advise neem leaves for measles?",
+      "options": ["A) They taste good", "B) They are colourful", "C) They kill germs and give comfort", "D) They smell nice"],
+      "answer": "C) They kill germs and give comfort",
+      "explanation": "Neem leaves have chemical properties that destroy germs and stop them from spreading."
+    },
+    {
+      "id": "1.7",
+      "type": "mcq",
+      "question": "Where was the neem tree originally born?",
+      "options": ["A) Africa", "B) Europe", "C) North India or Myanmar", "D) America"],
+      "answer": "C) North India or Myanmar",
+      "explanation": "Neem Baba says he was born millions of years ago somewhere in North India or Myanmar."
+    },
+    {
+      "id": "1.8",
+      "type": "fill-blank",
+      "question": "Amber played in the shade of the ___ in her childhood.",
+      "answer": "neem tree",
+      "explanation": "Amber sat in the shade of the neem tree in her courtyard after returning from school."
+    },
+    {
+      "id": "1.9",
+      "type": "fill-blank",
+      "question": "Neem seed powder protects stored grains from ___.",
+      "answer": "insects",
+      "explanation": "People save their stored grains from insects by adding neem seed powder to them."
+    },
+    {
+      "id": "1.10",
+      "type": "true-false",
+      "question": "Neem wood is eaten by termites easily.",
+      "answer": "False",
+      "explanation": "Furniture made from neem wood is NOT eaten by termites — this is one advantage of neem."
+    },
+    {
+      "id": "1.11",
+      "type": "true-false",
+      "question": "Neem also purifies the air.",
+      "answer": "True",
+      "explanation": "Neem Baba says that neem purifies the air, removing harmful particles."
+    }
+  ],
+  "marks_2": [
+    {
+      "id": "2.1",
+      "type": "short",
+      "question": "How is neem useful to farmers? Mention at least three ways.",
+      "answer": "Neem is useful to farmers in many ways: (1) Neem seed powder sprayed on crops protects them from locusts that eat crops. (2) It stops mosquito breeding in rice fields where water stands, increasing crop yield. (3) It saves crops from termites that eat roots. (4) Neem seed powder mixed in stored grains protects them from insects.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.2",
+      "type": "short",
+      "question": "Why is the story of the neem tree's name called 'thought-provoking'?",
+      "answer": "The neem tree was born in India and given Sanskrit names such as Arishta (the one who cures diseases), Nimba, and Nimbaca. The name 'Neem' was given by the Iranians. In India, it has many regional names — Nim, Leemba, Nimori, Nimbamond, Nimbe, and Nimo. The rich history of names across cultures makes it thought-provoking.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.3",
+      "type": "short",
+      "question": "Amber speaks to Neem Baba as if speaking to a person. What is this figure of speech called? Give two more examples.",
+      "answer": "This figure of speech is called personification — giving human qualities to non-human things. Examples: (1) 'The leaves whispered in the wind.' (2) 'The flowers danced merrily in the breeze.' In the story, the neem tree talks, remembers its past, and shares knowledge like a wise old person.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.4",
+      "type": "short",
+      "question": "Mention five uses of the neem tree.",
+      "answer": "(1) Neem twigs are used to clean teeth. (2) Neem leaves protect stored clothes from insects. (3) Neem oil is used to make soaps and toothpaste. (4) All parts of the neem tree are used to make medicines. (5) Neem seed powder protects crops from locusts and termites. Additionally, neem purifies the air and furniture made from neem wood resists termites.",
+      "source": "extra"
+    }
+  ]
+}

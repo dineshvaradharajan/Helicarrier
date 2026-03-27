@@ -1,0 +1,424 @@
+[
+  {
+    "chapter": 1,
+    "title": "A Bottle of Dew",
+    "unit": 1,
+    "unitTitle": "Fables and Folk Tales",
+    "book": "Poorvi",
+    "author": "Sudha Murty",
+    "type": "prose",
+    "sections": [
+      {
+        "id": "comp-1",
+        "title": "Reading Comprehension",
+        "topic": "Understanding the Story",
+        "questions": [
+          { "id": "1.1", "type": "comprehension", "question": "What was Rama Natha's unusual obsession? Why did he neglect his land?" },
+          { "id": "1.2", "type": "comprehension", "question": "How did people exploit Rama Natha's belief in the magic potion?" },
+          { "id": "1.3", "type": "comprehension", "question": "Why was Madhumati worried about her husband?" },
+          { "id": "1.4", "type": "comprehension", "question": "What task did sage Mahipati give Rama Natha? Why did he ask him to do everything himself?" },
+          { "id": "1.5", "type": "comprehension", "question": "What happened when Rama Natha sprinkled the dew on a copper vessel? Why was he angry?" },
+          { "id": "1.6", "type": "comprehension", "question": "What was the sage's real lesson for Rama Natha? Why did he play a trick instead of telling the truth directly?" }
+        ]
+      },
+      {
+        "id": "lang-1",
+        "title": "Grammar and Vocabulary",
+        "topic": "Language Exercises",
+        "questions": [
+          { "id": "1.7", "type": "vocabulary", "question": "Write the meanings of these words from the story: potion, tended, muttered, precious, wisdom, chant." },
+          { "id": "1.8", "type": "grammar", "question": "Write sentences using these pairs of homophones: I/eye, your/you're, dew/due, son/sun, one/won, ate/eight, see/sea." },
+          { "id": "1.9", "type": "grammar", "question": "Match the phrases using connecting words (because, before, as soon as, as): The children submitted their work / the bell rang." }
+        ]
+      },
+      {
+        "id": "act-1",
+        "title": "Writing and Speaking",
+        "topic": "Activities",
+        "questions": [
+          { "id": "1.10", "type": "writing", "question": "What does hard work mean to you? Give three reasons why you think hard work is important." },
+          { "id": "1.11", "type": "creative", "question": "Work in pairs to describe a banana using the five senses — taste, colour, smell, touch, and when you like to eat it." }
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 2,
+    "title": "The Raven and the Fox",
+    "unit": 1,
+    "unitTitle": "Fables and Folk Tales",
+    "book": "Poorvi",
+    "author": "Jean de La Fontaine",
+    "type": "poem",
+    "sections": [
+      {
+        "id": "comp-2",
+        "title": "Reading Comprehension",
+        "topic": "Understanding the Poem",
+        "questions": [
+          { "id": "2.1", "type": "comprehension", "question": "What did Mr Raven hold in his beak? What did the Fox want?" },
+          { "id": "2.2", "type": "comprehension", "question": "How did Reynard the Fox flatter the Raven? Why did he call him 'Sir'?" },
+          { "id": "2.3", "type": "comprehension", "question": "Why did the Raven open his beak? What happened when he did?" },
+          { "id": "2.4", "type": "comprehension", "question": "What is the moral of the poem? Why does Reynard say that pride is 'rather unwise'?" },
+          { "id": "2.5", "type": "comprehension", "question": "Imagine someone praises you too much. How would you react?" }
+        ]
+      },
+      {
+        "id": "lang-2",
+        "title": "Grammar and Vocabulary",
+        "topic": "Language Exercises",
+        "questions": [
+          { "id": "2.6", "type": "vocabulary", "question": "Match these words with their meanings: perched, morsel, seek, pride, eyed, limb, woods." },
+          { "id": "2.7", "type": "grammar", "question": "Write the rhyming words from each stanza of the poem." },
+          { "id": "2.8", "type": "vocabulary", "question": "Choose the correct opposites from the box: perched, forgot, foolish, pride, laughed, ignore, glow." },
+          { "id": "2.9", "type": "grammar", "question": "Find examples of alliteration in the poem. What is alliteration?" }
+        ]
+      },
+      {
+        "id": "act-2",
+        "title": "Writing and Speaking",
+        "topic": "Activities",
+        "questions": [
+          { "id": "2.10", "type": "speaking", "question": "Narrate the poem in the form of a story, giving a different ending." },
+          { "id": "2.11", "type": "writing", "question": "Write the story as a conversation between Reynard and Mr Raven." }
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 3,
+    "title": "The Unlikely Best Friends",
+    "unit": 2,
+    "unitTitle": "Friendship",
+    "book": "Poorvi",
+    "author": "Subba Rao",
+    "type": "prose",
+    "sections": [
+      {
+        "id": "comp-3",
+        "title": "Reading Comprehension",
+        "topic": "Understanding the Story",
+        "questions": [
+          { "id": "3.1", "type": "comprehension", "question": "Why was Gajaraj unhappy despite living in comfort in the royal stables?" },
+          { "id": "3.2", "type": "comprehension", "question": "How did Gajaraj and Buntee first meet? How did their friendship develop?" },
+          { "id": "3.3", "type": "comprehension", "question": "What happened when the farmer took Buntee away? How did both friends react?" },
+          { "id": "3.4", "type": "comprehension", "question": "Why did the farmer decide to let Buntee go back to Gajaraj?" },
+          { "id": "3.5", "type": "comprehension", "question": "What was 'unlikely' about the friendship of Gajaraj and Buntee?" }
+        ]
+      },
+      {
+        "id": "lang-3",
+        "title": "Grammar and Vocabulary",
+        "topic": "Language Exercises",
+        "questions": [
+          { "id": "3.6", "type": "vocabulary", "question": "Fill the crossword with opposites of words from the story: kind, laughed, found, finished, happy (add prefix un-, dis-, mis-)." },
+          { "id": "3.7", "type": "grammar", "question": "Put these verbs from the story into the correct tense column: Simple Past, Past Progressive, Past Perfect." },
+          { "id": "3.8", "type": "grammar", "question": "Complete sentences using 'neither...nor' and 'either...or'." }
+        ]
+      },
+      {
+        "id": "act-3",
+        "title": "Writing and Speaking",
+        "topic": "Activities",
+        "questions": [
+          { "id": "3.9", "type": "writing", "question": "Describe how your friendship with your best friend started. Use words like same, different, both, like, unlike." },
+          { "id": "3.10", "type": "speaking", "question": "Talk to your friend and find out your common likes and dislikes. Share your findings with the class." }
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 4,
+    "title": "A Friend's Prayer",
+    "unit": 2,
+    "unitTitle": "Friendship",
+    "book": "Poorvi",
+    "author": "Jill Wolf",
+    "type": "poem",
+    "sections": [
+      {
+        "id": "comp-4",
+        "title": "Reading Comprehension",
+        "topic": "Understanding the Poem",
+        "questions": [
+          { "id": "4.1", "type": "comprehension", "question": "What does the speaker value most in life according to the poem?" },
+          { "id": "4.2", "type": "comprehension", "question": "How does the poet feel about having special friends? What word describes this feeling?" },
+          { "id": "4.3", "type": "comprehension", "question": "What does the poet want to use her 'heart' to see? Why not just her eyes?" },
+          { "id": "4.4", "type": "comprehension", "question": "Why is this poem called 'A Friend's Prayer'? Give one reason." },
+          { "id": "4.5", "type": "comprehension", "question": "What does 'make no judgements from afar' mean? Why is this important in friendship?" }
+        ]
+      },
+      {
+        "id": "lang-4",
+        "title": "Grammar and Vocabulary",
+        "topic": "Language Exercises",
+        "questions": [
+          { "id": "4.6", "type": "vocabulary", "question": "Select words similar in meaning to 'blessed' from: excited, grateful, understood, thankful, relaxed." },
+          { "id": "4.7", "type": "vocabulary", "question": "List qualities of a good friend using these clues: he__ful, lo__l, k__d, c__ing, ho__t." },
+          { "id": "4.8", "type": "grammar", "question": "Fill in the blanks: My friend is always ___ to me. She is very ___. He always ___ me." }
+        ]
+      },
+      {
+        "id": "act-4",
+        "title": "Writing and Speaking",
+        "topic": "Activities",
+        "questions": [
+          { "id": "4.9", "type": "writing", "question": "Write three sentences about three of your friends — why you like each one of them." },
+          { "id": "4.10", "type": "speaking", "question": "What would you pray for your friend? First speak about it and then write it down." }
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 5,
+    "title": "Neem Baba",
+    "unit": 3,
+    "unitTitle": "Nurturing Nature",
+    "book": "Poorvi",
+    "author": "S. I. Farooqi",
+    "type": "prose",
+    "sections": [
+      {
+        "id": "comp-5",
+        "title": "Reading Comprehension",
+        "topic": "Understanding the Text",
+        "questions": [
+          { "id": "5.1", "type": "comprehension", "question": "Who is 'Neem Baba'? Why does the old man ask Amber to call him that?" },
+          { "id": "5.2", "type": "comprehension", "question": "Where was the neem tree originally born? Where can it be found now?" },
+          { "id": "5.3", "type": "comprehension", "question": "How is the neem tree useful to farmers? Mention at least three ways." },
+          { "id": "5.4", "type": "comprehension", "question": "Which parts of the neem tree are used to make medicines?" },
+          { "id": "5.5", "type": "comprehension", "question": "Why is the story of the neem tree's name called 'thought-provoking'?" }
+        ]
+      },
+      {
+        "id": "lang-5",
+        "title": "Grammar and Vocabulary",
+        "topic": "Language Exercises",
+        "questions": [
+          { "id": "5.6", "type": "vocabulary", "question": "Identify compound words from the text: something, neem oil, well known, childhood, seed powder, thought-provoking. Sort them into open, closed, and hyphenated." },
+          { "id": "5.7", "type": "grammar", "question": "Match present tense verbs with their past forms: become/became, find/found, make/made, discover/discovered, tell/told, give/gave." },
+          { "id": "5.8", "type": "grammar", "question": "Amber speaks to Neem Baba as if speaking to a person. This figure of speech is called personification. Give two more examples." }
+        ]
+      },
+      {
+        "id": "act-5",
+        "title": "Writing and Speaking",
+        "topic": "Activities",
+        "questions": [
+          { "id": "5.9", "type": "writing", "question": "Write a paragraph about a tree in your neighbourhood — where it is, how it looks, and why you like it." },
+          { "id": "5.10", "type": "speaking", "question": "Collect dry leaves from four different trees. Make a card with the leaf shape and speak about the process to your class." }
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 6,
+    "title": "What a Bird Thought",
+    "unit": 3,
+    "unitTitle": "Nurturing Nature",
+    "book": "Poorvi",
+    "author": "Anonymous",
+    "type": "poem",
+    "sections": [
+      {
+        "id": "comp-6",
+        "title": "Reading Comprehension",
+        "topic": "Understanding the Poem",
+        "questions": [
+          { "id": "6.1", "type": "comprehension", "question": "What was the bird's first home? What did it think the world was made of?" },
+          { "id": "6.2", "type": "comprehension", "question": "How did the bird's understanding of the world change at each stage?" },
+          { "id": "6.3", "type": "comprehension", "question": "Why did the bird call itself 'very blind' after it left the nest?" },
+          { "id": "6.4", "type": "comprehension", "question": "What does the bird conclude about the world at the end of the poem?" },
+          { "id": "6.5", "type": "comprehension", "question": "Who do you think are the bird's 'neighbours'? Why don't they know how the world is made either?" }
+        ]
+      },
+      {
+        "id": "lang-6",
+        "title": "Grammar and Vocabulary",
+        "topic": "Language Exercises",
+        "questions": [
+          { "id": "6.6", "type": "vocabulary", "question": "Replace the underlined words with their correct meanings: pale, fluttered, finally, hard work (labour)." },
+          { "id": "6.7", "type": "grammar", "question": "Write the rhyming words from each stanza: well/shell, other/mother, find/blind, made/neighbours." },
+          { "id": "6.8", "type": "grammar", "question": "Use describing words (pointed, green, thin, brown, small, wooden, hanging, round) to write six sentences about a bird's nest." }
+        ]
+      },
+      {
+        "id": "act-6",
+        "title": "Writing and Speaking",
+        "topic": "Activities",
+        "questions": [
+          { "id": "6.9", "type": "writing", "question": "How would the world look to a baby? Write five sentences describing the world from a baby's perspective." },
+          { "id": "6.10", "type": "speaking", "question": "Which bird would you like to be? Speak about it — what you look like, where you live, and what message you have for humans." }
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 7,
+    "title": "Change of Heart",
+    "unit": 4,
+    "unitTitle": "Sports and Wellness",
+    "book": "Poorvi",
+    "type": "prose",
+    "sections": [
+      {
+        "id": "comp-7",
+        "title": "Reading Comprehension",
+        "topic": "Understanding the Story",
+        "questions": [
+          { "id": "7.1", "type": "comprehension", "question": "What was Prabhat's attitude toward winning and losing at the beginning of the story?" },
+          { "id": "7.2", "type": "comprehension", "question": "How did Prabhat cheat in the badminton match against Surya?" },
+          { "id": "7.3", "type": "comprehension", "question": "How did Surya's attitude toward losing differ from Prabhat's?" },
+          { "id": "7.4", "type": "comprehension", "question": "Why could Prabhat not sleep well the night after winning the match?" },
+          { "id": "7.5", "type": "comprehension", "question": "How did Prabhat change by the end of the story? Why is the title 'Change of Heart' suitable?" },
+          { "id": "7.6", "type": "comprehension", "question": "Why do you think sporting spirit is important?" }
+        ]
+      },
+      {
+        "id": "lang-7",
+        "title": "Grammar and Vocabulary",
+        "topic": "Language Exercises",
+        "questions": [
+          { "id": "7.7", "type": "vocabulary", "question": "Write the meanings of: defeat, on the contrary, terrible, sensed, significant, conducted, phenomenon, hopeless." },
+          { "id": "7.8", "type": "grammar", "question": "Circle the verbs and sort them as past perfect (first/old action) or past progressive (second/new action)." },
+          { "id": "7.9", "type": "grammar", "question": "Fill in the blanks with the past perfect form of the verbs: Prabhat ___ (finish) his homework before going to the match." }
+        ]
+      },
+      {
+        "id": "act-7",
+        "title": "Writing and Speaking",
+        "topic": "Activities",
+        "questions": [
+          { "id": "7.10", "type": "writing", "question": "Imagine you are Prabhat. Write a diary entry describing your feelings on the night after the match." },
+          { "id": "7.11", "type": "speaking", "question": "Use the magic words 'please', 'thank you', and 'sorry' in role-play situations with a partner." }
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 8,
+    "title": "The Winner",
+    "unit": 4,
+    "unitTitle": "Sports and Wellness",
+    "book": "Poorvi",
+    "author": "Georgia Heard",
+    "type": "poem",
+    "sections": [
+      {
+        "id": "comp-8",
+        "title": "Reading Comprehension",
+        "topic": "Understanding the Poem",
+        "questions": [
+          { "id": "8.1", "type": "comprehension", "question": "Where were the children playing? What game were they playing?" },
+          { "id": "8.2", "type": "comprehension", "question": "Why couldn't the speaker catch her breath?" },
+          { "id": "8.3", "type": "comprehension", "question": "What does 'When blue dark turns to black' mean?" },
+          { "id": "8.4", "type": "comprehension", "question": "Who is 'The Winner' in the poem? Why does 'Night win'?" },
+          { "id": "8.5", "type": "comprehension", "question": "Why do the trees seem to 'creep close' in the evening?" }
+        ]
+      },
+      {
+        "id": "lang-8",
+        "title": "Grammar and Vocabulary",
+        "topic": "Language Exercises",
+        "questions": [
+          { "id": "8.6", "type": "vocabulary", "question": "Write the meanings of: next to the creek, I can't even catch my breath, when blue dark turns to black, trees creep close." },
+          { "id": "8.7", "type": "grammar", "question": "The poet uses personification — 'Night wins!' Find another example of personification in the poem." },
+          { "id": "8.8", "type": "grammar", "question": "Name different water bodies (creek, river, lake, etc.) and create a word web." }
+        ]
+      },
+      {
+        "id": "act-8",
+        "title": "Writing and Speaking",
+        "topic": "Activities",
+        "questions": [
+          { "id": "8.9", "type": "writing", "question": "Write a paragraph about your playtime — what time you play, who you play with, what games, and when you come home." },
+          { "id": "8.10", "type": "speaking", "question": "Enact a situation where a child comes home late after play. The parent is upset, the child explains." }
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 9,
+    "title": "Kalakritiyon ka Bharat",
+    "unit": 5,
+    "unitTitle": "Culture and Tradition",
+    "book": "Poorvi",
+    "type": "prose",
+    "sections": [
+      {
+        "id": "comp-9",
+        "title": "Reading Comprehension",
+        "topic": "Understanding the Text",
+        "questions": [
+          { "id": "9.1", "type": "comprehension", "question": "What is the 'Ek Bharat, Shreshtha Bharat' programme about?" },
+          { "id": "9.2", "type": "comprehension", "question": "What is Aipan? Which state does it come from and what materials are used?" },
+          { "id": "9.3", "type": "comprehension", "question": "Describe the process of making Dhokra metal craft. How old is this art form?" },
+          { "id": "9.4", "type": "comprehension", "question": "What is common between coconut shell craft from Kerala and Kondapalli toys from Andhra Pradesh?" },
+          { "id": "9.5", "type": "comprehension", "question": "Why does Akanksha's family make Aipan? When do they make it?" }
+        ]
+      },
+      {
+        "id": "lang-9",
+        "title": "Grammar and Vocabulary",
+        "topic": "Language Exercises",
+        "questions": [
+          { "id": "9.6", "type": "vocabulary", "question": "Write the meanings of: geru, carve, scrap, stable, biodegradable, tamarind, sawdust, dyes, enamel." },
+          { "id": "9.7", "type": "grammar", "question": "Use sequencing words (to begin, first, next, then, after that, finally, at last) to describe how you get ready for school." },
+          { "id": "9.8", "type": "grammar", "question": "Make five sentences using present tense with different pronouns (I, You, He, She, They) and verbs (ask, know, tell, draw, make, practise, speak)." }
+        ]
+      },
+      {
+        "id": "act-9",
+        "title": "Writing and Speaking",
+        "topic": "Activities",
+        "questions": [
+          { "id": "9.9", "type": "writing", "question": "Write a paragraph about an art form from your region — what it is called, what materials are needed, and how it is made." },
+          { "id": "9.10", "type": "speaking", "question": "Speak about a local art form of your region to your class. Include its name, materials, and how it is made or presented." }
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 10,
+    "title": "The Kites",
+    "unit": 5,
+    "unitTitle": "Culture and Tradition",
+    "book": "Poorvi",
+    "author": "Daphne Lister",
+    "type": "poem",
+    "sections": [
+      {
+        "id": "comp-10",
+        "title": "Reading Comprehension",
+        "topic": "Understanding the Poem",
+        "questions": [
+          { "id": "10.1", "type": "comprehension", "question": "How does the poet describe the kites in the first two lines? What are they compared to?" },
+          { "id": "10.2", "type": "comprehension", "question": "Why does the child wish to be small and light as air?" },
+          { "id": "10.3", "type": "comprehension", "question": "What songs would the child hear while flying on the kite?" },
+          { "id": "10.4", "type": "comprehension", "question": "Why would the people below stand and stare?" },
+          { "id": "10.5", "type": "comprehension", "question": "If you were the kite carrying the child high up in the air, what would you tell them?" }
+        ]
+      },
+      {
+        "id": "lang-10",
+        "title": "Grammar and Vocabulary",
+        "topic": "Language Exercises",
+        "questions": [
+          { "id": "10.6", "type": "vocabulary", "question": "Name the parts of a kite: nose, spine, cover, kite line, tail, reel. Use them in a conversation." },
+          { "id": "10.7", "type": "grammar", "question": "Find examples of simile ('like coloured birds', 'light as air') and alliteration ('wild wind', 'stand and stare') in the poem." },
+          { "id": "10.8", "type": "grammar", "question": "Underline the rhyming words in each stanza: fly/sky, air/there, wings/sings, down/town, stare/air." },
+          { "id": "10.9", "type": "grammar", "question": "Write a cinquain poem about a kite using the pattern: noun, two adjectives, three verbs, two adverbs, one synonym." }
+        ]
+      },
+      {
+        "id": "act-10",
+        "title": "Writing and Speaking",
+        "topic": "Activities",
+        "questions": [
+          { "id": "10.10", "type": "writing", "question": "Imagine yourself as a kite. Write a paragraph of about 100 words with the title 'I am a Kite'." },
+          { "id": "10.11", "type": "speaking", "question": "Share a kite-flying experience with your classmates — where, when, why, and how." }
+        ]
+      }
+    ]
+  }
+]

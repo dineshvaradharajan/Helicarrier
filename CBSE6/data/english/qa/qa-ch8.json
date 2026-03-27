@@ -1,0 +1,120 @@
+{
+  "chapter": 8,
+  "title": "The Winner",
+  "marks_1": [
+    {
+      "id": "1.1",
+      "type": "mcq",
+      "question": "Where were the children playing in the poem?",
+      "options": ["A) In a park", "B) Next to a creek in their neighbour's field", "C) At school", "D) On a rooftop"],
+      "answer": "B) Next to a creek in their neighbour's field",
+      "explanation": "The poem says 'we play ball next to the creek in our neighbour's field.'"
+    },
+    {
+      "id": "1.2",
+      "type": "mcq",
+      "question": "Who is 'The Winner' in the poem?",
+      "options": ["A) The children", "B) The ball", "C) Night", "D) The trees"],
+      "answer": "C) Night",
+      "explanation": "The poem ends with 'Night wins!' — night is personified as the winner who ends the children's game."
+    },
+    {
+      "id": "1.3",
+      "type": "mcq",
+      "question": "Why couldn't the speaker catch her breath?",
+      "options": ["A) She was scared", "B) Running fast made her breathless", "C) She was swimming", "D) She was singing"],
+      "answer": "B) Running fast made her breathless",
+      "explanation": "The children run so fast while playing that the speaker can't even catch her breath."
+    },
+    {
+      "id": "1.4",
+      "type": "mcq",
+      "question": "What does 'When blue dark turns to black' describe?",
+      "options": ["A) A storm coming", "B) The evening sky becoming darker", "C) A light turning off", "D) Paint changing colour"],
+      "answer": "B) The evening sky becoming darker",
+      "explanation": "It describes the gradual fall of night — the twilight sky (blue-dark) turning to full darkness (black)."
+    },
+    {
+      "id": "1.5",
+      "type": "mcq",
+      "question": "Why does 'Night win'?",
+      "options": ["A) Time for play has ended", "B) Children are tired", "C) It starts raining", "D) Night follows day"],
+      "answer": "A) Time for play has ended",
+      "explanation": "Night 'wins' because darkness forces the children to stop playing and go home."
+    },
+    {
+      "id": "1.6",
+      "type": "mcq",
+      "question": "What poetic device is used in 'Night wins'?",
+      "options": ["A) Simile", "B) Alliteration", "C) Personification", "D) Rhyme"],
+      "answer": "C) Personification",
+      "explanation": "Night is given the human quality of winning — as if it is a player in the game."
+    },
+    {
+      "id": "1.7",
+      "type": "mcq",
+      "question": "What does 'creek' mean?",
+      "options": ["A) A mountain", "B) A small stream of water", "C) A road", "D) A garden"],
+      "answer": "B) A small stream of water",
+      "explanation": "A creek is a small body of water, like a narrow stream."
+    },
+    {
+      "id": "1.8",
+      "type": "fill-blank",
+      "question": "The children's feet ache because the grass is ___.",
+      "answer": "cold",
+      "explanation": "As evening comes, the grass becomes cold, making the children's bare feet ache."
+    },
+    {
+      "id": "1.9",
+      "type": "fill-blank",
+      "question": "The children stop playing because it is getting ___.",
+      "answer": "dark",
+      "explanation": "When the blue dark turns to black, the game is over — night has won."
+    },
+    {
+      "id": "1.10",
+      "type": "true-false",
+      "question": "The speaker is playing alone.",
+      "answer": "False",
+      "explanation": "The poem uses 'we' — the children are playing together as a group."
+    },
+    {
+      "id": "1.11",
+      "type": "true-false",
+      "question": "The poem uses personification for night.",
+      "answer": "True",
+      "explanation": "'Night wins!' gives night the human quality of winning a game."
+    }
+  ],
+  "marks_2": [
+    {
+      "id": "2.1",
+      "type": "short",
+      "question": "What signs show that evening is turning into night in the poem?",
+      "answer": "Several signs show evening turning to night: (1) The blue dark sky turns to black. (2) The grass becomes cold, making the children's feet ache. (3) The trees seem to 'creep close' because they become less visible in the dark. These sensory details — visual, tactile — vividly describe the arrival of night.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.2",
+      "type": "short",
+      "question": "Why do the trees seem to 'creep close' in the evening?",
+      "answer": "As it gets darker, the trees become less visible and appear to move closer because their outlines blur in the darkness. This is personification — the trees are given the human quality of 'creeping'. In reality, the trees don't move; it's the fading light that creates this illusion.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.3",
+      "type": "short",
+      "question": "What does the poem suggest about childhood play?",
+      "answer": "The poem captures the pure joy of childhood play — children running freely, playing ball, being so active they can't catch their breath. But it also shows that time moves on — night always comes, ending the play. It celebrates the energy and happiness of outdoor play while reminding us that these moments are precious and temporary.",
+      "source": "extra"
+    },
+    {
+      "id": "2.4",
+      "type": "short",
+      "question": "What is the meaning of 'I can't even catch my breath'? Why does the poet write it in a staircase pattern?",
+      "answer": "It means the speaker is so breathless from running fast that she cannot breathe normally. The poet writes it in a staircase pattern (one or two words per line) to create a visual effect that mirrors the breathlessness — the reader has to pause after each word, just like the speaker has to pause to catch her breath.",
+      "source": "ncert"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "chapter": 7,
+  "title": "Change of Heart",
+  "marks_1": [
+    {
+      "id": "1.1",
+      "type": "mcq",
+      "question": "Which game was Prabhat best at?",
+      "options": ["A) Cricket", "B) Football", "C) Badminton", "D) Chess"],
+      "answer": "C) Badminton",
+      "explanation": "Prabhat was really good at badminton and could not be stopped from playing it."
+    },
+    {
+      "id": "1.2",
+      "type": "mcq",
+      "question": "Who was Prabhat's opponent in the friendly match?",
+      "options": ["A) His best friend", "B) The coach", "C) Surya", "D) The mahout"],
+      "answer": "C) Surya",
+      "explanation": "Surya was a new student who was an excellent badminton player."
+    },
+    {
+      "id": "1.3",
+      "type": "mcq",
+      "question": "How did Prabhat cheat in the match?",
+      "options": ["A) He changed the rules", "B) He changed the scoreboard secretly", "C) He hit the shuttlecock out", "D) He distracted Surya"],
+      "answer": "B) He changed the scoreboard secretly",
+      "explanation": "Prabhat managed to change the scoreboard while his opponent was looking elsewhere."
+    },
+    {
+      "id": "1.4",
+      "type": "mcq",
+      "question": "How did Surya feel after losing the match?",
+      "options": ["A) Very angry", "B) Very sad", "C) He did not feel bad", "D) He complained to the coach"],
+      "answer": "C) He did not feel bad",
+      "explanation": "Surya said 'It's been fun' and suggested they play again some other time."
+    },
+    {
+      "id": "1.5",
+      "type": "mcq",
+      "question": "What did Prabhat feel after winning by cheating?",
+      "options": ["A) Very happy", "B) Proud", "C) Unhappy and guilty", "D) Relieved"],
+      "answer": "C) Unhappy and guilty",
+      "explanation": "Prabhat could not sleep well that night and did not feel as happy as he usually did after winning."
+    },
+    {
+      "id": "1.6",
+      "type": "mcq",
+      "question": "What is 'sporting spirit'?",
+      "options": ["A) Winning at all costs", "B) Being fair and respecting each player", "C) Only playing easy games", "D) Cheating to win"],
+      "answer": "B) Being fair and respecting each player",
+      "explanation": "Sporting spirit means playing fair, enjoying the game, and respecting all players whether winning or losing."
+    },
+    {
+      "id": "1.7",
+      "type": "mcq",
+      "question": "Prabhat would play a game only if ___.",
+      "options": ["A) His friends played too", "B) He was sure of winning", "C) The coach asked him", "D) It was raining"],
+      "answer": "B) He was sure of winning",
+      "explanation": "Prabhat would only take part when he was sure of winning, even if the game lasted only a minute."
+    },
+    {
+      "id": "1.8",
+      "type": "fill-blank",
+      "question": "The coach ___ friendly matches on the last Friday of each month.",
+      "answer": "conducted",
+      "explanation": "'Conducted' means organized — the coach organized friendly matches every month."
+    },
+    {
+      "id": "1.9",
+      "type": "fill-blank",
+      "question": "Surya was a real ___ on the badminton court.",
+      "answer": "phenomenon",
+      "explanation": "'Phenomenon' means someone with special qualities — Surya was exceptionally good at badminton."
+    },
+    {
+      "id": "1.10",
+      "type": "true-false",
+      "question": "Prabhat would accept losing to anyone easily.",
+      "answer": "False",
+      "explanation": "Prabhat could not bear losing, not even at marbles. He thought losing was the worst thing."
+    },
+    {
+      "id": "1.11",
+      "type": "true-false",
+      "question": "Surya enjoyed playing games whether he won or lost.",
+      "answer": "True",
+      "explanation": "Surya enjoyed everything equally — he even played basketball happily despite being hopeless at it."
+    }
+  ],
+  "marks_2": [
+    {
+      "id": "2.1",
+      "type": "short",
+      "question": "How did Prabhat's attitude toward winning and losing affect his enjoyment of games?",
+      "answer": "Prabhat's obsession with winning ruined his enjoyment. He only played games he was sure to win. If he sensed he would lose, he refused to play. He could not bear losing even at marbles. This meant he missed the fun of playing many games and never learned to enjoy the game for its own sake.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.2",
+      "type": "short",
+      "question": "How did Surya's attitude toward games differ from Prabhat's?",
+      "answer": "Surya played every game with joy, regardless of winning or losing. He was excellent at badminton but hopeless at basketball, yet he enjoyed both equally with a happy smile. He didn't need a scoreboard to enjoy a game. Prabhat, on the other hand, only cared about winning and refused to play if he might lose.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.3",
+      "type": "short",
+      "question": "Why could Prabhat not sleep well the night after winning the match?",
+      "answer": "Prabhat had won the match by cheating — secretly changing the scoreboard. Although everyone congratulated him, he did not feel the usual happiness of winning. What surprised him was that Surya did not feel bad about losing. The guilt of cheating and Surya's genuine sporting spirit disturbed him.",
+      "source": "ncert"
+    },
+    {
+      "id": "2.4",
+      "type": "short",
+      "question": "Explain how the title 'Change of Heart' is suitable for this story.",
+      "answer": "At the beginning, Prabhat cared only about winning and was willing to cheat. But by observing Surya's joyful attitude toward all games — win or lose — Prabhat realised that the true joy of sport lies in playing, not just winning. He began playing for fun, even joining hide-and-seek and joking while playing. His classmates praised his 'great sporting spirit'. This complete transformation is his 'change of heart'.",
+      "source": "ncert"
+    }
+  ]
+}
