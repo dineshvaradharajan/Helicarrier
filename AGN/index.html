@@ -1,0 +1,3785 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="unicorn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AGN — Reading Adventure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Nunito:wght@400;600;700;800;900&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   AGN — Living Storybook Design System
+   AGN School, Konganapuram — KG Reading Assessment
+   ═══════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root, [data-theme="unicorn"] {
+  --bg-start: #fce4ec;
+  --bg-mid: #f3e5f5;
+  --bg-end: #e8eaf6;
+  --accent: #e91e63;
+  --accent-light: #f48fb1;
+  --accent-dark: #c2185b;
+  --secondary: #ab47bc;
+  --secondary-light: #ce93d8;
+  --gold: #ffd700;
+  --gold-glow: #ffea00;
+  --text: #4a148c;
+  --text-light: #7b1fa2;
+  --card-bg: rgba(255,255,255,0.92);
+  --card-border: #f8bbd0;
+  --btn-grad: #e91e63;
+  --btn-text: #fff;
+  --mascot: "🦄";
+  --deco1: "✨";
+  --deco2: "🌸";
+  --deco3: "🌈";
+  --deco4: "⭐";
+  --node-locked: #e0e0e0;
+  --node-available: #f06292;
+  --tier1: #f48fb1;
+  --tier2: #ce93d8;
+  --tier3: #9fa8da;
+  --tier4: #80cbc4;
+  --tier5: #ffcc80;
+  --success: #66bb6a;
+  --error: #ef5350;
+  --path-color: #f8bbd0;
+  --topbar-bg: rgba(255,255,255,0.85);
+}
+
+[data-theme="cars"] {
+  --bg-start: #e3f2fd;
+  --bg-mid: #e8f5e9;
+  --bg-end: #fff3e0;
+  --accent: #1565c0;
+  --accent-light: #42a5f5;
+  --accent-dark: #0d47a1;
+  --secondary: #e53935;
+  --secondary-light: #ef5350;
+  --gold: #ffd700;
+  --gold-glow: #ffea00;
+  --text: #0d47a1;
+  --text-light: #1976d2;
+  --card-bg: rgba(255,255,255,0.92);
+  --card-border: #90caf9;
+  --btn-grad: #1565c0;
+  --btn-text: #fff;
+  --mascot: "🏎️";
+  --deco1: "🏁";
+  --deco2: "🏆";
+  --deco3: "⚡";
+  --deco4: "🔥";
+  --node-locked: #cfd8dc;
+  --node-available: #42a5f5;
+  --tier1: #90caf9;
+  --tier2: #80cbc4;
+  --tier3: #a5d6a7;
+  --tier4: #ffcc80;
+  --tier5: #ef9a9a;
+  --success: #66bb6a;
+  --error: #ef5350;
+  --path-color: #90caf9;
+  --topbar-bg: rgba(255,255,255,0.85);
+}
+
+html { font-size: 16px; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg-start);
+  min-height: 100vh;
+  min-height: 100dvh;
+  color: var(--text);
+  overflow-x: hidden;
+  position: relative;
+}
+
+h1, h2, h3, .heading { font-family: 'Bubblegum Sans', cursive; }
+.handwritten { font-family: 'Patrick Hand', cursive; }
+
+/* ── Floating Decorations ── */
+.floating-decos {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+}
+.floating-decos .deco {
+  position: absolute; font-size: 1.8rem; opacity: 0.25; animation: floatDeco 12s ease-in-out infinite;
+}
+.floating-decos .deco:nth-child(1) { left: 5%; top: 10%; animation-delay: 0s; animation-duration: 14s; }
+.floating-decos .deco:nth-child(2) { left: 85%; top: 15%; animation-delay: -3s; animation-duration: 11s; }
+.floating-decos .deco:nth-child(3) { left: 15%; top: 70%; animation-delay: -6s; animation-duration: 16s; }
+.floating-decos .deco:nth-child(4) { left: 75%; top: 80%; animation-delay: -2s; animation-duration: 13s; }
+.floating-decos .deco:nth-child(5) { left: 45%; top: 5%; animation-delay: -8s; animation-duration: 15s; }
+.floating-decos .deco:nth-child(6) { left: 60%; top: 50%; animation-delay: -4s; animation-duration: 12s; }
+.floating-decos .deco:nth-child(7) { left: 30%; top: 40%; animation-delay: -7s; animation-duration: 17s; }
+.floating-decos .deco:nth-child(8) { left: 90%; top: 45%; animation-delay: -1s; animation-duration: 10s; }
+
+@keyframes floatDeco {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  25% { transform: translateY(-30px) rotate(10deg) scale(1.1); }
+  50% { transform: translateY(-15px) rotate(-5deg) scale(0.95); }
+  75% { transform: translateY(-40px) rotate(8deg) scale(1.05); }
+}
+
+/* ── Screens ── */
+.screen {
+  display: none; position: relative; z-index: 1;
+  min-height: 100vh; min-height: 100dvh;
+  padding: 1rem; padding-bottom: 2rem;
+}
+.screen.active { display: flex; flex-direction: column; align-items: center; }
+
+/* ── Confetti Canvas ── */
+#confetti-canvas {
+  position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+}
+
+/* ── School Logo Bar ── */
+.school-bar {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.5rem 1rem; margin-bottom: 0.5rem;
+  opacity: 0.7; font-size: 0.75rem; color: var(--text-light);
+}
+.school-bar { display: none; }
+
+/* ══════════════════════════════════════════
+   WELCOME SCREEN — Storybook Opening
+   ══════════════════════════════════════════ */
+#screen-welcome {
+  justify-content: center; gap: 0; padding: 0; text-align: center;
+  background: #1a1a2e; overflow: hidden; position: relative;
+}
+.welcome-bg {
+  position: absolute; inset: 0; overflow: hidden;
+}
+.welcome-bg .sky {
+  position: absolute; top: 0; width: 100%; height: 55%;
+  background: #0f3460;
+}
+.welcome-bg .stars-layer {
+  position: absolute; top: 0; width: 100%; height: 55%;
+}
+.welcome-bg .wstar {
+  position: absolute; width: 4px; height: 4px; background: #fff; border-radius: 50%;
+  animation: twinkle 3s ease-in-out infinite;
+}
+.welcome-bg .moon {
+  position: absolute; top: 8%; right: 12%; width: 60px; height: 60px;
+  background: #ffd700; border-radius: 50%;
+  box-shadow: 0 0 30px #ffd700, 0 0 60px rgba(255,215,0,0.3);
+}
+.welcome-bg .hills {
+  position: absolute; bottom: 0; width: 100%; height: 55%;
+  background: #16813d; border-radius: 50% 60% 0 0 / 30% 25% 0 0;
+}
+.welcome-bg .hill2 {
+  position: absolute; bottom: 0; width: 120%; left: -10%; height: 45%;
+  background: #1b9e4a; border-radius: 45% 55% 0 0 / 35% 30% 0 0;
+}
+.welcome-bg .ground {
+  position: absolute; bottom: 0; width: 100%; height: 15%;
+  background: #145a2c;
+}
+.welcome-bg .tree {
+  position: absolute; bottom: 14%; font-size: 2.5rem;
+}
+
+.welcome-content {
+  position: relative; z-index: 2; display: flex; flex-direction: column;
+  align-items: center; gap: 0.8rem; padding: 1.5rem;
+  width: 100%; max-width: 500px;
+}
+
+.welcome-logo {
+  width: 140px; height: 140px; object-fit: contain; border-radius: 50%;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 40px rgba(255,215,0,0.2);
+  border: 4px solid rgba(255,215,0,0.4); background: #fff;
+}
+
+.welcome-title {
+  font-size: clamp(3rem, 10vw, 5rem); color: #ffd700;
+  text-shadow: 0 0 20px rgba(255,215,0,0.5), 0 4px 0 #b8860b;
+  animation: bounceTitle 2.5s ease-in-out infinite;
+  line-height: 1; letter-spacing: 0.05em;
+  display: none; /* hidden — logo replaces title */
+}
+.welcome-subtitle {
+  font-family: 'Patrick Hand', cursive; font-size: 1.2rem;
+  color: rgba(255,255,255,0.85); margin-top: -0.3rem;
+}
+.welcome-tagline {
+  font-size: 0.8rem; color: rgba(255,255,255,0.5);
+  font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.welcome-prompt {
+  font-family: 'Bubblegum Sans', cursive; font-size: 1.3rem;
+  color: #fff; margin-top: 0.5rem;
+  animation: bounceTitle 3s ease-in-out 0.5s infinite;
+}
+
+.theme-cards {
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; width: 100%;
+}
+.theme-card {
+  flex: 1; min-width: 140px; max-width: 200px; min-height: 200px;
+  border-radius: 24px; padding: 1.5rem 1rem;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem;
+  cursor: pointer; border: 4px solid rgba(255,255,255,0.15);
+  transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
+  position: relative; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+.theme-card:active { transform: scale(0.93); }
+.theme-card:hover { transform: scale(1.06) translateY(-4px); border-color: #ffd700; }
+.theme-card.unicorn-card {
+  background: #e91e63; color: #fff;
+}
+.theme-card.cars-card {
+  background: #1565c0; color: #fff;
+}
+.theme-card-emoji {
+  font-size: 72px; line-height: 1; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+}
+.unicorn-card .theme-card-emoji { animation: sparkleFloat 3s ease-in-out infinite; }
+.cars-card .theme-card-emoji { animation: zoomVroom 2s ease-in-out infinite; }
+.theme-card-label {
+  font-family: 'Bubblegum Sans', cursive; font-size: 1.5rem;
+}
+.theme-card-sub {
+  font-size: 0.7rem; opacity: 0.8; font-weight: 600;
+}
+.theme-card-sparkles {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.theme-card-sparkles span {
+  position: absolute; animation: twinkle 2s ease-in-out infinite;
+}
+
+@keyframes bounceTitle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes sparkleFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-12px) rotate(5deg); }
+}
+@keyframes zoomVroom {
+  0%, 100% { transform: translateX(0) scale(1); }
+  30% { transform: translateX(6px) scale(1.04); }
+  60% { transform: translateX(-2px) scale(0.98); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ══════════════════════════════════════════
+   LOGIN SCREEN
+   ══════════════════════════════════════════ */
+#screen-login {
+  justify-content: flex-start; gap: 0.6rem; padding-top: 0.8rem; max-width: 420px; margin: 0 auto; width: 100%;
+  overflow-y: auto;
+}
+.login-mascot { font-size: 56px; animation: mascotBounce 2s ease-in-out infinite; text-align: center; line-height: 1; }
+.login-heading { font-size: 1.6rem; text-align: center; color: var(--accent); }
+
+.avatar-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.4rem;
+  justify-items: center; padding: 0.2rem 0;
+}
+.avatar-option {
+  width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; cursor: pointer; border: 3px solid var(--card-border);
+  background: var(--card-bg); transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.avatar-option:active { transform: scale(0.9); }
+.avatar-option.selected {
+  border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-light), 0 4px 16px rgba(0,0,0,0.15);
+  transform: scale(1.1); background: #fff;
+}
+
+.login-input {
+  width: 100%; padding: 0.7rem 1rem; border-radius: 16px; border: 3px solid var(--card-border);
+  font-size: 1.1rem; font-family: 'Nunito', sans-serif; font-weight: 700;
+  text-align: center; outline: none; background: var(--card-bg);
+  color: var(--text); transition: border-color 0.2s;
+}
+.login-input:focus { border-color: var(--accent); }
+.login-input::placeholder { color: var(--accent-light); font-weight: 400; }
+
+.pin-section { text-align: center; }
+/* PIN input is now a regular text field — no pin pad needed */
+
+.btn-primary {
+  width: 100%; padding: 0.8rem; border-radius: 20px; border: none;
+  background: var(--btn-grad); color: var(--btn-text); font-size: 1.3rem;
+  font-family: 'Bubblegum Sans', cursive; cursor: pointer; position: relative;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: all 0.2s;
+  overflow: hidden;
+}
+.btn-primary:active { transform: scale(0.96); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-primary .shine {
+  position: absolute; top: -50%; left: -60%; width: 60%; height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transform: rotate(25deg); animation: btnShine 3s ease-in-out infinite;
+}
+@keyframes btnShine {
+  0% { left: -60%; }
+  50%, 100% { left: 120%; }
+}
+
+.login-footer {
+  text-align: center; font-size: 0.85rem; color: var(--text-light); margin-top: 0.5rem;
+}
+.login-footer a { color: var(--accent); text-decoration: underline; cursor: pointer; font-weight: 700; }
+
+.login-error {
+  background: #ffebee; color: #c62828; padding: 0.6rem 1rem; border-radius: 12px;
+  font-size: 0.9rem; text-align: center; display: none; font-weight: 600;
+}
+
+@keyframes mascotBounce {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+/* ══════════════════════════════════════════
+   DASHBOARD / JOURNEY MAP
+   ══════════════════════════════════════════ */
+#screen-dashboard { padding: 0; gap: 0; background: #6ABF4B; }
+#screen-garden, #screen-stickers, #screen-leaderboard {
+  padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+.topbar {
+  width: 100%; max-width: 600px; display: flex; align-items: center; gap: 0.7rem;
+  padding: 1rem 1.2rem; background: var(--btn-grad);
+  border-radius: 0 0 18px 18px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15); position: sticky; top: 0; z-index: 10;
+  margin-bottom: 0; color: #fff;
+}
+.topbar-avatar {
+  width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,0.25);
+  display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
+  border: 3px solid rgba(255,255,255,0.5); flex-shrink: 0;
+}
+.topbar-info { flex: 1; min-width: 0; }
+.topbar-name { font-weight: 900; font-size: 1.15rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #fff; }
+.topbar-stats {
+  display: flex; gap: 0.7rem; font-size: 0.8rem; font-weight: 700; margin-top: 0.15rem; color: rgba(255,255,255,0.9);
+}
+.topbar-stat { display: flex; align-items: center; gap: 0.15rem; }
+.topbar-settings {
+  width: 36px; height: 36px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2);
+  cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+  color: #fff; opacity: 0.8; flex-shrink: 0;
+}
+
+/* Dashboard panels (inline tab content) */
+.dash-panel { display: none; width: 100%; max-width: 600px; flex: 1; overflow-y: auto;
+  padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)); }
+.dash-panel.active { display: flex; flex-direction: column; }
+.panel-inner { padding: 0.5rem; width: 100%; }
+
+/* Full-height garden inside panel */
+#panel-garden { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)); }
+#panel-garden .panel-inner { display: flex; flex-direction: column; flex: 1; }
+#panel-garden .garden-scene {
+  flex: 1; min-height: 400px; border-radius: 20px; margin-top: 0.3rem;
+}
+
+/* Bottom tab bar */
+.bottom-tabs {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+  display: flex; justify-content: space-around; align-items: stretch;
+  background: #FFFFFF;
+  border-top: none;
+  padding: 0.3rem 0 calc(0.3rem + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -2px 20px rgba(0,0,0,0.1);
+  border-radius: 20px 20px 0 0;
+}
+.tab-btn {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.15rem;
+  padding: 0.45rem 0; border: none; background: none; cursor: pointer;
+  font-family: 'Nunito', sans-serif; font-size: 0.68rem; font-weight: 800;
+  color: #9CA3AF; transition: all 0.2s;
+}
+.tab-btn:active { transform: scale(0.9); }
+.tab-btn.active { color: #2563EB; }
+.tab-btn .tab-icon { font-size: 1.5rem; line-height: 1; display: flex; align-items: center; justify-content: center; }
+.tab-btn .tab-icon svg { width: 24px; height: 24px; }
+.tab-btn .tab-label { line-height: 1; }
+
+.journey-container {
+  width: 100%; max-width: 600px; flex: 1; position: relative;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  background: #6ABF4B;
+}
+#panel-read { overflow: hidden; }
+
+.journey-world {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+/* Sky + grass painted via inline gradient per totalH */
+
+/* Scenery items */
+.jw-deco {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  filter: drop-shadow(0 3px 4px rgba(0,0,0,0.12));
+}
+.jw-tree {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+  transform-origin: bottom center;
+  animation: treeSway var(--sway-dur, 4s) ease-in-out infinite alternate;
+  animation-delay: var(--sway-delay, 0s);
+}
+@keyframes treeSway {
+  0% { transform: rotate(-1.5deg) scale(var(--tree-s, 1)); }
+  100% { transform: rotate(1.5deg) scale(var(--tree-s, 1)); }
+}
+
+/* Dirt path SVG */
+.jw-path {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+.jw-path-shadow {
+  fill: none;
+  stroke: rgba(0,0,0,0.08);
+  stroke-width: 48;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.jw-path-border {
+  fill: none;
+  stroke: #9E7D3A;
+  stroke-width: 44;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.jw-path-line {
+  fill: none;
+  stroke: #D4A34B;
+  stroke-width: 36;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.jw-path-inner {
+  fill: none;
+  stroke: #E8C06A;
+  stroke-width: 24;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.35;
+}
+
+/* Nodes layer */
+.journey-nodes {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+.journey-node-wrap {
+  position: absolute; display: flex; flex-direction: column; align-items: center;
+  pointer-events: auto; transform: translate(-50%, -50%);
+}
+
+/* Game-style level node */
+.passage-node {
+  width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center;
+  justify-content: center; font-size: 1.5rem; cursor: pointer; position: relative;
+  background: linear-gradient(145deg, #EF5350, #C62828);
+  border: 3px solid #B71C1C;
+  box-shadow: 0 5px 0 #8B1515, 0 7px 14px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.2);
+  transition: all 0.12s cubic-bezier(.34,1.56,.64,1);
+  z-index: 5;
+}
+.passage-node::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 6px; right: 6px; height: 8px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 10px;
+}
+.passage-node:active { transform: scale(0.92) translateY(3px); box-shadow: 0 2px 0 #8B1515, 0 3px 6px rgba(0,0,0,0.2); }
+
+.passage-node.locked {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: linear-gradient(145deg, #BDBDBD, #9E9E9E);
+  border-color: #757575;
+  box-shadow: 0 4px 0 #616161, 0 5px 10px rgba(0,0,0,0.12);
+  cursor: not-allowed;
+  font-size: 1.1rem;
+}
+.passage-node.locked::after { background: rgba(255,255,255,0.1); }
+.passage-node.locked .lock-badge {
+  font-size: 1rem; line-height: 1;
+}
+
+.passage-node.available {
+  width: 58px; height: 58px;
+  background: linear-gradient(145deg, #FF7043, #E64A19);
+  border-color: #BF360C;
+  box-shadow: 0 5px 0 #8B2500, 0 7px 14px rgba(0,0,0,0.25), 0 0 24px rgba(255,112,67,0.5), inset 0 1px 1px rgba(255,255,255,0.2);
+  animation: nodeAvail 2s ease-in-out infinite;
+}
+.passage-node.completed {
+  background: linear-gradient(145deg, #66BB6A, #2E7D32);
+  border-color: #1B5E20;
+  box-shadow: 0 5px 0 #0D3B0E, 0 7px 14px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.15);
+}
+
+.node-emoji { position: relative; z-index: 1; line-height: 1; }
+
+/* Stars below node */
+.node-stars {
+  display: flex; gap: 1px; margin-top: 2px; position: relative; z-index: 5;
+}
+.node-star {
+  font-size: 0.75rem;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.25));
+}
+.node-star.earned { animation: starPop 0.3s ease-out; }
+.node-star.off { font-size: 0.6rem; opacity: 0.3; filter: grayscale(1); }
+
+.node-title {
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 0.85rem;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.7), 0 0 10px rgba(0,0,0,0.3);
+  max-width: 100px; text-align: center;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  margin-top: 2px;
+  font-weight: 400;
+}
+
+/* Tier badge */
+.node-tier {
+  position: absolute; top: -5px; right: -5px;
+  width: 18px; height: 18px; border-radius: 50%;
+  font-size: 0.5rem; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; border: 2px solid #fff; z-index: 6;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
+
+@keyframes nodeAvail {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.07); box-shadow: 0 5px 0 #8B2500, 0 8px 18px rgba(0,0,0,0.3), 0 0 35px rgba(255,112,67,0.6), inset 0 1px 1px rgba(255,255,255,0.2); }
+}
+@keyframes starPop {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* ══════════════════════════════════════════
+   READING SCREEN
+   ══════════════════════════════════════════ */
+#screen-reading {
+  justify-content: flex-start; gap: 0.8rem; max-width: 600px; margin: 0 auto; width: 100%;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+}
+.reading-header {
+  display: flex; align-items: center; gap: 0.8rem; width: 100%;
+}
+.reading-back {
+  width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--card-border);
+  background: var(--card-bg); cursor: pointer; display: flex; align-items: center;
+  justify-content: center; font-size: 1.3rem; flex-shrink: 0; transition: all 0.15s;
+}
+.reading-back:active { transform: scale(0.9); }
+.reading-title { flex: 1; font-size: 1.4rem; font-weight: 800; }
+.reading-tier {
+  padding: 0.3rem 0.8rem; border-radius: 12px; font-size: 0.8rem; font-weight: 800;
+  color: #fff;
+}
+.reading-words {
+  padding: 0.25rem 0.7rem; border-radius: 10px; background: var(--card-bg);
+  font-size: 0.8rem; font-weight: 700; border: 2px solid var(--card-border);
+}
+
+.passage-listen {
+  width: 100%; display: flex; justify-content: center; flex-shrink: 0;
+}
+.listen-btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .4rem .9rem; border-radius: 20px; border: 1.5px solid var(--accent-light);
+  background: rgba(255,255,255,.85); color: var(--accent); font-family: 'Nunito', sans-serif;
+  font-size: .78rem; font-weight: 800; cursor: pointer; transition: all .15s ease;
+}
+.listen-btn:hover { background: var(--accent); color: #fff; }
+.listen-btn.playing { background: var(--accent); color: #fff; }
+.listen-btn svg { flex-shrink: 0; }
+.passage-card {
+  flex: 0 0 auto; min-height: 120px; width: 100%; background: var(--card-bg); border-radius: 24px;
+  padding: 1.5rem 1.3rem; display: flex; align-items: flex-start; justify-content: center;
+  text-align: center; border: 3px solid var(--card-border);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+}
+.passage-text {
+  font-size: clamp(.95rem, 3vw, 1.2rem); line-height: 1.65; font-weight: 700;
+  color: var(--text); word-spacing: 0.1em; max-width: 100%; padding-bottom: 1rem;
+}
+
+/* ══ MIC AREA — Launch Pad ══ */
+.mic-area {
+  width: 100%; display: flex; flex-direction: column; align-items: center;
+  gap: 0.45rem; padding: 0.7rem 1.2rem 0.9rem; flex-shrink: 0;
+}
+.mic-icon { width: 28px; height: 28px; pointer-events: none; }
+.mic-btn-row { display: flex; align-items: center; width: 100%; }
+.mic-btn-row-spacer { flex: 1; }
+.mic-btn-row-end { flex: 1; display: flex; align-items: center; padding-left: 0.7rem; }
+
+/* Physical toy button — raised 3D style */
+.mic-btn {
+  width: 82px; height: 82px; border-radius: 50%; border: none; cursor: pointer;
+  background: var(--btn-grad); color: #fff; font-size: 1.9rem;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; flex-shrink: 0;
+  box-shadow:
+    0 7px 0 rgba(0,0,0,0.18),
+    0 10px 28px rgba(0,0,0,0.13),
+    inset 0 2px 0 rgba(255,255,255,0.28),
+    inset 0 -1px 0 rgba(0,0,0,0.1);
+  transform: translateY(0);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+.mic-btn:not(.recording) { animation: btnInvite 2.8s ease-in-out infinite; }
+@keyframes btnInvite {
+  0%, 100% { box-shadow: 0 7px 0 rgba(0,0,0,0.18), 0 10px 28px rgba(0,0,0,0.13), inset 0 2px 0 rgba(255,255,255,0.28), 0 0 0 0 rgba(233,30,99,0.35); }
+  50%       { box-shadow: 0 7px 0 rgba(0,0,0,0.18), 0 10px 28px rgba(0,0,0,0.13), inset 0 2px 0 rgba(255,255,255,0.28), 0 0 0 14px rgba(233,30,99,0); }
+}
+.mic-btn:active {
+  transform: translateY(6px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.18), 0 3px 8px rgba(0,0,0,0.1), inset 0 2px 0 rgba(0,0,0,0.08);
+}
+.mic-btn.recording {
+  background: linear-gradient(150deg, #ef5350, #c62828);
+  animation: recordBeat 1.4s ease-in-out infinite;
+  box-shadow: 0 7px 0 #b71c1c, 0 10px 28px rgba(239,83,80,0.35), inset 0 2px 0 rgba(255,255,255,0.2);
+}
+@keyframes recordBeat {
+  0%, 100% { box-shadow: 0 7px 0 #b71c1c, 0 10px 28px rgba(239,83,80,0.35), inset 0 2px 0 rgba(255,255,255,0.2); }
+  50%       { box-shadow: 0 7px 0 #b71c1c, 0 14px 40px rgba(239,83,80,0.55), inset 0 2px 0 rgba(255,255,255,0.2); }
+}
+.mic-btn-ring {
+  position: absolute; inset: -10px; border-radius: 50%;
+  border: 2.5px solid transparent; opacity: 0;
+}
+.mic-btn.recording .mic-btn-ring { border-color: rgba(239,83,80,0.4); opacity: 1; animation: ringPulse 1.5s ease-out infinite; }
+
+.mic-label {
+  font-size: .8rem; font-weight: 800; color: var(--text-light);
+  text-align: center; letter-spacing: 0.02em;
+}
+
+/* Bottom recording row — children hide/show individually */
+.mic-rec-row { display: flex; align-items: center; justify-content: center; gap: 0.45rem; }
+.sound-waves { display: none; align-items: flex-end; gap: 3px; height: 22px; }
+.sound-waves.active { display: inline-flex; }
+.sound-wave-bar { width: 4px; border-radius: 3px; background: #ef5350; }
+.sound-wave-bar:nth-child(1) { animation: waveBar 0.8s ease-in-out infinite;       height: 8px; }
+.sound-wave-bar:nth-child(2) { animation: waveBar 0.8s ease-in-out 0.1s infinite;  height: 16px; }
+.sound-wave-bar:nth-child(3) { animation: waveBar 0.8s ease-in-out 0.2s infinite;  height: 22px; }
+.sound-wave-bar:nth-child(4) { animation: waveBar 0.8s ease-in-out 0.3s infinite;  height: 16px; }
+.sound-wave-bar:nth-child(5) { animation: waveBar 0.8s ease-in-out 0.4s infinite;  height: 8px; }
+.timer-display {
+  font-size: 1rem; font-weight: 900; color: #ef5350;
+  font-variant-numeric: tabular-nums; display: none; white-space: nowrap;
+}
+.timer-display.active { display: inline-block; }
+.mic-cancel {
+  padding: 0.22rem 0.6rem; border-radius: 20px;
+  border: 1.5px solid rgba(0,0,0,0.12); background: transparent;
+  font-size: .72rem; font-weight: 800; cursor: pointer; color: var(--text);
+  display: none; font-family: 'Nunito', sans-serif; letter-spacing: 0.01em;
+}
+.mic-cancel.active { display: block; }
+
+/* ══ CARS THEME — Adventure Circuit Map ══ */
+
+/* Deep F1 circuit infield green */
+[data-theme="cars"] #screen-dashboard { background: #163A14; }
+[data-theme="cars"] .journey-container { background: #163A14; }
+
+/* Topbar — carbon black racing dashboard */
+[data-theme="cars"] .topbar {
+  background: linear-gradient(135deg, #141416 0%, #1E1E20 100%);
+  border-bottom: 3px solid #FF6F00;
+  box-shadow: 0 4px 24px rgba(0,0,0,.5), 0 0 0 1px rgba(255,111,0,.15);
+}
+[data-theme="cars"] .topbar-avatar {
+  border-color: #FF6F00; background: rgba(255,111,0,.1);
+}
+[data-theme="cars"] .topbar-stats { color: rgba(255,255,255,.75); }
+[data-theme="cars"] .topbar-settings {
+  background: rgba(255,111,0,.12); border: 1.5px solid rgba(255,111,0,.3); color: #FF6F00;
+}
+
+/* Bottom tabs — cockpit control panel */
+[data-theme="cars"] .bottom-tabs {
+  background: #141416;
+  border-top: 2px solid rgba(255,111,0,.35);
+  box-shadow: 0 -4px 24px rgba(0,0,0,.5);
+  border-radius: 20px 20px 0 0;
+}
+[data-theme="cars"] .tab-btn { color: rgba(255,255,255,.3); }
+[data-theme="cars"] .tab-btn.active { color: #FF6F00; }
+
+/* Race track — dark tarmac with dashed centre line */
+[data-theme="cars"] .jw-path-shadow { stroke: rgba(0,0,0,.55); stroke-width: 56; }
+[data-theme="cars"] .jw-path-border { stroke: #888; stroke-width: 48; } /* kerb edge */
+[data-theme="cars"] .jw-path-line   { stroke: #1A1A1A; stroke-width: 40; } /* asphalt */
+[data-theme="cars"] .jw-path-inner  { stroke: rgba(255,255,255,.5); stroke-width: 3; stroke-dasharray: 18 13; opacity: 1; } /* centre line */
+
+/* Passage nodes — racing checkpoint gates */
+[data-theme="cars"] .passage-node {
+  background: linear-gradient(145deg, #FF6F00, #E65100);
+  border-color: #BF360C;
+  box-shadow: 0 5px 0 #7B1C00, 0 7px 14px rgba(0,0,0,.35), inset 0 1px 1px rgba(255,255,255,.22);
+}
+[data-theme="cars"] .passage-node.locked {
+  background: linear-gradient(145deg, #3D3D3D, #252525);
+  border-color: #111;
+  box-shadow: 0 4px 0 #080808, 0 5px 10px rgba(0,0,0,.45);
+}
+[data-theme="cars"] .passage-node.available {
+  background: linear-gradient(145deg, #FF8F00, #E65100);
+  border-color: #BF360C;
+  animation: nodeAvailCars 2s ease-in-out infinite;
+}
+@keyframes nodeAvailCars {
+  0%,100% { transform:scale(1);     box-shadow: 0 5px 0 #7B1C00, 0 7px 14px rgba(0,0,0,.3), 0 0 24px rgba(255,111,0,.5), inset 0 1px 1px rgba(255,255,255,.22); }
+  50%     { transform:scale(1.07);  box-shadow: 0 5px 0 #7B1C00, 0 8px 18px rgba(0,0,0,.35), 0 0 40px rgba(255,111,0,.72), inset 0 1px 1px rgba(255,255,255,.22); }
+}
+[data-theme="cars"] .passage-node.completed {
+  background: linear-gradient(145deg, #66BB6A, #2E7D32);
+  border-color: #1B5E20;
+  box-shadow: 0 5px 0 #0D3B0E, 0 7px 14px rgba(0,0,0,.2), inset 0 1px 1px rgba(255,255,255,.15);
+}
+
+/* Racing decorations — bounce/float instead of tree-sway */
+[data-theme="cars"] .jw-tree {
+  animation: racingFloat var(--sway-dur, 4s) ease-in-out infinite alternate;
+}
+@keyframes racingFloat {
+  0%   { transform: scale(0.93) translateY(3px); }
+  100% { transform: scale(1.07) translateY(-5px); }
+}
+
+/* Red/white kerb curbing — the 5th SVG path layer */
+.jw-path-curb { display: none; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+[data-theme="cars"] .jw-path-curb {
+  display: block; stroke: #E53935; stroke-width: 48; stroke-dasharray: 14 14;
+}
+
+/* Vignette — aerial broadcast camera feel */
+[data-theme="cars"] .journey-world::after {
+  content: ''; position: absolute; inset: 0;
+  box-shadow: inset 0 0 100px rgba(0,0,0,.4);
+  pointer-events: none; z-index: 4;
+}
+
+/* Node titles — warm orange glow on dark grass */
+[data-theme="cars"] .node-title {
+  color: #FFD180;
+  text-shadow: 0 1px 5px rgba(0,0,0,.85), 0 0 10px rgba(255,111,0,.25);
+}
+
+/* Decoration glow on dark background */
+[data-theme="cars"] .jw-deco {
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,.35)) drop-shadow(0 0 5px rgba(255,111,0,.12));
+}
+[data-theme="cars"] .jw-tree {
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.4)) drop-shadow(0 0 6px rgba(255,111,0,.1));
+}
+
+/* ══ UNICORN THEME — Enchanted Starlight Map ══ */
+
+/* Deep cosmic purple sky-ground */
+[data-theme="unicorn"] #screen-dashboard { background: #110428; }
+[data-theme="unicorn"] .journey-container { background: #110428; }
+
+/* Fixed twinkling starfield (parallax behind scrolling map) */
+[data-theme="unicorn"] .journey-container::before {
+  content: ''; position: fixed; inset: 0; width: 2px; height: 2px;
+  background: transparent;
+  box-shadow:
+    30px 40px 0 1px rgba(255,255,255,.7), 85px 130px 0 1px rgba(255,215,0,.55),
+    150px 80px 0 1px rgba(255,255,255,.5), 220px 210px 0 1px rgba(255,105,180,.55),
+    300px 50px 0 1px rgba(255,255,255,.8), 60px 310px 0 1px rgba(255,215,0,.5),
+    180px 360px 0 1px rgba(255,255,255,.55), 340px 160px 0 1px rgba(173,216,230,.5),
+    120px 260px 0 1px rgba(255,255,255,.65), 260px 105px 0 1px rgba(255,215,0,.5),
+    20px 185px 0 1px rgba(255,255,255,.4), 320px 290px 0 1px rgba(255,105,180,.4),
+    200px 30px 0 1px rgba(255,255,255,.6), 90px 420px 0 1px rgba(255,215,0,.4),
+    280px 395px 0 1px rgba(255,255,255,.35), 50px 470px 0 1px rgba(255,255,255,.5),
+    350px 440px 0 1px rgba(255,215,0,.3), 160px 520px 0 1px rgba(255,255,255,.4),
+    40px 570px 0 1px rgba(255,105,180,.45), 250px 540px 0 1px rgba(255,255,255,.55),
+    110px 620px 0 1px rgba(255,215,0,.35), 310px 590px 0 1px rgba(255,255,255,.4);
+  border-radius: 50%; pointer-events: none; z-index: 1;
+  animation: starsTwinkle 2.8s ease-in-out infinite alternate;
+}
+
+/* Topbar — cosmic glass panel */
+[data-theme="unicorn"] .topbar {
+  background: linear-gradient(135deg, #1A0845 0%, #0D0221 100%);
+  border-bottom: 2px solid rgba(255,215,0,.35);
+  box-shadow: 0 4px 24px rgba(0,0,0,.6), 0 0 0 1px rgba(255,215,0,.1);
+}
+[data-theme="unicorn"] .topbar-avatar {
+  border-color: #FFD700; background: rgba(255,215,0,.08);
+}
+[data-theme="unicorn"] .topbar-stats { color: rgba(255,255,255,.75); }
+[data-theme="unicorn"] .topbar-settings {
+  background: rgba(255,215,0,.08); border: 1.5px solid rgba(255,215,0,.25); color: #FFD700;
+}
+
+/* Bottom tabs — cosmic dock */
+[data-theme="unicorn"] .bottom-tabs {
+  background: #0D0221;
+  border-top: 2px solid rgba(255,215,0,.25);
+  box-shadow: 0 -4px 24px rgba(0,0,0,.6);
+  border-radius: 20px 20px 0 0;
+}
+[data-theme="unicorn"] .tab-btn { color: rgba(255,255,255,.28); }
+[data-theme="unicorn"] .tab-btn.active { color: #FFD700; }
+
+/* Stardust trail path */
+[data-theme="unicorn"] .jw-path-shadow { stroke: rgba(0,0,0,.6); stroke-width: 56; }
+[data-theme="unicorn"] .jw-path-border { stroke: rgba(255,215,0,.3); stroke-width: 48; }
+[data-theme="unicorn"] .jw-path-line   { stroke: #1E0845; stroke-width: 40; }
+[data-theme="unicorn"] .jw-path-inner  { stroke: rgba(255,215,0,.5); stroke-width: 3; stroke-dasharray: 16 12; opacity: 1; }
+/* Pink fairy-dust kerbing */
+[data-theme="unicorn"] .jw-path-curb {
+  display: block; stroke: #FF69B4; stroke-width: 48; stroke-dasharray: 10 10;
+}
+
+/* Crystal portal nodes */
+[data-theme="unicorn"] .passage-node {
+  background: linear-gradient(145deg, #E91E63, #AD1457);
+  border-color: #880E4F;
+  box-shadow: 0 5px 0 #560027, 0 7px 14px rgba(0,0,0,.4), inset 0 1px 1px rgba(255,255,255,.22);
+}
+[data-theme="unicorn"] .passage-node.locked {
+  background: linear-gradient(145deg, #2A2040, #1A1530);
+  border-color: #110D22;
+  box-shadow: 0 4px 0 #080515, 0 5px 10px rgba(0,0,0,.5);
+}
+[data-theme="unicorn"] .passage-node.available {
+  background: linear-gradient(145deg, #FF4081, #C2185B);
+  border-color: #AD1457;
+  animation: nodeAvailUnicorn 2s ease-in-out infinite;
+}
+@keyframes nodeAvailUnicorn {
+  0%,100% { transform:scale(1);    box-shadow: 0 5px 0 #880E4F, 0 7px 14px rgba(0,0,0,.35), 0 0 24px rgba(255,64,129,.5), inset 0 1px 1px rgba(255,255,255,.22); }
+  50%     { transform:scale(1.07); box-shadow: 0 5px 0 #880E4F, 0 8px 18px rgba(0,0,0,.4), 0 0 40px rgba(255,64,129,.65), 0 0 60px rgba(255,215,0,.18), inset 0 1px 1px rgba(255,255,255,.22); }
+}
+[data-theme="unicorn"] .passage-node.completed {
+  background: linear-gradient(145deg, #FFD700, #F9A825);
+  border-color: #F57F17;
+  box-shadow: 0 5px 0 #E65100, 0 7px 14px rgba(0,0,0,.25), 0 0 14px rgba(255,215,0,.3), inset 0 1px 1px rgba(255,255,255,.3);
+}
+
+/* Magical floating animation */
+[data-theme="unicorn"] .jw-tree {
+  animation: magicFloat var(--sway-dur, 4s) ease-in-out infinite alternate;
+}
+@keyframes magicFloat {
+  0%   { transform: scale(0.94) translateY(2px) rotate(-2deg); }
+  100% { transform: scale(1.06) translateY(-6px) rotate(2deg); }
+}
+
+/* Vignette — enchanted aura */
+[data-theme="unicorn"] .journey-world::after {
+  content: ''; position: absolute; inset: 0;
+  box-shadow: inset 0 0 120px rgba(13,2,33,.5);
+  pointer-events: none; z-index: 4;
+}
+
+/* Node titles — golden glow on dark cosmos */
+[data-theme="unicorn"] .node-title {
+  color: #FFEAA7;
+  text-shadow: 0 1px 5px rgba(0,0,0,.9), 0 0 10px rgba(255,215,0,.2);
+}
+
+/* Decoration glow — cosmic shimmer */
+[data-theme="unicorn"] .jw-deco {
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,.4)) drop-shadow(0 0 6px rgba(255,105,180,.15));
+}
+[data-theme="unicorn"] .jw-tree {
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.45)) drop-shadow(0 0 8px rgba(255,215,0,.12));
+}
+
+/* ══ CARS THEME — Race Day Reading Screen ══ */
+.race-metrics { display: none; }
+
+[data-theme="cars"] #screen-reading {
+  padding: 0; gap: 0;
+  background: linear-gradient(180deg, #141416 0%, #1C1C1E 13%, #FFFAF5 13%);
+}
+/* Speed-stripe texture in dark zone */
+[data-theme="cars"] #screen-reading::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 13%;
+  background: repeating-linear-gradient(-65deg, transparent, transparent 18px, rgba(255,255,255,.028) 18px, rgba(255,255,255,.028) 19px);
+  pointer-events: none; z-index: 0;
+}
+/* Racing stripe separator — black / red / orange / gold */
+[data-theme="cars"] #screen-reading::after {
+  content: '';
+  position: absolute; left: 0; right: 0; top: calc(13% - 5px); height: 5px;
+  background: repeating-linear-gradient(90deg, #141416 0px, #141416 6px, #E53935 6px, #E53935 12px, #FF6F00 12px, #FF6F00 18px, #FFD600 18px, #FFD600 24px);
+  z-index: 2; pointer-events: none;
+}
+
+[data-theme="cars"] .reading-header {
+  background: transparent; padding: .65rem 1rem .4rem; gap: 0.7rem; position: relative; z-index: 2;
+}
+[data-theme="cars"] .reading-back {
+  background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); color: #fff; border-radius: 12px;
+}
+[data-theme="cars"] .reading-title { color: #fff; letter-spacing: -.01em; }
+[data-theme="cars"] .reading-tier {
+  background: #FF6F00 !important; color: #141416 !important;
+  border-radius: 8px; text-transform: uppercase; letter-spacing: .04em; font-size: .72rem;
+}
+[data-theme="cars"] .reading-words {
+  background: rgba(255,255,255,.07); border-color: rgba(255,215,0,.3); color: #FFD600;
+}
+[data-theme="cars"] .race-metrics {
+  display: flex; padding: 0 1.2rem .5rem; background: transparent; position: relative; z-index: 2;
+}
+.race-single-row { display: flex; align-items: center; gap: 0.45rem; width: 100%; }
+.race-c-time { font-size: 1.2rem; font-weight: 900; color: #FF6F00; letter-spacing: -.03em; font-variant-numeric: tabular-nums; flex-shrink: 0; }
+.race-c-sep { color: rgba(255,255,255,.25); font-size: .75rem; flex-shrink: 0; }
+.race-c-stat { font-size: .82rem; font-weight: 800; color: #FFD600; flex-shrink: 0; }
+.race-c-lbl { font-size: .55rem; color: rgba(255,255,255,.4); font-weight: 700; }
+/* Track with following race car */
+.race-track-bg { flex: 1; height: 6px; background: rgba(255,255,255,.1); border-radius: 10px; overflow: visible; position: relative; }
+.race-track-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #FFD600, #FF6F00); border-radius: 10px; transition: width .9s ease; position: relative; overflow: visible; }
+[data-theme="cars"] .race-track-fill::after {
+  content: '🏎️';
+  position: absolute; right: -14px; top: 50%;
+  transform: translateY(-58%);
+  font-size: 1.05rem; line-height: 1; pointer-events: none;
+}
+.race-flag-end { font-size: .9rem; flex-shrink: 0; }
+
+/* Passage — racing briefing paper */
+[data-theme="cars"] .passage-card {
+  flex: 1 1 0; min-height: 0; border-radius: 0;
+  border: none; background: #FFFAF5; box-shadow: none;
+}
+/* Dark cockpit mic dock */
+[data-theme="cars"] .mic-area {
+  background: #141416; border-top: none;
+  padding-bottom: calc(0.9rem + env(safe-area-inset-bottom, 0px));
+}
+[data-theme="cars"] .mic-btn {
+  background: linear-gradient(150deg, #FF8F00, #E65100);
+  box-shadow: 0 7px 0 #BF360C, 0 10px 28px rgba(230,81,0,.4), inset 0 2px 0 rgba(255,255,255,.28);
+}
+[data-theme="cars"] .mic-btn:not(.recording) { animation: btnInviteCars 2.8s ease-in-out infinite; }
+@keyframes btnInviteCars {
+  0%,100% { box-shadow: 0 7px 0 #BF360C, 0 10px 28px rgba(230,81,0,.3), inset 0 2px 0 rgba(255,255,255,.28), 0 0 0 0 rgba(255,111,0,.45); }
+  50%     { box-shadow: 0 7px 0 #BF360C, 0 10px 28px rgba(230,81,0,.3), inset 0 2px 0 rgba(255,255,255,.28), 0 0 0 16px rgba(255,111,0,0); }
+}
+[data-theme="cars"] .mic-btn.recording {
+  background: linear-gradient(150deg, #ef5350, #c62828);
+  box-shadow: 0 7px 0 #b71c1c, 0 10px 28px rgba(239,83,80,.45), inset 0 2px 0 rgba(255,255,255,.2);
+}
+[data-theme="cars"] .mic-btn-ring { border-color: #FF6F00; }
+[data-theme="cars"] .mic-btn.recording .mic-btn-ring { border-color: #F44336; }
+[data-theme="cars"] .mic-label { font-weight: 800; color: rgba(255,255,255,.5); }
+[data-theme="cars"] .timer-display { color: #FF6F00; }
+[data-theme="cars"] .sound-wave-bar { background: #FF6F00; }
+[data-theme="cars"] .mic-cancel { color: rgba(255,255,255,.45); border-color: rgba(255,255,255,.14); }
+
+/* ── QUEST METRICS (unicorn / Space Princess reading screen) ── */
+.quest-metrics { display: none; }
+[data-theme="unicorn"] #screen-reading {
+  padding: 0;
+  background: linear-gradient(180deg, #0D0221 0%, #1E0B4B 13%, #FAF5FF 13%);
+  gap: 0; overflow: hidden;
+}
+/* Nebula glow */
+[data-theme="unicorn"] #screen-reading::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 13%;
+  background:
+    radial-gradient(ellipse at 80% 90%, rgba(155,93,229,.3) 0%, transparent 55%),
+    radial-gradient(ellipse at 15% 50%, rgba(255,105,180,.2) 0%, transparent 45%);
+  pointer-events: none; z-index: 0;
+}
+/* Star field */
+[data-theme="unicorn"] #screen-reading::after {
+  content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 2px;
+  background: transparent;
+  box-shadow:
+    45px 18px 0 1px rgba(255,255,255,.8), 120px 8px 0 1px rgba(255,215,0,.7),
+    230px 22px 0 1px rgba(255,255,255,.5), 78px 42px 0 1px rgba(255,105,180,.7),
+    310px 12px 0 1px rgba(255,255,255,.9), 190px 35px 0 1px rgba(255,215,0,.5),
+    345px 20px 0 1px rgba(255,255,255,.7), 55px 50px 0 1px rgba(173,216,230,.5),
+    278px 46px 0 1px rgba(255,255,255,.8), 162px 14px 0 1px rgba(255,215,0,.6),
+    25px 32px 0 1px rgba(255,255,255,.5), 298px 58px 0 1px rgba(255,105,180,.5),
+    175px 5px 0 1px rgba(255,255,255,.7), 98px 62px 0 1px rgba(255,255,255,.4),
+    248px 52px 0 1px rgba(255,215,0,.4);
+  border-radius: 50%; z-index: 1; pointer-events: none;
+  animation: starsTwinkle 2.8s ease-in-out infinite alternate;
+}
+@keyframes starsTwinkle { from { opacity: .5; } to { opacity: 1; } }
+
+[data-theme="unicorn"] .reading-header {
+  background: transparent; padding: .65rem 1rem .4rem; gap: 0.7rem; position: relative; z-index: 2;
+}
+[data-theme="unicorn"] .reading-back {
+  background: rgba(255,255,255,.12); border-color: rgba(255,215,0,.35); color: #FFD700;
+}
+[data-theme="unicorn"] .reading-title { color: #fff; text-shadow: 0 0 14px rgba(255,215,0,.35); }
+[data-theme="unicorn"] .reading-tier { background: rgba(255,215,0,.18) !important; color: #FFD700 !important; }
+[data-theme="unicorn"] .reading-words {
+  background: rgba(255,255,255,.1); border-color: rgba(255,215,0,.25); color: rgba(255,255,255,.85);
+}
+[data-theme="unicorn"] .quest-metrics {
+  display: flex; padding: 0 1.2rem .35rem; background: transparent; position: relative; z-index: 2;
+}
+.quest-single-row { display: flex; align-items: center; gap: 0.45rem; width: 100%; }
+.quest-c-time { font-size: 1.2rem; font-weight: 900; color: #FFD700; letter-spacing: -.03em; font-variant-numeric: tabular-nums; text-shadow: 0 0 12px rgba(255,215,0,.45); flex-shrink: 0; }
+.quest-c-sep { color: rgba(255,215,0,.35); font-size: .75rem; flex-shrink: 0; }
+.quest-c-stat { font-size: .82rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+.quest-c-lbl { font-size: .55rem; color: rgba(255,215,0,.5); font-weight: 700; }
+.quest-track-bg { flex: 1; height: 5px; background: rgba(255,255,255,.12); border-radius: 10px; overflow: hidden; }
+.quest-track-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #FFD700, #FF69B4, #9C27B0); border-radius: 10px; transition: width .9s ease; box-shadow: 0 0 5px rgba(255,105,180,.4); }
+.quest-rocket { font-size: .9rem; flex-shrink: 0; animation: rocketBob .9s ease-in-out infinite alternate; }
+@keyframes rocketBob { from { transform: translateY(0) rotate(-45deg); } to { transform: translateY(-3px) rotate(-45deg); } }
+[data-theme="unicorn"] .passage-card {
+  flex: 1 1 0; min-height: 0; border-radius: 28px 28px 0 0;
+  border: none; border-top: 2px solid rgba(255,215,0,.22);
+  background: #fff; box-shadow: 0 -6px 24px rgba(155,93,229,.13);
+}
+[data-theme="unicorn"] .mic-area { background: #fff; border-top: 1px solid rgba(155,93,229,.08); }
+[data-theme="unicorn"] .mic-btn {
+  background: linear-gradient(150deg, #FFD700, #FF69B4);
+  box-shadow: 0 7px 0 #C2185B, 0 10px 28px rgba(255,105,180,.35), inset 0 2px 0 rgba(255,255,255,.35);
+}
+[data-theme="unicorn"] .mic-btn:not(.recording) {
+  animation: btnInviteUnicorn 2.8s ease-in-out infinite;
+}
+@keyframes btnInviteUnicorn {
+  0%,100% { box-shadow: 0 7px 0 #C2185B, 0 10px 28px rgba(255,105,180,.35), inset 0 2px 0 rgba(255,255,255,.35), 0 0 0 0 rgba(255,105,180,.4); }
+  50%     { box-shadow: 0 7px 0 #C2185B, 0 10px 28px rgba(255,105,180,.35), inset 0 2px 0 rgba(255,255,255,.35), 0 0 0 14px rgba(255,105,180,0); }
+}
+[data-theme="unicorn"] .mic-btn.recording {
+  background: linear-gradient(150deg, #9C27B0, #E91E63);
+  box-shadow: 0 7px 0 #6A1B9A, 0 10px 28px rgba(156,39,176,.45), inset 0 2px 0 rgba(255,255,255,.2);
+}
+[data-theme="unicorn"] .mic-btn-ring { border-color: #FFD700; }
+[data-theme="unicorn"] .mic-btn.recording .mic-btn-ring { border-color: #9C27B0; }
+[data-theme="unicorn"] .mic-label { font-weight: 800; color: #6B21A8; }
+[data-theme="unicorn"] .timer-display { color: #9C27B0; }
+
+.processing-state {
+  display: none; flex-direction: column; align-items: center; gap: 1rem; padding: 2rem 0;
+}
+.processing-state.active { display: flex; }
+.processing-mascot { font-size: 4rem; animation: mascotBounce 1.5s ease-in-out infinite; }
+.processing-text { font-size: 1.2rem; font-weight: 700; color: var(--text-light); }
+.processing-dots span {
+  display: inline-block; animation: dotBounce 1.4s ease-in-out infinite; font-size: 2rem;
+}
+.processing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.processing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes recordPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(239,83,80,0.4); }
+  50% { box-shadow: 0 0 40px rgba(239,83,80,0.7), 0 0 60px rgba(239,83,80,0.3); }
+}
+@keyframes ringPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+@keyframes waveBar {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+}
+@keyframes dotBounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-12px); }
+}
+
+/* ══════════════════════════════════════════
+   RESULTS SCREEN
+   ══════════════════════════════════════════ */
+#screen-results {
+  gap: 1.2rem; padding-top: 1.5rem; max-width: 600px; margin: 0 auto; width: 100%;
+  overflow-y: auto; padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+}
+.results-mascot {
+  font-size: 4.5rem; text-align: center; animation: mascotBounce 1.5s ease-in-out infinite;
+}
+.results-stars {
+  display: flex; gap: 0.4rem; justify-content: center;
+}
+.result-star {
+  font-size: 2.8rem; opacity: 0.2; transition: all 0.5s cubic-bezier(.34,1.56,.64,1);
+  filter: grayscale(1);
+}
+.result-star.earned {
+  opacity: 1; filter: grayscale(0) drop-shadow(0 0 8px var(--gold));
+  animation: starPop 0.6s cubic-bezier(.34,1.56,.64,1) both;
+}
+.result-star.earned:nth-child(1) { animation-delay: 0.3s; }
+.result-star.earned:nth-child(2) { animation-delay: 0.6s; }
+.result-star.earned:nth-child(3) { animation-delay: 0.9s; }
+.result-star.earned:nth-child(4) { animation-delay: 1.2s; }
+
+@keyframes starPop {
+  0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+  50% { transform: scale(1.4) rotate(10deg); }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+.level-badge {
+  display: inline-block; padding: 0.5rem 1.5rem; border-radius: 16px;
+  font-family: 'Bubblegum Sans', cursive; font-size: 1.4rem; color: #fff;
+  text-align: center;
+}
+.level-badge.level-1 { background: #ef5350; }
+.level-badge.level-2 { background: #ffa726; }
+.level-badge.level-3 { background: #66bb6a; }
+.level-badge.level-4 { background: #ffd700; color: #4a148c; }
+
+.encouragement-bubble {
+  background: var(--card-bg); border-radius: 20px; padding: 1.2rem;
+  border: 2px solid var(--card-border); position: relative; text-align: center;
+  font-size: 1.15rem; font-weight: 600; line-height: 1.5; width: 100%;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.encouragement-bubble::before {
+  content: ""; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  border-left: 12px solid transparent; border-right: 12px solid transparent;
+  border-bottom: 12px solid var(--card-border);
+}
+.hear-myself-btn {
+  margin-top: 0.5rem; padding: 0.4rem 1rem; border-radius: 12px; border: 2px solid var(--accent);
+  background: transparent; color: var(--accent); font-size: 0.85rem; font-weight: 700;
+  cursor: pointer; font-family: 'Nunito', sans-serif;
+}
+
+.scores-grid {
+  width: 100%; display: flex; flex-direction: column; gap: 0.6rem;
+}
+.score-row {
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.score-emoji { font-size: 1.3rem; width: 2rem; text-align: center; flex-shrink: 0; }
+.score-label { font-size: 0.85rem; font-weight: 700; width: 90px; flex-shrink: 0; }
+.score-bar-track {
+  flex: 1; height: 14px; border-radius: 7px; background: rgba(0,0,0,0.06); overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%; border-radius: 7px; transition: width 1s ease-out;
+  background: var(--accent);
+}
+
+.transcript-section {
+  width: 100%; background: var(--card-bg); border-radius: 16px; padding: 1rem;
+  border: 2px solid var(--card-border); font-size: 1.1rem; line-height: 1.8;
+}
+.transcript-section .word-correct { color: var(--success); font-weight: 700; }
+.transcript-section .word-mispronounced {
+  color: #D97706; font-weight: 700; text-decoration: underline wavy #FBBF24;
+  position: relative; cursor: help;
+}
+.transcript-section .word-mispronounced .error-hint {
+  position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  font-size: 0.6rem; color: #D97706; white-space: nowrap; font-weight: 700;
+  background: #FFFBEB; padding: .1rem .3rem; border-radius: 4px; border: 1px solid #FDE68A;
+}
+.transcript-section .word-error {
+  color: var(--error); font-weight: 700; text-decoration: underline wavy;
+  position: relative;
+}
+.transcript-section .word-error .error-hint {
+  position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  font-size: 0.65rem; color: var(--error); white-space: nowrap; font-weight: 600;
+}
+
+.teacher-view {
+  width: 100%; display: none; background: #f5f5f5; border-radius: 16px;
+  padding: 1rem; font-size: 0.85rem; line-height: 1.6;
+}
+.teacher-view.visible { display: block; }
+.teacher-toggle {
+  padding: 0.3rem 0.8rem; border-radius: 10px; border: 1px solid #ccc;
+  background: #f5f5f5; font-size: 0.75rem; cursor: pointer; color: #666;
+  font-family: 'Nunito', sans-serif;
+}
+
+.results-actions {
+  display: flex; gap: 0.8rem; width: 100%; flex-wrap: wrap;
+}
+.results-actions .btn-primary { flex: 1; min-width: 180px; }
+.btn-secondary {
+  flex: 1; min-width: 120px; padding: 0.9rem; border-radius: 20px;
+  border: 3px solid var(--accent); background: transparent; color: var(--accent);
+  font-size: 1.1rem; font-family: 'Bubblegum Sans', cursive; cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-secondary:active { transform: scale(0.96); }
+
+/* ══════════════════════════════════════════
+   GARDEN SCREEN
+   ══════════════════════════════════════════ */
+#screen-garden {
+  gap: 1rem; max-width: 600px; margin: 0 auto; width: 100%; padding-top: 1.5rem;
+}
+.garden-header {
+  text-align: center; width: 100%;
+}
+.garden-header h2 { font-size: 2rem; color: var(--accent); }
+.garden-stats {
+  display: flex; gap: 1.5rem; justify-content: center; margin-top: 0.5rem;
+  font-size: 1rem; font-weight: 700;
+}
+.garden-scene {
+  width: 100%; min-height: 350px; background: #81d4fa;
+  border-radius: 24px; position: relative; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+.garden-ground {
+  position: absolute; bottom: 0; width: 100%; height: 65%;
+  background: #66bb6a;
+  border-radius: 50% 50% 0 0 / 15% 15% 0 0;
+}
+.garden-flowers {
+  position: absolute; bottom: 5%; width: 100%; display: flex; flex-wrap: wrap;
+  justify-content: center; gap: 0.3rem; padding: 0 1rem;
+}
+.garden-flower {
+  font-size: 1.6rem; animation: flowerSway 3s ease-in-out infinite;
+  transition: all 0.3s;
+}
+.garden-flower:nth-child(even) { animation-delay: -1.5s; }
+.garden-flower.wilted { filter: grayscale(0.5) brightness(0.8); }
+.garden-cloud {
+  position: absolute; font-size: 3rem; opacity: 0.7; animation: cloudDrift 20s linear infinite;
+}
+.garden-cloud:nth-child(1) { top: 5%; animation-duration: 25s; }
+.garden-cloud:nth-child(2) { top: 12%; font-size: 2rem; animation-delay: -10s; animation-duration: 30s; }
+.garden-butterfly {
+  position: absolute; font-size: 1.5rem; animation: butterflyFly 8s ease-in-out infinite;
+}
+
+@keyframes flowerSway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+@keyframes cloudDrift {
+  0% { left: -15%; }
+  100% { left: 105%; }
+}
+@keyframes butterflyFly {
+  0% { left: -5%; top: 20%; }
+  25% { left: 30%; top: 10%; }
+  50% { left: 60%; top: 25%; }
+  75% { left: 80%; top: 8%; }
+  100% { left: 105%; top: 20%; }
+}
+
+.garden-back {
+  position: absolute; top: 1rem; left: 1rem; z-index: 5;
+}
+
+/* ══════════════════════════════════════════
+   STICKER BOOK
+   ══════════════════════════════════════════ */
+#screen-stickers {
+  gap: 1rem; max-width: 600px; margin: 0 auto; width: 100%; padding-top: 1.5rem;
+}
+.stickers-header { text-align: center; }
+.stickers-header h2 { font-size: 2rem; color: var(--accent); }
+.sticker-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem;
+  width: 100%; padding: 0.5rem;
+}
+.sticker-slot {
+  aspect-ratio: 1; border-radius: 18px; background: var(--card-bg); border: 3px dashed var(--card-border);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.2rem; cursor: pointer; transition: all 0.2s; padding: 0.3rem;
+}
+.sticker-slot:active { transform: scale(0.92); }
+.sticker-slot.earned {
+  border-style: solid; border-width: 3px;
+  box-shadow: 0 0 14px rgba(0,0,0,0.08);
+  animation: stickerShine 3s ease-in-out infinite;
+}
+.sticker-slot.earned .sticker-label { font-weight: 800; }
+.sticker-slot.earned .sticker-icon { filter: none; }
+.sticker-icon { font-size: 2rem; filter: grayscale(0.6) opacity(0.4); }
+.sticker-slot:not(.earned) .sticker-label { color: var(--text-light); opacity: 0.5; }
+.sticker-label {
+  font-size: 0.7rem; font-weight: 700; text-align: center; color: var(--text-light);
+  line-height: 1.2; overflow: hidden; max-height: 2.4em;
+}
+
+@keyframes stickerShine {
+  0%, 100% { box-shadow: 0 0 8px rgba(255,215,0,0.2); }
+  50% { box-shadow: 0 0 20px rgba(255,215,0,0.5); }
+}
+
+.sticker-popup {
+  display: none; position: fixed; inset: 0; z-index: 100;
+  background: rgba(0,0,0,0.5); align-items: center; justify-content: center; padding: 2rem;
+}
+.sticker-popup.active { display: flex; }
+.sticker-popup-card {
+  background: #fff; border-radius: 24px; padding: 2rem; text-align: center;
+  max-width: 300px; width: 100%; box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+}
+.sticker-popup-card .sticker-big { font-size: 4rem; }
+.sticker-popup-card h3 { margin: 0.5rem 0; font-size: 1.3rem; }
+.sticker-popup-card p { color: #666; font-size: 0.9rem; }
+.sticker-popup-close {
+  margin-top: 1rem; padding: 0.5rem 1.5rem; border-radius: 14px; border: none;
+  background: var(--btn-grad); color: #fff; font-size: 1rem; cursor: pointer;
+  font-family: 'Bubblegum Sans', cursive;
+}
+
+/* ══════════════════════════════════════════
+   LEADERBOARD
+   ══════════════════════════════════════════ */
+#screen-leaderboard {
+  gap: 1rem; max-width: 600px; margin: 0 auto; width: 100%; padding-top: 1.5rem;
+}
+.leaderboard-header { text-align: center; }
+.leaderboard-header h2 { font-size: 2rem; color: var(--accent); }
+
+.podium {
+  display: flex; justify-content: center; align-items: flex-end; gap: 0.5rem;
+  margin: 0.6rem 0 0.8rem; width: 100%;
+}
+.podium-place {
+  display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+  flex: 1; max-width: 130px;
+}
+.podium-place.first { order: 2; transform: translateY(-8px); }
+.podium-place.second { order: 1; }
+.podium-place.third { order: 3; }
+.podium-medal { font-size: 1.6rem; line-height: 1; }
+.podium-avatar {
+  font-size: 2rem; width: 52px; height: 52px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+}
+.podium-name { font-size: 0.85rem; font-weight: 800; max-width: 90px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); }
+.podium-stars { font-size: 0.8rem; font-weight: 800; color: #B8860B; }
+
+.leaderboard-list {
+  width: 100%; display: flex; flex-direction: column; gap: 0.35rem;
+}
+.lb-row {
+  display: flex; align-items: center; gap: 0.7rem; padding: 0.75rem 1rem;
+  background: var(--card-bg); border-radius: 14px; border: 2px solid var(--card-border);
+  transition: all 0.15s;
+}
+.lb-row.me { border-color: var(--accent); background: rgba(233,30,99,0.06); }
+.lb-rank { font-weight: 900; font-size: 1.1rem; width: 2rem; text-align: center; color: var(--text); }
+.lb-avatar { font-size: 1.5rem; }
+.lb-name { flex: 1; font-weight: 700; font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); }
+.lb-stats-cell { font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 0.2rem; color: var(--text); }
+
+/* ══════════════════════════════════════════
+   ADMIN / TEACHER PANEL
+   ══════════════════════════════════════════ */
+#screen-admin {
+  gap: 1rem; max-width: 600px; margin: 0 auto; width: 100%; padding-top: 1.5rem;
+}
+.admin-header { display: flex; align-items: center; gap: 0.8rem; width: 100%; }
+.admin-header h2 { flex: 1; font-size: 1.5rem; color: var(--accent); }
+
+.admin-tabs {
+  display: flex; gap: 0.3rem; width: 100%; overflow-x: auto;
+}
+.admin-tab {
+  flex: 1; padding: 0.6rem; border-radius: 12px 12px 0 0; border: 2px solid var(--card-border);
+  border-bottom: none; background: var(--card-bg); font-size: 0.8rem; font-weight: 700;
+  cursor: pointer; text-align: center; font-family: 'Nunito', sans-serif; color: var(--text);
+  white-space: nowrap;
+}
+.admin-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.admin-panel {
+  width: 100%; background: var(--card-bg); border-radius: 0 0 16px 16px; border: 2px solid var(--card-border);
+  border-top: none; padding: 1rem; min-height: 300px;
+}
+.admin-content { display: none; }
+.admin-content.active { display: block; }
+
+.admin-student-row {
+  display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+.admin-student-row .avatar { font-size: 1.3rem; }
+.admin-student-row .name { flex: 1; font-weight: 700; font-size: 0.9rem; }
+.admin-student-row .stats { font-size: 0.75rem; color: #888; }
+.admin-btn-small {
+  padding: 0.3rem 0.6rem; border-radius: 8px; border: 1px solid #ccc;
+  background: #f5f5f5; font-size: 0.7rem; cursor: pointer; font-family: 'Nunito', sans-serif;
+}
+
+.admin-form-group {
+  margin-bottom: 1rem;
+}
+.admin-form-group label {
+  display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.3rem;
+}
+.admin-form-group input {
+  width: 100%; padding: 0.6rem; border-radius: 10px; border: 2px solid #ddd;
+  font-size: 1rem; font-family: 'Nunito', sans-serif;
+}
+
+/* ══════════════════════════════════════════
+   SIGNUP MODAL (Teacher creates account)
+   ══════════════════════════════════════════ */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.6); align-items: center; justify-content: center;
+  padding: 1.5rem;
+}
+.modal-overlay.active { display: flex; }
+.modal-card {
+  background: #fff; border-radius: 24px; padding: 1.5rem; width: 100%;
+  max-width: 400px; max-height: 90vh; overflow-y: auto;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+}
+.modal-card h2 { text-align: center; font-size: 1.5rem; color: var(--accent); margin-bottom: 1rem; }
+.modal-close {
+  float: right; width: 36px; height: 36px; border-radius: 50%; border: none;
+  background: #f5f5f5; font-size: 1.2rem; cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+}
+
+/* ══════════════════════════════════════════
+   UTILITY & RESPONSIVE
+   ══════════════════════════════════════════ */
+.text-center { text-align: center; }
+.w-full { width: 100%; }
+.gap-sm { gap: 0.5rem; }
+.hidden { display: none !important; }
+
+.back-btn {
+  width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--card-border);
+  background: var(--card-bg); cursor: pointer; display: flex; align-items: center;
+  justify-content: center; font-size: 1.3rem; flex-shrink: 0; transition: all 0.15s;
+}
+.back-btn:active { transform: scale(0.9); }
+
+.loading-spinner {
+  display: inline-block; width: 24px; height: 24px; border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: #fff; border-radius: 50%; animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.toast {
+  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px);
+  background: var(--text); color: #fff; padding: 0.8rem 1.5rem; border-radius: 16px;
+  font-weight: 700; font-size: 0.9rem; z-index: 300; transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3); white-space: nowrap; max-width: 90vw;
+  overflow: hidden; text-overflow: ellipsis;
+}
+.toast.visible { transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 500px) {
+  .theme-cards { flex-direction: column; align-items: center; }
+  .theme-card { width: 90%; min-height: 200px; }
+  .avatar-grid { grid-template-columns: repeat(4, 1fr); }
+  .sticker-grid { grid-template-columns: repeat(3, 1fr); }
+  .passage-text { font-size: 1.25rem !important; }
+}
+@media (min-width: 768px) {
+  .passage-text { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Floating Decorations -->
+<div class="floating-decos" id="floatingDecos">
+  <div class="deco">✨</div><div class="deco">🌸</div><div class="deco">🌈</div>
+  <div class="deco">⭐</div><div class="deco">✨</div><div class="deco">🌸</div>
+  <div class="deco">⭐</div><div class="deco">🌈</div>
+</div>
+
+<!-- Confetti Canvas -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ══════════════════════════════════════════
+     SCREEN: WELCOME
+     ══════════════════════════════════════════ -->
+<div class="screen active" id="screen-welcome">
+  <!-- Night sky background scene -->
+  <div class="welcome-bg">
+    <div class="sky"></div>
+    <div class="stars-layer">
+      <div class="wstar" style="top:8%;left:12%;animation-delay:0s"></div>
+      <div class="wstar" style="top:15%;left:45%;animation-delay:-1s;width:3px;height:3px"></div>
+      <div class="wstar" style="top:5%;left:70%;animation-delay:-2s"></div>
+      <div class="wstar" style="top:22%;left:25%;animation-delay:-0.5s;width:5px;height:5px"></div>
+      <div class="wstar" style="top:10%;left:88%;animation-delay:-1.5s;width:3px;height:3px"></div>
+      <div class="wstar" style="top:18%;left:55%;animation-delay:-2.5s"></div>
+      <div class="wstar" style="top:3%;left:35%;animation-delay:-0.8s;width:5px;height:5px"></div>
+      <div class="wstar" style="top:25%;left:78%;animation-delay:-1.2s"></div>
+      <div class="wstar" style="top:12%;left:8%;animation-delay:-1.8s;width:3px;height:3px"></div>
+      <div class="wstar" style="top:20%;left:62%;animation-delay:-0.3s"></div>
+    </div>
+    <div class="moon"></div>
+    <div class="hills"></div>
+    <div class="hill2"></div>
+    <div class="ground"></div>
+    <div class="tree" style="left:8%">🌳</div>
+    <div class="tree" style="left:25%;font-size:2rem">🌲</div>
+    <div class="tree" style="right:15%">🌳</div>
+    <div class="tree" style="right:5%;font-size:1.8rem">🌲</div>
+  </div>
+
+  <!-- Content -->
+  <div class="welcome-content">
+    <img src="https://scontent.fmaa12-1.fna.fbcdn.net/v/t39.30808-6/399273349_351168484099204_8886973533696933951_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=2kuYYSxiz-cQ7kNvwEIgZeV&_nc_oc=AdoJdsQraLP4s43HLr1z0CU5RHTWJPSz5a86QrIeX2-GH14DRDsw2qWn0t5vSGt7kN_s6X-Cu5t6P41ZtbUMnThB&_nc_zt=23&_nc_ht=scontent.fmaa12-1.fna&_nc_gid=xqElPBvRSJLYaGQ_MCfzmg&_nc_ss=7a32e&oh=00_AfzaIpaHbxiOGO5kQeGaZWWdJmQf2ooTgTi562TVVNCrwQ&oe=69CC3A43" alt="AGN School"
+      class="welcome-logo" onerror="this.style.display='none'">
+
+    <p class="welcome-subtitle">Your Reading Adventure Begins Here!</p>
+
+    <p class="welcome-prompt">Pick your world!</p>
+
+    <div class="theme-cards">
+      <div class="theme-card unicorn-card" onclick="App.selectTheme('unicorn')">
+        <div class="theme-card-sparkles">
+          <span style="left:10%;top:12%;font-size:1rem">✨</span>
+          <span style="left:82%;top:18%;font-size:0.8rem;animation-delay:-1s">⭐</span>
+          <span style="left:15%;top:78%;font-size:0.9rem;animation-delay:-0.5s">🌸</span>
+          <span style="left:75%;top:82%;font-size:1rem;animation-delay:-1.5s">✨</span>
+        </div>
+        <div class="theme-card-emoji">🦄</div>
+        <div class="theme-card-label">Unicorn World</div>
+        <div class="theme-card-sub">sparkles, rainbows & magic</div>
+      </div>
+      <div class="theme-card cars-card" onclick="App.selectTheme('cars')">
+        <div class="theme-card-sparkles">
+          <span style="left:10%;top:12%;font-size:1rem">🏁</span>
+          <span style="left:82%;top:18%;font-size:0.8rem;animation-delay:-1s">⚡</span>
+          <span style="left:15%;top:78%;font-size:0.9rem;animation-delay:-0.5s">🔥</span>
+          <span style="left:75%;top:82%;font-size:1rem;animation-delay:-1.5s">🏆</span>
+        </div>
+        <div class="theme-card-emoji">🏎️</div>
+        <div class="theme-card-label">Racing World</div>
+        <div class="theme-card-sub">speed, trophies & adventure</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SCREEN: LOGIN
+     ══════════════════════════════════════════ -->
+<div class="screen" id="screen-login">
+  <div class="login-mascot" id="loginMascot">🦄</div>
+  <h2 class="login-heading heading">Who are you?</h2>
+  <div class="login-error" id="loginError"></div>
+
+  <input type="text" class="login-input" id="loginName" placeholder="Your Name" maxlength="20" autocomplete="off">
+
+  <input type="password" class="login-input" id="loginPin" placeholder="PIN" maxlength="20" inputmode="text" autocomplete="off" style="letter-spacing:0.3em;font-size:1.3rem">
+
+  <button class="btn-primary" id="loginBtn" disabled onclick="App.doLogin()">
+    Let's Go! 🚀 <span class="shine"></span>
+  </button>
+
+  <div style="display:flex;align-items:center;gap:0.8rem;width:100%;margin-top:0.3rem">
+    <div style="flex:1;height:1px;background:var(--card-border)"></div>
+    <span style="font-size:0.8rem;font-weight:700;color:var(--text-light)">or</span>
+    <div style="flex:1;height:1px;background:var(--card-border)"></div>
+  </div>
+
+  <button onclick="App.showSignupModal()" style="width:100%;padding:0.7rem;border-radius:16px;border:3px solid var(--accent);background:transparent;color:var(--accent);font-size:1.1rem;font-family:'Bubblegum Sans',cursive;cursor:pointer">
+    New Student? Sign Up ✨
+  </button>
+
+</div>
+
+<!-- ══════════════════════════════════════════
+     SCREEN: DASHBOARD
+     ══════════════════════════════════════════ -->
+<div class="screen" id="screen-dashboard">
+  <div class="topbar">
+    <div class="topbar-avatar" id="dashAvatar">🦁</div>
+    <div class="topbar-info">
+      <div class="topbar-name" id="dashName">Student</div>
+      <div class="topbar-stats">
+        <div class="topbar-stat"><span>⭐</span><span id="dashStars">0</span></div>
+        <div class="topbar-stat"><span>🔥</span><span id="dashStreak">0</span></div>
+        <div class="topbar-stat"><span>🪙</span><span id="dashCoins">0</span></div>
+      </div>
+    </div>
+    <button class="topbar-settings" id="adminTrigger" title="Settings" style="display:none">⚙️</button>
+  </div>
+
+  <!-- All tab panels live inside dashboard -->
+  <div class="dash-panel active" id="panel-read">
+    <div class="journey-container" id="journeyContainer"></div>
+  </div>
+  <div class="dash-panel" id="panel-garden">
+    <div class="panel-inner" id="gardenInner"></div>
+  </div>
+  <div class="dash-panel" id="panel-board">
+    <div class="panel-inner" id="boardInner"></div>
+  </div>
+  <div class="dash-panel" id="panel-stickers">
+    <div class="panel-inner" id="stickersInner"></div>
+  </div>
+  <div class="dash-panel" id="panel-settings">
+    <div class="panel-inner" id="settingsInner"></div>
+  </div>
+
+  <div class="bottom-tabs" id="bottomTabs">
+    <button class="tab-btn active" onclick="App.showDashTab('read', this)">
+      <span class="tab-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span><span class="tab-label">Read</span>
+    </button>
+    <button class="tab-btn" onclick="App.showDashTab('garden', this)">
+      <span class="tab-icon">🌸</span><span class="tab-label">Garden</span>
+    </button>
+    <button class="tab-btn" onclick="App.showDashTab('board', this)">
+      <span class="tab-icon">🏆</span><span class="tab-label">Board</span>
+    </button>
+    <button class="tab-btn" onclick="App.showDashTab('stickers', this)">
+      <span class="tab-icon">⭐</span><span class="tab-label">Stickers</span>
+    </button>
+    <button class="tab-btn" onclick="App.showDashTab('settings', this)">
+      <span class="tab-icon">⚙️</span><span class="tab-label">Settings</span>
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SCREEN: READING
+     ══════════════════════════════════════════ -->
+<div class="screen" id="screen-reading">
+  <div class="reading-header">
+    <button class="reading-back" onclick="App.showScreen('dashboard')">←</button>
+    <div class="reading-title" id="readingTitle">My Cat</div>
+    <div class="reading-tier" id="readingTier" style="background:var(--tier1)">Tier 1</div>
+    <div class="reading-words" id="readingWords">15 words</div>
+  </div>
+
+  <!-- Race metrics — cars theme single row -->
+  <div class="race-metrics" id="raceMetrics">
+    <div class="race-single-row">
+      <span class="race-c-time" id="raceTimeBig">0:00</span>
+      <span class="race-c-sep">·</span>
+      <span class="race-c-stat"><span id="raceWordsEst">0</span><span class="race-c-lbl"> wds</span></span>
+      <span class="race-c-sep">·</span>
+      <span class="race-c-stat"><span id="raceWpmEst">–</span><span class="race-c-lbl"> wpm</span></span>
+      <span class="race-c-sep">·</span>
+      <span class="race-c-stat"><span id="racePct">0%</span></span>
+      <div class="race-track-bg"><div class="race-track-fill" id="raceTrackFill"></div></div>
+      <span class="race-flag-end">🏁</span>
+    </div>
+  </div>
+
+  <!-- Quest metrics — unicorn/Space Princess single row -->
+  <div class="quest-metrics" id="questMetrics">
+    <div class="quest-single-row">
+      <span class="quest-c-time" id="questTimeBig">0:00</span>
+      <span class="quest-c-sep">·</span>
+      <span class="quest-c-stat"><span id="questWordsEst">0</span><span class="quest-c-lbl"> wds</span></span>
+      <span class="quest-c-sep">·</span>
+      <span class="quest-c-stat"><span id="questPowerEst">–</span><span class="quest-c-lbl"> power</span></span>
+      <span class="quest-c-sep">·</span>
+      <span class="quest-c-stat"><span id="questPct">0%</span></span>
+      <div class="quest-track-bg"><div class="quest-track-fill" id="questTrackFill"></div></div>
+      <span class="quest-rocket">🚀</span>
+    </div>
+  </div>
+
+  <div class="passage-listen" id="passageListen">
+    <button class="listen-btn" id="listenBtn" onclick="App.listenPassage()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+      <span id="listenLbl">Listen First</span>
+    </button>
+  </div>
+  <div class="passage-card">
+    <div class="passage-text" id="passageText">I have a cat. My cat is fat.</div>
+  </div>
+
+  <div class="mic-area" id="micArea">
+    <div class="mic-label" id="micLabel">Tap to Start Reading!</div>
+    <div class="mic-btn-row">
+      <div class="mic-btn-row-spacer"></div>
+      <button class="mic-btn" id="micBtn" onclick="App.toggleRecording()">
+        <svg class="mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+        <div class="mic-btn-ring"></div>
+      </button>
+      <div class="mic-btn-row-end">
+        <button class="mic-cancel" id="micCancel" onclick="App.cancelRecording()">Cancel</button>
+      </div>
+    </div>
+    <div class="mic-rec-row">
+      <div class="timer-display" id="timerDisplay">0:00</div>
+      <div class="sound-waves" id="soundWaves">
+        <div class="sound-wave-bar"></div><div class="sound-wave-bar"></div>
+        <div class="sound-wave-bar"></div><div class="sound-wave-bar"></div>
+        <div class="sound-wave-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="processing-state" id="processingState">
+    <div class="processing-mascot" id="processingMascot">🦄</div>
+    <div class="processing-text">Your reading buddy is analysing...</div>
+    <div class="processing-dots"><span>●</span><span>●</span><span>●</span></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SCREEN: RESULTS
+     ══════════════════════════════════════════ -->
+<div class="screen" id="screen-results">
+  <div class="results-mascot" id="resultsMascot">🦄</div>
+  <div class="results-stars" id="resultsStars"></div>
+  <div class="level-badge" id="levelBadge">Ready!</div>
+
+  <div class="encouragement-bubble" id="encouragement">You did amazing! Keep it up!</div>
+
+  <button class="hear-myself-btn" onclick="App.playRecording()">🔊 Hear Myself!</button>
+
+  <div class="scores-grid" id="scoresGrid"></div>
+
+  <div class="transcript-section" id="transcriptSection"></div>
+
+  <div class="results-actions" id="resultsActions"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SCREEN: GARDEN
+     ══════════════════════════════════════════ -->
+<div class="screen" id="screen-garden">
+  <div class="garden-header">
+    <button class="back-btn" onclick="App.showScreen('dashboard')" style="float:left">←</button>
+    <h2 class="heading">My Garden 🌸</h2>
+    <div class="garden-stats">
+      <span id="gardenFlowers">🌸 0 blooming</span>
+      <span id="gardenWilted">🥀 0 need care</span>
+    </div>
+  </div>
+  <div class="garden-scene" id="gardenScene">
+    <div class="garden-cloud" style="top:5%">☁️</div>
+    <div class="garden-cloud" style="top:10%;font-size:2.5rem">☁️</div>
+    <div class="garden-butterfly">🦋</div>
+    <div class="garden-ground"></div>
+    <div class="garden-flowers" id="gardenFlowerGrid"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SCREEN: STICKERS
+     ══════════════════════════════════════════ -->
+<div class="screen" id="screen-stickers">
+  <div class="stickers-header">
+    <button class="back-btn" onclick="App.showScreen('dashboard')" style="float:left">←</button>
+    <h2 class="heading">My Stickers ⭐</h2>
+  </div>
+  <div class="sticker-grid" id="stickerGrid"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SCREEN: LEADERBOARD
+     ══════════════════════════════════════════ -->
+<div class="screen" id="screen-leaderboard">
+  <div class="leaderboard-header">
+    <button class="back-btn" onclick="App.showScreen('dashboard')" style="float:left">←</button>
+    <h2 class="heading">Star Champions 🏆</h2>
+  </div>
+  <div class="podium" id="podium"></div>
+  <div class="leaderboard-list" id="lbList"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SCREEN: ADMIN
+     ══════════════════════════════════════════ -->
+<div class="screen" id="screen-admin">
+  <div class="admin-header">
+    <button class="back-btn" onclick="App.showScreen('dashboard')">←</button>
+    <h2 class="heading" id="adminTitle">Admin Panel 👑</h2>
+    <button class="back-btn" onclick="App.logout()" title="Logout" style="font-size:1rem">🚪</button>
+  </div>
+  <div class="admin-tabs" id="adminTabs">
+    <div class="admin-tab active" onclick="App.showAdminTab('students')">Students</div>
+    <div class="admin-tab" onclick="App.showAdminTab('teachers')">Teachers</div>
+    <div class="admin-tab" onclick="App.showAdminTab('adduser')">Add User</div>
+    <div class="admin-tab" onclick="App.showAdminTab('scale')">Scale</div>
+    <div class="admin-tab" onclick="App.showAdminTab('settings')">Settings</div>
+  </div>
+  <div class="admin-panel">
+    <div class="admin-content active" id="admin-students"></div>
+    <div class="admin-content" id="admin-teachers"></div>
+    <div class="admin-content" id="admin-adduser"></div>
+    <div class="admin-content" id="admin-scale"></div>
+    <div class="admin-content" id="admin-settings"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SIGNUP MODAL
+     ══════════════════════════════════════════ -->
+<div class="modal-overlay" id="signupModal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="App.hideSignupModal()">✕</button>
+    <h2 class="heading">New Student ✨</h2>
+    <div class="login-error" id="signupError"></div>
+    <div class="admin-form-group">
+      <label>Student Name</label>
+      <input type="text" id="signupName" placeholder="Enter name" maxlength="20">
+    </div>
+    <div class="admin-form-group">
+      <label>4-Digit PIN</label>
+      <input type="text" id="signupPin" placeholder="1234" maxlength="4" inputmode="numeric" pattern="[0-9]*">
+    </div>
+    <div class="admin-form-group">
+      <label>Avatar</label>
+      <div class="avatar-grid" id="signupAvatarGrid" style="margin-top:0.3rem"></div>
+    </div>
+    <div class="admin-form-group">
+      <label>Class Name (optional)</label>
+      <input type="text" id="signupClass" placeholder="KG-A" maxlength="10">
+    </div>
+    <button class="btn-primary" onclick="App.doSignup()">Create Student 🎉 <span class="shine"></span></button>
+  </div>
+</div>
+
+<!-- Sticker Popup -->
+<div class="sticker-popup" id="stickerPopup" onclick="this.classList.remove('active')">
+  <div class="sticker-popup-card" onclick="event.stopPropagation()">
+    <div class="sticker-big" id="stickerPopupIcon">📖</div>
+    <h3 id="stickerPopupTitle">First Reading</h3>
+    <p id="stickerPopupDesc">Complete your first reading!</p>
+    <p id="stickerPopupDate" style="font-size:0.75rem;color:#aaa;margin-top:0.3rem"></p>
+    <button class="sticker-popup-close" onclick="document.getElementById('stickerPopup').classList.remove('active')">OK!</button>
+  </div>
+</div>
+
+<script src="passages.js"></script>
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   AGN — KG English Reading Assessment Platform
+   AGN School, Konganapuram
+   ═══════════════════════════════════════════════════════════════ */
+(function() {
+  'use strict';
+
+  // ── Config ──
+  var API_BASE = '/api/agn';
+  var STORAGE_KEY = 'agn-data';
+  var AVATARS = ['🦁','🐰','🐻','🐸','🦋','🐙','🐼','🦊','🐱','🐶','🦄','🏎️'];
+  var TIER_COLORS = { 1: 'var(--tier1)', 2: 'var(--tier2)', 3: 'var(--tier3)', 4: 'var(--tier4)', 5: 'var(--tier5)' };
+  var TIER_FLOWERS = { 1: '🌸', 2: '🌺', 3: '🌻', 4: '🌹', 5: '🌷' };
+  var LEVEL_LABELS = { 1: 'Needs Help', 2: 'More Practice', 3: 'Ready!', 4: 'Star Reader!' };
+
+  var STICKER_DEFS = [
+    { id: 'first-reading', icon: '📖', name: 'First Reading', desc: 'Complete your first reading!', check: function(u) { return u.stats.readingsCompleted >= 1; } },
+    { id: 'five-readings', icon: '📚', name: '5 Readings', desc: 'Complete 5 readings!', check: function(u) { return u.stats.readingsCompleted >= 5; } },
+    { id: 'ten-readings', icon: '🎓', name: '10 Readings', desc: 'Complete 10 readings!', check: function(u) { return u.stats.readingsCompleted >= 10; } },
+    { id: 'star-reader', icon: '🌟', name: 'Star Reader', desc: 'Get a perfect Level 4 score!', check: function(u) { return u.stats.perfectReadings >= 1; } },
+    { id: 'three-stars', icon: '🏆', name: 'Triple Star', desc: 'Get 3 perfect scores!', check: function(u) { return u.stats.perfectReadings >= 3; } },
+    { id: 'speed-demon', icon: '⚡', name: 'Speed Demon', desc: 'Read faster than 40 WPM!', check: function(u) { return u.stats.fastestWpm > 40; } },
+    { id: 'streak-3', icon: '🔥', name: '3-Day Streak', desc: 'Practice 3 days in a row!', check: function(u) { return u.streak >= 3; } },
+    { id: 'streak-7', icon: '💪', name: '7-Day Streak', desc: 'Practice 7 days in a row!', check: function(u) { return u.streak >= 7; } },
+    { id: 'garden-10', icon: '🌸', name: '10 Flowers', desc: 'Grow 10 flowers in your garden!', check: function(u) { return (u.garden && u.garden.flowers >= 10); } },
+    { id: 'garden-50', icon: '🌻', name: '50 Flowers', desc: 'Grow 50 flowers!', check: function(u) { return (u.garden && u.garden.flowers >= 50); } },
+    { id: 'garden-100', icon: '🌹', name: '100 Flowers', desc: 'Grow 100 flowers!', check: function(u) { return (u.garden && u.garden.flowers >= 100); } },
+    { id: 'tier-1', icon: '🏅', name: 'Tier 1 Done', desc: 'Clear all Tier 1 passages!', check: function(u) { return countTierCleared(u, 1) >= 5; } },
+    { id: 'tier-2', icon: '🥈', name: 'Tier 2 Done', desc: 'Clear all Tier 2 passages!', check: function(u) { return countTierCleared(u, 2) >= 5; } },
+    { id: 'tier-3', icon: '🥇', name: 'Tier 3 Done', desc: 'Clear all Tier 3 passages!', check: function(u) { return countTierCleared(u, 3) >= 5; } },
+  ];
+
+  // Default assessment scale (customizable)
+  var DEFAULT_SCALE = {
+    1: { label: 'Needs Help', maxWpm: 10, minErrors: 5 },
+    2: { label: 'More Practice', minWpm: 10, maxWpm: 20, maxErrors: 5 },
+    3: { label: 'Ready!', minWpm: 20, maxErrors: 5 },
+    4: { label: 'Star Reader!', minWpm: 40, maxErrors: 0 }
+  };
+
+  // ── State ──
+  var state = {
+    theme: null,
+    token: null,
+    user: null,
+    currentPassage: null,
+    mediaRecorder: null,
+    audioChunks: [],
+    audioBlob: null,
+    audioUrl: null,
+    recordingStartTime: null,
+    isRecording: false,
+    timerInterval: null,
+    lastEvaluation: null,
+    selectedAvatar: null,
+    pin: '',
+    signupAvatar: null,
+    adminPressTimer: null,
+    settings: JSON.parse(JSON.stringify(DEFAULT_SCALE))
+  };
+
+  // ── Storage ──
+  function loadData() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch(e) { return {}; }
+  }
+  function saveData(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+  function getLocalUser() {
+    var d = loadData();
+    return d.user || null;
+  }
+  function saveLocalUser(user) {
+    var d = loadData();
+    d.user = user;
+    saveData(d);
+  }
+
+  // ── Helpers ──
+  function $(id) { return document.getElementById(id); }
+  function countTierCleared(user, tier) {
+    if (!user.passages) return 0;
+    var count = 0;
+    var ps = typeof AGN_PASSAGES !== 'undefined' ? AGN_PASSAGES : [];
+    ps.forEach(function(p) {
+      if (p.tier === tier && user.passages[p.id] && user.passages[p.id].bestLevel >= 3) count++;
+    });
+    return count;
+  }
+
+  // ── Screen Router ──
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+    var el = $('screen-' + id);
+    if (el) el.classList.add('active');
+    window.location.hash = id;
+
+    // Auto-render login screen when shown
+    if (id === 'login') renderLoginScreen();
+
+    // Bottom tabs always visible except welcome/login/admin
+    var tabs = $('bottomTabs');
+    if (tabs) tabs.style.display = ['welcome','login','admin'].includes(id) ? 'none' : '';
+
+    // Render screen content
+    if (id === 'dashboard') renderDashboard();
+    else if (id === 'admin') renderAdmin();
+  }
+
+  // ── Theme ──
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    state.theme = theme;
+    var d = loadData();
+    d.theme = theme;
+    saveData(d);
+    // Update decorations
+    var decos = document.querySelectorAll('#floatingDecos .deco');
+    var icons = theme === 'unicorn' ? ['✨','🌸','🌈','⭐','✨','🌸','⭐','🌈'] : ['🏁','🏆','⚡','🔥','🏁','⚡','🔥','🏆'];
+    decos.forEach(function(d, i) { d.textContent = icons[i] || '✨'; });
+    // Update mascots
+    var mascot = theme === 'unicorn' ? '🦄' : '🏎️';
+    $('loginMascot').textContent = mascot;
+    $('processingMascot').textContent = mascot;
+    $('resultsMascot').textContent = mascot;
+  }
+
+  function selectTheme(theme) {
+    applyTheme(theme);
+    showScreen('login');
+    renderLoginScreen();
+  }
+
+  // ── Login Screen ──
+  function renderLoginScreen() {
+    // Clear fields
+    $('loginName').value = '';
+    $('loginPin').value = '';
+    $('loginError').style.display = 'none';
+    $('loginBtn').disabled = true;
+
+    // Signup avatar grid
+    var sg = $('signupAvatarGrid');
+    sg.innerHTML = '';
+    AVATARS.forEach(function(a) {
+      var div = document.createElement('div');
+      div.className = 'avatar-option' + (state.signupAvatar === a ? ' selected' : '');
+      div.textContent = a;
+      div.onclick = function() {
+        state.signupAvatar = a;
+        sg.querySelectorAll('.avatar-option').forEach(function(el) { el.classList.remove('selected'); });
+        div.classList.add('selected');
+      };
+      sg.appendChild(div);
+    });
+  }
+
+  function checkLoginReady() {
+    var name = $('loginName').value.trim();
+    var pin = $('loginPin').value.trim();
+    $('loginBtn').disabled = !(name.length >= 1 && pin.length >= 4);
+  }
+
+  // ── Auth ──
+  async function doLogin() {
+    var name = $('loginName').value.trim();
+    var pin = $('loginPin').value.trim();
+    $('loginBtn').disabled = true;
+    $('loginError').style.display = 'none';
+
+    var serverError = '';
+
+    try {
+      var res = await fetch(API_BASE + '/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, pin: pin })
+      });
+      var data = await res.json();
+
+      if (!res.ok) {
+        // Server responded with an error
+        serverError = data.error || 'Login failed';
+      } else {
+        // Success
+        state.token = data.token;
+        state.user = data.user;
+        var d = loadData();
+        d.token = data.token;
+        d.user = data.user;
+        saveData(d);
+        $('loginBtn').disabled = false;
+        showScreen('dashboard');
+        return;
+      }
+    } catch(err) {
+      // Network error — try local saved user
+      var d = loadData();
+      if (d.user && d.user.name && d.user.name.toLowerCase() === name.toLowerCase()) {
+        state.user = d.user;
+        state.token = d.token;
+        $('loginBtn').disabled = false;
+        showScreen('dashboard');
+        return;
+      }
+      serverError = 'Cannot connect to server. Please check your internet.';
+    }
+
+    // Show error
+    var el = $('loginError');
+    el.textContent = serverError;
+    el.style.display = 'block';
+    $('loginBtn').disabled = false;
+  }
+
+  function createLocalUser(name, avatar) {
+    return {
+      name: name,
+      avatar: avatar || '🦁',
+      xp: 0, level: 1, coins: 0, streak: 0,
+      lastActiveDate: null,
+      totalStars: 0,
+      stickers: [],
+      stats: { readingsCompleted: 0, perfectReadings: 0, totalPassages: 0, passagesCleared: 0, fastestWpm: 0 },
+      passages: {},
+      currentPassageId: 1,
+      garden: { flowers: 0, wilted: 0, items: [] }
+    };
+  }
+
+  async function doSignup() {
+    var name = $('signupName').value.trim();
+    var pin = $('signupPin').value.trim();
+    var avatar = state.signupAvatar || '🦁';
+    var className = $('signupClass').value.trim();
+    $('signupError').style.display = 'none';
+
+    if (name.length < 2) { showSignupError('Name must be at least 2 characters'); return; }
+    if (pin.length !== 4 || !/^\d{4}$/.test(pin)) { showSignupError('PIN must be 4 digits'); return; }
+
+    try {
+      var res = await fetch(API_BASE + '/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, pin: pin, avatar: avatar, className: className })
+      });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Signup failed');
+      showToast('Student ' + name + ' created! 🎉');
+      hideSignupModal();
+    } catch(err) {
+      showSignupError(err.message || 'Could not create student. Working offline.');
+      // Still close and allow local use
+      hideSignupModal();
+    }
+  }
+
+  function showSignupError(msg) {
+    var el = $('signupError');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  function logout() {
+    state.token = null;
+    state.user = null;
+    var d = loadData();
+    delete d.token;
+    delete d.user;
+    saveData(d);
+    showScreen('welcome');
+  }
+
+  // ── Dashboard ──
+  function renderDashboard() {
+    var user = state.user;
+    if (!user) { showScreen('login'); return; }
+
+    // If admin or teacher, go straight to admin panel
+    if (user.role === 'admin' || user.role === 'teacher') {
+      showScreen('admin');
+      return;
+    }
+
+    $('dashAvatar').textContent = user.avatar || '🦁';
+    $('dashName').textContent = user.name || 'Student';
+    $('dashStars').textContent = user.totalStars || 0;
+    $('dashStreak').textContent = user.streak || 0;
+    $('dashCoins').textContent = user.coins || 0;
+
+    renderJourneyMap();
+    setupAdminTrigger();
+
+    // Show read panel by default
+    document.querySelectorAll('.dash-panel').forEach(function(p) { p.classList.remove('active'); });
+    $('panel-read').classList.add('active');
+  }
+
+  function renderJourneyMap() {
+    var container = $('journeyContainer');
+    var user = state.user;
+    var passages = typeof AGN_PASSAGES !== 'undefined' ? AGN_PASSAGES : [];
+    var currentId = user.currentPassageId || 1;
+
+    var W = container.clientWidth || 360;
+    var nodeSpacingY = 115;
+    var paddingX = 50;
+    var topPad = 70;
+    var botPad = 80;
+    var totalH = topPad + (passages.length - 1) * nodeSpacingY + botPad;
+    var skyH = 0; // no sky
+
+    // Winding S-curve — passage 1 at bottom, last at top
+    var positions = [];
+    // Seeded pseudo-random for consistent layout
+    var seed = 42;
+    function srand() { seed = (seed * 16807 + 0) % 2147483647; return (seed - 1) / 2147483646; }
+
+    passages.forEach(function(p, idx) {
+      var y = topPad + idx * nodeSpacingY; // top to bottom: passage 1 at top
+      var xCenter = W / 2;
+      var amp = (W / 2 - paddingX) * 0.6;
+      var t = idx * 1.1;
+      var x = xCenter + Math.sin(t) * amp + (srand() - 0.5) * 20;
+      x = Math.max(paddingX, Math.min(W - paddingX, x));
+      positions.push({ x: x, y: y, passage: p, idx: idx });
+    });
+
+    // Build smooth SVG path
+    var pathD = '';
+    positions.forEach(function(pos, i) {
+      if (i === 0) pathD += 'M ' + pos.x + ' ' + pos.y;
+      else {
+        var prev = positions[i - 1];
+        var cpY = (prev.y + pos.y) / 2;
+        pathD += ' C ' + prev.x + ' ' + cpY + ', ' + pos.x + ' ' + cpY + ', ' + pos.x + ' ' + pos.y;
+      }
+    });
+
+    // Background: sky at top, grass below
+    var grassStart = skyH;
+    var isCars = state.theme === 'cars';
+    var isUnicorn = state.theme === 'unicorn';
+    var bgStyle = isCars ? 'background:#163A14' : isUnicorn ? 'background:#110428' : 'background:#6ABF4B';
+
+    var html = '<div class="journey-world" style="height:'+totalH+'px;'+bgStyle+'">';
+
+    // Ground patches for depth
+    seed = 7;
+    for (var gi = 0; gi < 8; gi++) {
+      var gx = srand() * 90;
+      var gy = grassStart + srand() * (totalH - grassStart - 40);
+      var gw = 60 + srand() * 100;
+      var gh = 30 + srand() * 40;
+      var patchColor = isCars ? 'rgba(0,0,0,0.18)' : isUnicorn ? 'rgba(155,93,229,0.1)' : 'rgba(76,160,50,0.25)';
+      html += '<div class="jw-deco" style="left:'+gx+'%;top:'+gy+'px;width:'+gw+'px;height:'+gh+'px;background:'+patchColor+';border-radius:50%"></div>';
+    }
+
+    // No clouds (no sky)
+
+    // Decorations — placed with collision avoidance
+    seed = 13;
+    var treeEmojis = isCars
+      ? ['🏎️','🚦','⚡','🏁','🔥','🏆','🚗','🏎️']
+      : isUnicorn
+        ? ['✨','🌟','💫','⭐','🌙','👑','💎','🔮']
+        : ['🌳','🌲','🌴','🌳','🌲','🌳','🌴','🌲'];
+    var placed = []; // {x (px), y (px), r (radius in px)}
+    var minDist = 70; // minimum distance between tree centers
+
+    function canPlace(px, py) {
+      for (var pi = 0; pi < placed.length; pi++) {
+        var dx = placed[pi].x - px;
+        var dy = placed[pi].y - py;
+        if (Math.sqrt(dx*dx + dy*dy) < minDist) return false;
+      }
+      // Also avoid nodes
+      for (var ni = 0; ni < positions.length; ni++) {
+        var dnx = positions[ni].x - px;
+        var dny = positions[ni].y - py;
+        if (Math.sqrt(dnx*dnx + dny*dny) < 55) return false;
+      }
+      return true;
+    }
+
+    // Place one decoration per node, on the opposite side
+    var isThemed = isCars || isUnicorn;
+    for (var ti = 0; ti < positions.length; ti++) {
+      // Skip every other for themed maps to reduce density
+      if (isThemed && ti % 2 === 1) { srand(); srand(); srand(); continue; }
+      var nodePos = positions[ti];
+      var nodeOnRight = nodePos.x > W * 0.5;
+      var targetXpct = nodeOnRight ? (3 + srand() * 10) : (82 + srand() * 12);
+      var targetXpx = targetXpct / 100 * W;
+      var targetY = nodePos.y + (srand() - 0.5) * 20;
+
+      if (canPlace(targetXpx, targetY)) {
+        var sz = isThemed ? (1.8 + srand() * 0.6) : (3.0 + srand() * 1.2);
+        var dur = (3.5 + srand() * 2).toFixed(1);
+        var del = (srand() * 3).toFixed(1);
+        var decoOp = isThemed ? 'opacity:0.55' : '';
+        html += '<div class="jw-tree" style="left:'+targetXpct.toFixed(0)+'%;top:'+targetY.toFixed(0)+'px;font-size:'+sz.toFixed(1)+'rem;--sway-dur:'+dur+'s;--sway-delay:'+del+'s;'+decoOp+'">'+treeEmojis[ti % treeEmojis.length]+'</div>';
+        placed.push({x: targetXpx, y: targetY});
+      }
+    }
+
+    // Fill gaps — add items between nodes (skip for themed maps to reduce clutter)
+    if (!isCars && !isUnicorn) {
+      for (var ti2 = 0; ti2 < positions.length - 1; ti2++) {
+        var midY = (positions[ti2].y + positions[ti2+1].y) / 2;
+        var midNodeX = (positions[ti2].x + positions[ti2+1].x) / 2;
+        var onRight2 = midNodeX > W * 0.5;
+        var fillXpct = onRight2 ? (5 + srand() * 8) : (85 + srand() * 8);
+        var fillXpx = fillXpct / 100 * W;
+
+        if (canPlace(fillXpx, midY)) {
+          var sz3 = 2.4 + srand() * 0.8;
+          var dur3 = (4 + srand() * 2).toFixed(1);
+          var del3 = (srand() * 4).toFixed(1);
+          html += '<div class="jw-tree" style="left:'+fillXpct.toFixed(0)+'%;top:'+midY.toFixed(0)+'px;font-size:'+sz3.toFixed(1)+'rem;--sway-dur:'+dur3+'s;--sway-delay:'+del3+'s;opacity:0.8">'+treeEmojis[(ti2+3) % treeEmojis.length]+'</div>';
+          placed.push({x: fillXpx, y: midY});
+        }
+      }
+    }
+
+    // Accent items — fewer for themed maps
+    seed = 99;
+    var rockCount = (isCars || isUnicorn) ? 3 : 5;
+    for (var ri = 0; ri < rockCount; ri++) {
+      var ry = topPad + 80 + ri * ((totalH - topPad - botPad) / rockCount);
+      var rSide = srand() > 0.5 ? (6 + srand() * 12) : (80 + srand() * 12);
+      var rpx = rSide / 100 * W;
+      if (canPlace(rpx, ry)) {
+        var rockEmoji = isCars ? ['🛞','🔧','⚙️'][ri%3] : isUnicorn ? ['💎','🔮','🌙'][ri%3] : '🪨';
+        html += '<div class="jw-deco" style="left:'+rSide.toFixed(0)+'%;top:'+ry.toFixed(0)+'px;font-size:1.3rem;opacity:0.5">'+rockEmoji+'</div>';
+        placed.push({x: rpx, y: ry});
+      }
+    }
+
+    // Small edge decorations — fewer for themed maps
+    seed = 55;
+    var flowerCount = (isCars || isUnicorn) ? 4 : 8;
+    var flowers = isCars ? ['⚡','🔥','💨','✨'] : isUnicorn ? ['✨','💫','🌟','💖'] : ['🌸','🌺','🌼','🌷','🌻'];
+    for (var fi = 0; fi < flowerCount; fi++) {
+      var fy = topPad + 30 + fi * ((totalH - topPad) / (flowerCount + 1));
+      var fSide = srand() > 0.5 ? (2 + srand() * 10) : (86 + srand() * 10);
+      html += '<div class="jw-deco" style="left:'+fSide.toFixed(0)+'%;top:'+fy.toFixed(0)+'px;font-size:0.85rem;opacity:0.45">'+flowers[fi % flowers.length]+'</div>';
+    }
+
+    // Start marker and finish
+    var startMarker = isCars ? '🚦' : isUnicorn ? '🏰' : '🪧';
+    var endMarker = isCars ? '🏆' : isUnicorn ? '👑' : '🏁';
+    html += '<div class="jw-deco" style="left:10%;top:'+(topPad - 25)+'px;font-size:2rem">'+startMarker+'</div>';
+    html += '<div class="jw-deco" style="right:12%;top:'+(totalH - 50)+'px;font-size:2rem">'+endMarker+'</div>';
+
+    // SVG path
+    html += '<svg class="jw-path" style="height:'+totalH+'px" viewBox="0 0 '+W+' '+totalH+'" preserveAspectRatio="xMidYMid meet">';
+    html += '<path class="jw-path-shadow" d="'+pathD+'" transform="translate(2,4)"/>';
+    html += '<path class="jw-path-border" d="'+pathD+'"/>';
+    html += '<path class="jw-path-curb" d="'+pathD+'"/>';
+    html += '<path class="jw-path-line" d="'+pathD+'"/>';
+    html += '<path class="jw-path-inner" d="'+pathD+'"/>';
+    html += '</svg>';
+
+    // Nodes
+    html += '<div class="journey-nodes">';
+    positions.forEach(function(pos) {
+      var p = pos.passage;
+      var passageData = user.passages ? user.passages[p.id] : null;
+      var bestLevel = passageData ? passageData.bestLevel : 0;
+      var isCompleted = bestLevel >= 3;
+      var isAvailable = p.id <= currentId;
+      var cls = isCompleted ? 'completed' : (isAvailable ? 'available' : 'locked');
+
+      html += '<div class="journey-node-wrap" style="left:'+pos.x+'px;top:'+pos.y+'px">';
+      html += '<div class="passage-node '+cls+'" onclick="App.openPassage('+p.id+')">';
+      if (cls === 'locked') {
+        html += '<span class="lock-badge">🔒</span>';
+      } else {
+        html += '<span class="node-emoji">'+p.imageEmoji+'</span>';
+      }
+      html += '<div class="node-tier" style="background:'+TIER_COLORS[p.tier]+'">'+p.tier+'</div>';
+      html += '</div>';
+
+      // Stars — show for available/completed, hide for locked
+      if (cls !== 'locked') {
+        html += '<div class="node-stars">';
+        for (var s = 1; s <= 3; s++) {
+          html += '<span class="node-star'+(s <= bestLevel ? ' earned' : ' off')+'">⭐</span>';
+        }
+        html += '</div>';
+      } else {
+        html += '<div class="node-stars"><span class="node-star off">☆</span><span class="node-star off">☆</span><span class="node-star off">☆</span></div>';
+      }
+      html += '<div class="node-title">'+p.title+'</div>';
+      html += '</div>';
+    });
+    html += '</div></div>';
+    container.innerHTML = html;
+
+    // Scroll to current level
+    setTimeout(function() {
+      var currentNode = positions.find(function(pos) { return pos.passage.id === currentId; });
+      if (currentNode) {
+        container.scrollTop = Math.max(0, currentNode.y - 120);
+      }
+    }, 100);
+  }
+
+  function showDashTab(tab, btnEl) {
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    if (btnEl) btnEl.classList.add('active');
+
+    // Hide all panels, show selected
+    document.querySelectorAll('.dash-panel').forEach(function(p) { p.classList.remove('active'); });
+    var panel = $('panel-' + tab);
+    if (panel) panel.classList.add('active');
+
+    // Render panel content on demand
+    if (tab === 'garden') renderGardenInline();
+    else if (tab === 'board') renderLeaderboardInline();
+    else if (tab === 'stickers') renderStickersInline();
+    else if (tab === 'settings') renderStudentSettings();
+  }
+
+  // ── Inline panel renderers (for bottom tabs) ──
+  function renderGardenInline() {
+    var user = state.user;
+    var flowers = (user && user.garden) ? user.garden.flowers || 0 : 0;
+    var wilted = (user && user.garden) ? user.garden.wilted || 0 : 0;
+    var items = (user && user.garden && user.garden.items) ? user.garden.items : [];
+    var displayItems = items.slice(-120);
+
+    // Build rows of flowers at different heights
+    var rows = [[],[],[],[]];
+    displayItems.forEach(function(item, i) { rows[i % 4].push(item); });
+
+    var flowersHtml = '';
+    rows.forEach(function(row, ri) {
+      var bottomPct = 3 + ri * 14;
+      flowersHtml += '<div style="position:absolute;bottom:' + bottomPct + '%;width:100%;display:flex;flex-wrap:wrap;justify-content:center;gap:0.2rem;padding:0 0.5rem">';
+      row.forEach(function(item, i) {
+        var sway = (i % 2 === 0) ? 'flowerSway' : 'flowerSway';
+        var delay = (i * 0.2) % 3;
+        var size = 1.3 + Math.random() * 0.6;
+        var cls = item.type === '🥀' ? 'opacity:0.6;filter:grayscale(0.3)' : '';
+        flowersHtml += '<span style="font-size:' + size.toFixed(1) + 'rem;animation:' + sway + ' ' + (2.5 + Math.random()) + 's ease-in-out ' + delay.toFixed(1) + 's infinite;' + cls + '">' + item.type + '</span>';
+      });
+      flowersHtml += '</div>';
+    });
+
+    if (items.length === 0) {
+      flowersHtml = '<div style="position:absolute;bottom:20%;width:100%;text-align:center;color:#fff;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,0.2);padding:0 1.5rem"><div style="font-size:2.5rem;margin-bottom:0.5rem">🌱</div><div style="font-size:1.2rem">Your garden is waiting!</div><div style="font-size:0.9rem;opacity:0.9;margin-top:0.3rem">Every word you read correctly plants a flower here. Make mistakes? Those grow as wilted buds — but read again and watch them bloom!</div></div>';
+    }
+
+    // Sun
+    var sunHtml = '<div style="position:absolute;top:8%;right:10%;font-size:3rem;animation:floatDeco 6s ease-in-out infinite">☀️</div>';
+
+    $('gardenInner').innerHTML =
+      '<div style="display:flex;justify-content:space-between;align-items:center;padding:0.3rem 0.5rem">' +
+        '<h2 class="heading" style="font-size:1.4rem;color:var(--accent);margin:0">My Garden</h2>' +
+        '<div style="display:flex;gap:1rem;font-size:0.85rem;font-weight:700">' +
+          '<span>🌸 ' + flowers + '</span><span>🥀 ' + wilted + '</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="garden-scene" style="flex:1">' +
+        sunHtml +
+        '<div class="garden-cloud" style="top:5%;left:5%">☁️</div>' +
+        '<div class="garden-cloud" style="top:12%;left:60%;font-size:2.2rem">☁️</div>' +
+        '<div class="garden-cloud" style="top:3%;left:35%;font-size:1.8rem">☁️</div>' +
+        '<div class="garden-butterfly" style="z-index:5">🦋</div>' +
+        '<div style="position:absolute;top:25%;left:15%;font-size:1.2rem;animation:butterflyFly 12s ease-in-out 3s infinite">🐝</div>' +
+        '<div class="garden-ground"></div>' +
+        flowersHtml +
+      '</div>';
+  }
+
+  function renderLeaderboardInline() {
+    $('boardInner').innerHTML = '<div style="text-align:center;padding:1rem;color:#999">Loading...</div>';
+    var board = [];
+    fetch(API_BASE + '/leaderboard').then(function(r) { return r.json(); }).then(function(data) {
+      board = data.leaderboard || [];
+      renderBoardHtml(board);
+    }).catch(function() {
+      if (state.user) {
+        board = [{ name: state.user.name, avatar: state.user.avatar, totalStars: state.user.totalStars || 0, streak: state.user.streak || 0 }];
+      }
+      renderBoardHtml(board);
+    });
+
+    function renderBoardHtml(board) {
+      var html = '';
+      // Header banner
+      html += '<div style="text-align:center;padding:1rem 0.5rem;background:linear-gradient(135deg,#FF6F00,#FF8F00,#FFB300);border-radius:20px;margin-bottom:0.8rem;box-shadow:0 4px 16px rgba(255,111,0,0.2)">';
+      html += '<div style="font-size:2.5rem;line-height:1">🏆</div>';
+      html += '<h2 class="heading" style="font-size:1.5rem;color:#fff;margin:0.3rem 0 0.1rem;text-shadow:0 2px 4px rgba(0,0,0,0.15)">Star Champions</h2>';
+      html += '<p style="font-size:0.75rem;color:rgba(255,255,255,0.85);font-weight:600">Read more to climb the ranks!</p>';
+      html += '</div>';
+
+      // Podium
+      if (board.length > 0) {
+        var medals = ['🥇','🥈','🥉'];
+        var places = ['first','second','third'];
+        var podiumBgs = [
+          'linear-gradient(145deg,#FFF8E1,#FFE082)', // gold
+          'linear-gradient(145deg,#F5F5F5,#E0E0E0)', // silver
+          'linear-gradient(145deg,#FFF3E0,#FFE0B2)'  // bronze
+        ];
+        var podiumBorders = ['#FFB300','#BDBDBD','#FF8A65'];
+        html += '<div class="podium">';
+        for (var i = 0; i < 3; i++) {
+          var e = board[i];
+          if (e) {
+            html += '<div class="podium-place ' + places[i] + '" style="background:' + podiumBgs[i] + ';border:2px solid ' + podiumBorders[i] + ';border-radius:16px;padding:0.7rem 0.6rem">';
+            html += '<div class="podium-medal">' + medals[i] + '</div>';
+            html += '<div class="podium-avatar">' + (e.avatar || '🦁') + '</div>';
+            html += '<div class="podium-name">' + e.name + '</div>';
+            html += '<div class="podium-stars">⭐ ' + (e.totalStars || 0) + '</div>';
+            html += '</div>';
+          }
+        }
+        html += '</div>';
+      }
+
+      // Rest of list
+      if (board.length > 3) {
+        html += '<div class="leaderboard-list">';
+        board.forEach(function(e, idx) {
+          if (idx < 3) return;
+          var isMe = state.user && e.name.toLowerCase() === state.user.name.toLowerCase();
+          html += '<div class="lb-row ' + (isMe ? 'me' : '') + '">';
+          html += '<div class="lb-rank">' + (idx+1) + '</div>';
+          html += '<div class="lb-avatar">' + (e.avatar||'🦁') + '</div>';
+          html += '<div class="lb-name">' + e.name + '</div>';
+          html += '<div class="lb-stats-cell">⭐ ' + (e.totalStars||0) + '</div>';
+          html += '<div class="lb-stats-cell">🔥 ' + (e.streak||0) + '</div>';
+          html += '</div>';
+        });
+        html += '</div>';
+      }
+
+      // Empty state
+      if (board.length === 0) {
+        html += '<div style="text-align:center;padding:2.5rem 1rem;background:var(--card-bg);border-radius:16px;border:2px dashed var(--card-border)">';
+        html += '<div style="font-size:2.5rem;margin-bottom:0.5rem">📚</div>';
+        html += '<p style="font-size:1rem;font-weight:700;color:var(--text)">No readers yet!</p>';
+        html += '<p style="font-size:0.8rem;color:var(--text-light);margin-top:0.2rem">Complete a reading to appear here</p>';
+        html += '</div>';
+      }
+
+      // Your stats card at bottom
+      if (state.user) {
+        var u = state.user;
+        var myRank = board.findIndex(function(e) { return e.name.toLowerCase() === u.name.toLowerCase(); });
+        html += '<div style="margin-top:0.8rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));border-radius:16px;padding:0.9rem 1rem;display:flex;align-items:center;gap:0.7rem;color:#fff">';
+        html += '<div style="font-size:1.6rem">' + (u.avatar || '🦁') + '</div>';
+        html += '<div style="flex:1"><div style="font-weight:800;font-size:0.95rem">Your Rank</div>';
+        html += '<div style="font-size:0.8rem;opacity:0.85">' + (myRank >= 0 ? '#' + (myRank+1) + ' of ' + board.length : 'Not ranked yet') + '</div></div>';
+        html += '<div style="text-align:center"><div style="font-size:1.3rem;font-weight:800">⭐ ' + (u.totalStars || 0) + '</div>';
+        html += '<div style="font-size:0.65rem;opacity:0.8">STARS</div></div>';
+        html += '<div style="text-align:center;margin-left:0.3rem"><div style="font-size:1.3rem;font-weight:800">🔥 ' + (u.streak || 0) + '</div>';
+        html += '<div style="font-size:0.65rem;opacity:0.8">STREAK</div></div>';
+        html += '</div>';
+      }
+
+      $('boardInner').innerHTML = html;
+    }
+  }
+
+  var STICKER_COLORS = [
+    {bg:'linear-gradient(145deg,#FFE082,#FFD54F)',border:'#FFA000',label:'#5D4037'},
+    {bg:'linear-gradient(145deg,#A5D6A7,#81C784)',border:'#4CAF50',label:'#1B5E20'},
+    {bg:'linear-gradient(145deg,#90CAF9,#64B5F6)',border:'#2196F3',label:'#0D47A1'},
+    {bg:'linear-gradient(145deg,#CE93D8,#BA68C8)',border:'#9C27B0',label:'#4A148C'},
+    {bg:'linear-gradient(145deg,#FFAB91,#FF8A65)',border:'#FF5722',label:'#BF360C'},
+    {bg:'linear-gradient(145deg,#80DEEA,#4DD0E1)',border:'#00BCD4',label:'#006064'},
+    {bg:'linear-gradient(145deg,#F48FB1,#F06292)',border:'#E91E63',label:'#880E4F'},
+    {bg:'linear-gradient(145deg,#C5E1A5,#AED581)',border:'#8BC34A',label:'#33691E'},
+    {bg:'linear-gradient(145deg,#FFCC80,#FFB74D)',border:'#FF9800',label:'#E65100'},
+    {bg:'linear-gradient(145deg,#EF9A9A,#E57373)',border:'#F44336',label:'#B71C1C'},
+    {bg:'linear-gradient(145deg,#B39DDB,#9575CD)',border:'#673AB7',label:'#311B92'},
+    {bg:'linear-gradient(145deg,#80CBC4,#4DB6AC)',border:'#009688',label:'#004D40'},
+    {bg:'linear-gradient(145deg,#FFF59D,#FFF176)',border:'#FFEB3B',label:'#F57F17'},
+    {bg:'linear-gradient(145deg,#BCAAA4,#A1887F)',border:'#795548',label:'#3E2723'}
+  ];
+  function renderStickersInline() {
+    var user = state.user;
+    var earned = user && user.stickers ? user.stickers : [];
+    var html = '<h2 class="heading" style="text-align:center;font-size:1.6rem;color:var(--accent);margin:0.5rem 0">My Stickers ⭐</h2>';
+    html += '<div class="sticker-grid">';
+    STICKER_DEFS.forEach(function(sd, idx) {
+      var isEarned = earned.includes(sd.id);
+      var c = STICKER_COLORS[idx % STICKER_COLORS.length];
+      var style = isEarned ? 'background:'+c.bg+';border-color:'+c.border : '';
+      html += '<div class="sticker-slot ' + (isEarned ? 'earned' : '') + '" style="'+style+'" onclick="App.showStickerPopup(\'' + sd.id + '\')">';
+      html += '<div class="sticker-icon">' + sd.icon + '</div>';
+      html += '<div class="sticker-label"' + (isEarned ? ' style="color:'+c.label+'"' : '') + '>' + sd.name + '</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+    $('stickersInner').innerHTML = html;
+  }
+
+  // ── Student Settings Panel ──
+  function renderStudentSettings() {
+    var user = state.user;
+    if (!user) return;
+    var currentTheme = state.theme || 'unicorn';
+
+    $('settingsInner').innerHTML =
+      '<h2 class="heading" style="text-align:center;font-size:1.6rem;color:var(--accent);margin:0.5rem 0">Settings ⚙️</h2>' +
+
+      // Theme
+      '<div style="background:var(--card-bg);border-radius:16px;padding:1rem;border:2px solid var(--card-border);margin-bottom:0.8rem">' +
+        '<div style="font-weight:800;font-size:0.95rem;margin-bottom:0.5rem">Theme</div>' +
+        '<div style="display:flex;gap:0.6rem">' +
+          '<button class="btn-theme-pick' + (currentTheme === 'unicorn' ? ' active' : '') + '" onclick="App.changeTheme(\'unicorn\')" style="flex:1;padding:0.8rem;border-radius:14px;border:3px solid ' + (currentTheme === 'unicorn' ? 'var(--accent)' : 'var(--card-border)') + ';background:linear-gradient(135deg,#fce4ec,#f8bbd0);cursor:pointer;font-size:1.5rem;text-align:center">🦄<br><span style="font-size:0.7rem;font-weight:700">Unicorn</span></button>' +
+          '<button class="btn-theme-pick' + (currentTheme === 'cars' ? ' active' : '') + '" onclick="App.changeTheme(\'cars\')" style="flex:1;padding:0.8rem;border-radius:14px;border:3px solid ' + (currentTheme === 'cars' ? 'var(--accent)' : 'var(--card-border)') + ';background:linear-gradient(135deg,#e3f2fd,#90caf9);cursor:pointer;font-size:1.5rem;text-align:center">🏎️<br><span style="font-size:0.7rem;font-weight:700">Cars</span></button>' +
+        '</div>' +
+      '</div>' +
+
+      // Avatar
+      '<div style="background:var(--card-bg);border-radius:16px;padding:1rem;border:2px solid var(--card-border);margin-bottom:0.8rem">' +
+        '<div style="font-weight:800;font-size:0.95rem;margin-bottom:0.5rem">Avatar</div>' +
+        '<div id="settingsAvatarGrid" class="avatar-grid"></div>' +
+      '</div>' +
+
+      // Name
+      '<div style="background:var(--card-bg);border-radius:16px;padding:1rem;border:2px solid var(--card-border);margin-bottom:0.8rem">' +
+        '<div style="font-weight:800;font-size:0.95rem;margin-bottom:0.5rem">Display Name</div>' +
+        '<input type="text" id="settingsName" class="login-input" value="' + (user.name || '') + '" maxlength="20" style="text-align:left;font-size:1.1rem">' +
+        '<button class="btn-primary" onclick="App.saveStudentProfile()" style="margin-top:0.5rem;font-size:1rem;padding:0.6rem">Save Name <span class="shine"></span></button>' +
+      '</div>' +
+
+      // Logout
+      '<button onclick="App.logout()" style="width:100%;padding:0.8rem;border-radius:16px;border:none;background:#fff;color:#EF4444;font-size:1rem;font-weight:700;cursor:pointer;font-family:Nunito,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,0.08)">Log Out 🚪</button>';
+
+    // Render avatar grid
+    var grid = $('settingsAvatarGrid');
+    if (grid) {
+      grid.innerHTML = '';
+      AVATARS.forEach(function(a) {
+        var div = document.createElement('div');
+        div.className = 'avatar-option' + (user.avatar === a ? ' selected' : '');
+        div.textContent = a;
+        div.onclick = function() {
+          grid.querySelectorAll('.avatar-option').forEach(function(el) { el.classList.remove('selected'); });
+          div.classList.add('selected');
+          user.avatar = a;
+          saveLocalUser(user);
+          $('dashAvatar').textContent = a;
+          showToast('Avatar updated! ' + a);
+        };
+        grid.appendChild(div);
+      });
+    }
+  }
+
+  function changeTheme(theme) {
+    applyTheme(theme);
+    renderStudentSettings(); // Re-render to update active states
+    showToast('Theme changed! ' + (theme === 'unicorn' ? '🦄' : '🏎️'));
+  }
+
+  function saveStudentProfile() {
+    var user = state.user;
+    if (!user) return;
+    var newName = $('settingsName').value.trim();
+    if (newName.length >= 2) {
+      user.name = newName;
+      saveLocalUser(user);
+      $('dashName').textContent = newName;
+      showToast('Name saved! ✅');
+    } else {
+      showToast('Name must be at least 2 characters');
+    }
+  }
+
+  function setupAdminTrigger() {
+    var btn = $('adminTrigger');
+    var timer;
+    btn.addEventListener('touchstart', function(e) {
+      timer = setTimeout(function() { showScreen('admin'); }, 3000);
+    });
+    btn.addEventListener('touchend', function() { clearTimeout(timer); });
+    btn.addEventListener('mousedown', function() {
+      timer = setTimeout(function() { showScreen('admin'); }, 3000);
+    });
+    btn.addEventListener('mouseup', function() { clearTimeout(timer); });
+  }
+
+  // ── Listen to passage (Google TTS with browser fallback) ──
+  var ttsAudio = null;
+  var ttsUtterance = null;
+  function stopTTS() {
+    if (ttsAudio) { ttsAudio.pause(); ttsAudio = null; }
+    if (ttsUtterance && speechSynthesis.speaking) { speechSynthesis.cancel(); ttsUtterance = null; }
+    var lb = $('listenBtn'); if (lb) lb.classList.remove('playing');
+    var ll = $('listenLbl'); if (ll) ll.textContent = 'Listen First';
+  }
+
+  function listenPassage() {
+    var btn = $('listenBtn');
+    var lbl = $('listenLbl');
+
+    // If already playing, stop
+    if (ttsAudio || (ttsUtterance && speechSynthesis.speaking)) {
+      stopTTS();
+      return;
+    }
+
+    var text = state.currentPassage ? state.currentPassage.text : '';
+    if (!text) { showToast('No passage loaded'); return; }
+
+    btn.classList.add('playing');
+    lbl.textContent = 'Loading...';
+
+    // Try Google Cloud TTS via server
+    fetch(API_BASE + '/tts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: text })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      if (d.audio) {
+        // Google TTS succeeded
+        console.log('Using Google Cloud TTS');
+        var src = 'data:' + (d.mime || 'audio/mpeg') + ';base64,' + d.audio;
+        ttsAudio = new Audio(src);
+        lbl.textContent = 'Playing...';
+        ttsAudio.onended = function() { ttsAudio = null; btn.classList.remove('playing'); lbl.textContent = 'Listen Again'; };
+        ttsAudio.onerror = function() { ttsAudio = null; fallbackBrowserTTS(text, btn, lbl); };
+        ttsAudio.play();
+      } else {
+        console.warn('Google TTS failed:', d.error || d.detail || 'unknown');
+        fallbackBrowserTTS(text, btn, lbl);
+      }
+    })
+    .catch(function() {
+      // Network error — use browser fallback
+      fallbackBrowserTTS(text, btn, lbl);
+    });
+  }
+
+  function fallbackBrowserTTS(text, btn, lbl) {
+    console.log('Using browser TTS fallback');
+    ttsUtterance = new SpeechSynthesisUtterance(text);
+    ttsUtterance.rate = 0.8;
+    ttsUtterance.pitch = 1.1;
+    var voices = speechSynthesis.getVoices();
+    console.log('Available voices:', voices.map(function(v){return v.name+' ('+v.lang+')'}).join(', '));
+    // Priority order: Indian female > any Indian > female English > any English
+    var pick = voices.find(function(v) { return v.lang === 'en-IN' && v.name.match(/sangeeta|priya|aditi|raveena|lekha|female|woman/i); })
+      || voices.find(function(v) { return v.lang === 'en-IN' && v.name.match(/female|woman/i); })
+      || voices.find(function(v) { return v.lang.startsWith('en') && v.name.match(/samantha|karen|kate|fiona|moira|tessa|veena|female|woman/i); })
+      || voices.find(function(v) { return v.lang === 'en-IN'; })
+      || voices.find(function(v) { return v.lang.startsWith('en') && v.name.match(/female|woman/i); });
+    if (pick) { ttsUtterance.voice = pick; console.log('Selected voice:', pick.name); }
+    else { ttsUtterance.lang = 'en-IN'; console.log('No match, using en-IN lang'); }
+    lbl.textContent = 'Playing...';
+    ttsUtterance.onend = function() { btn.classList.remove('playing'); lbl.textContent = 'Listen Again'; ttsUtterance = null; };
+    ttsUtterance.onerror = function() { btn.classList.remove('playing'); lbl.textContent = 'Listen First'; ttsUtterance = null; };
+    speechSynthesis.speak(ttsUtterance);
+  }
+
+  // ── Reading Screen ──
+  function openPassage(id) {
+    var user = state.user;
+    if (!user) return;
+
+    var currentId = user.currentPassageId || 1;
+    if (id > currentId) { showToast('Complete the previous passage first! 🔒'); return; }
+
+    var passages = typeof AGN_PASSAGES !== 'undefined' ? AGN_PASSAGES : [];
+    var passage = passages.find(function(p) { return p.id === id; });
+    if (!passage) return;
+
+    state.currentPassage = passage;
+    state.audioBlob = null;
+    state.audioUrl = null;
+    state.lastEvaluation = null;
+
+    $('readingTitle').textContent = passage.imageEmoji + ' ' + passage.title;
+    $('readingTier').textContent = 'Tier ' + passage.tier;
+    $('readingTier').style.background = TIER_COLORS[passage.tier];
+    $('readingWords').textContent = passage.wordCount + ' words';
+    $('passageText').textContent = passage.text;
+
+    // Reset mic area
+    resetMicState();
+    showScreen('reading');
+  }
+
+  function resetMicState() {
+    stopTTS();
+
+    state.isRecording = false;
+    if (state.timerInterval) clearInterval(state.timerInterval);
+    state.timerInterval = null;
+    state.audioChunks = [];
+    var btn = $('micBtn');
+    btn.classList.remove('recording');
+    $('timerDisplay').classList.remove('active');
+    $('soundWaves').classList.remove('active');
+    $('micCancel').classList.remove('active');
+    $('processingState').classList.remove('active');
+    $('micArea').style.display = '';
+    // Reset race panel
+    $('raceTimeBig').textContent = '0:00';
+    $('raceWordsEst').textContent = '0';
+    $('raceWpmEst').textContent = '–';
+    $('racePct').textContent = '0%';
+    $('raceTrackFill').style.width = '0%';
+    // Reset quest panel
+    $('questTimeBig').textContent = '0:00';
+    $('questWordsEst').textContent = '0';
+    $('questPowerEst').textContent = '–';
+    $('questPct').textContent = '0%';
+    $('questTrackFill').style.width = '0%';
+    // Theme-specific labels
+    var MIC_SVG = '<svg class="mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>';
+    if (state.theme === 'cars') {
+      btn.innerHTML = '🏎️<div class="mic-btn-ring"></div>';
+      $('micLabel').textContent = 'Tap to Start Race! 🏁';
+    } else if (state.theme === 'unicorn') {
+      btn.innerHTML = '👑<div class="mic-btn-ring"></div>';
+      $('micLabel').textContent = 'Tap to Start Quest! 👸';
+    } else {
+      btn.innerHTML = MIC_SVG + '<div class="mic-btn-ring"></div>';
+      $('micLabel').textContent = 'Tap to Start Reading!';
+    }
+  }
+
+  // ── Audio Recording ──
+  async function startRecording() {
+    try {
+      var stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      var mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus') ? 'audio/webm;codecs=opus' :
+                     MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : 'audio/mp4';
+
+      state.mediaRecorder = new MediaRecorder(stream, { mimeType: mimeType });
+      state.audioChunks = [];
+
+      state.mediaRecorder.ondataavailable = function(e) {
+        if (e.data.size > 0) state.audioChunks.push(e.data);
+      };
+
+      state.mediaRecorder.onstop = function() {
+        stream.getTracks().forEach(function(t) { t.stop(); });
+        state.audioBlob = new Blob(state.audioChunks, { type: mimeType });
+        state.audioUrl = URL.createObjectURL(state.audioBlob);
+      };
+
+      state.mediaRecorder.start(250);
+      state.isRecording = true;
+      state.recordingStartTime = Date.now();
+
+      // UI updates
+      $('micBtn').classList.add('recording');
+      if (state.theme === 'cars') {
+        $('micBtn').innerHTML = '⏸<div class="mic-btn-ring"></div>';
+        $('micLabel').textContent = 'Racing! Keep Reading! 🏎️';
+      } else if (state.theme === 'unicorn') {
+        $('micBtn').innerHTML = '🚀<div class="mic-btn-ring"></div>';
+        $('micLabel').textContent = 'On Mission! Keep Reading! ✨';
+      } else {
+        $('micBtn').innerHTML = '⏹<div class="mic-btn-ring"></div>';
+        $('micLabel').textContent = 'Reading... Keep going! 📖';
+      }
+      $('timerDisplay').classList.add('active');
+      $('soundWaves').classList.add('active');
+      $('micCancel').classList.add('active');
+
+      // Timer
+      state.timerInterval = setInterval(function() {
+        var elapsed = Math.floor((Date.now() - state.recordingStartTime) / 1000);
+        var mins = Math.floor(elapsed / 60);
+        var secs = elapsed % 60;
+        var timeStr = mins + ':' + (secs < 10 ? '0' : '') + secs;
+        $('timerDisplay').textContent = timeStr;
+        var wc = (state.currentPassage && state.currentPassage.wordCount) ? state.currentPassage.wordCount : 50;
+        var avgWPS = 0.5; // ~30 WPM for KG
+        var wordsEst = Math.min(Math.round(elapsed * avgWPS), wc);
+        var pct = Math.min(Math.round((elapsed * avgWPS / wc) * 100), 100);
+        var wpm = elapsed > 0 ? Math.round((wordsEst / elapsed) * 60) : 0;
+        if (state.theme === 'cars') {
+          $('raceTimeBig').textContent = timeStr;
+          $('raceWordsEst').textContent = wordsEst;
+          $('raceWpmEst').textContent = wpm;
+          $('racePct').textContent = pct + '%';
+          $('raceTrackFill').style.width = pct + '%';
+        } else if (state.theme === 'unicorn') {
+          $('questTimeBig').textContent = timeStr;
+          $('questWordsEst').textContent = wordsEst;
+          $('questPowerEst').textContent = wpm;
+          $('questPct').textContent = pct + '%';
+          $('questTrackFill').style.width = pct + '%';
+        }
+      }, 1000);
+
+    } catch(err) {
+      showToast('Please allow microphone access! 🎤');
+    }
+  }
+
+  async function stopRecording() {
+    if (!state.mediaRecorder || state.mediaRecorder.state === 'inactive') return;
+
+    return new Promise(function(resolve) {
+      state.mediaRecorder.onstop = function() {
+        state.mediaRecorder.stream.getTracks().forEach(function(t) { t.stop(); });
+        var mimeType = state.mediaRecorder.mimeType;
+        state.audioBlob = new Blob(state.audioChunks, { type: mimeType });
+        state.audioUrl = URL.createObjectURL(state.audioBlob);
+        var duration = (Date.now() - state.recordingStartTime) / 1000;
+        resolve({ blob: state.audioBlob, duration: duration, mimeType: mimeType });
+      };
+      state.mediaRecorder.stop();
+    });
+  }
+
+  async function toggleRecording() {
+    if (state.isRecording) {
+      // Stop recording
+      state.isRecording = false;
+      if (state.timerInterval) clearInterval(state.timerInterval);
+
+      $('micArea').style.display = 'none';
+      $('processingState').classList.add('active');
+
+      var result = await stopRecording();
+      await processReading(result);
+    } else {
+      await startRecording();
+    }
+  }
+
+  function cancelRecording() {
+    state.isRecording = false;
+    if (state.timerInterval) clearInterval(state.timerInterval);
+    if (state.mediaRecorder && state.mediaRecorder.state !== 'inactive') {
+      state.mediaRecorder.stop();
+    }
+    resetMicState();
+  }
+
+  function blobToBase64(blob) {
+    return new Promise(function(resolve) {
+      var reader = new FileReader();
+      reader.onloadend = function() {
+        var base64 = reader.result.split(',')[1];
+        resolve(base64);
+      };
+      reader.readAsDataURL(blob);
+    });
+  }
+
+  // ── Process Reading ──
+  async function processReading(result) {
+    var passage = state.currentPassage;
+    if (!passage) return;
+
+    var durationSeconds = Math.round(result.duration);
+    var audioBase64 = await blobToBase64(result.blob);
+    state.lastAudioBase64 = audioBase64;
+    state.lastAudioMime = result.mimeType;
+
+    try {
+      var res = await fetch(API_BASE + '/reading-evaluate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': state.token ? ('Bearer ' + state.token) : ''
+        },
+        body: JSON.stringify({
+          audio: audioBase64,
+          mimeType: result.mimeType,
+          passageText: passage.text,
+          passageWordCount: passage.wordCount,
+          durationSeconds: durationSeconds,
+          studentName: state.user ? state.user.name : 'Student'
+        })
+      });
+      var evaluation = await res.json();
+      if (!res.ok) throw new Error(evaluation.error || 'Evaluation failed');
+
+      state.lastEvaluation = evaluation;
+      showResults(evaluation);
+    } catch(err) {
+      console.error('Evaluation error:', err);
+      // Fallback: do NOT assume good scores — mark as needing review
+      var fallbackEval = {
+        transcript: '(Audio evaluation unavailable — ' + (err.message || 'offline mode') + ')',
+        wordsCorrect: 0,
+        wordsPerMinute: 0,
+        errorCount: 0,
+        errors: [],
+        scores: { pronunciation: 1, fluency: 1, accuracy: 1, confidence: 1, expression: 1 },
+        overallLevel: 1,
+        encouragement: 'We couldn\'t evaluate your reading right now. Please try again! 🔄',
+        teacherNote: 'Evaluation failed — audio could not be processed. Student should re-read this passage.',
+        fallback: true
+      };
+      state.lastEvaluation = fallbackEval;
+      showResults(fallbackEval);
+    }
+  }
+
+  // ── Results Screen ──
+  function showResults(evaluation) {
+    var level = evaluation.overallLevel || 1;
+    var user = state.user;
+    var passage = state.currentPassage;
+
+    // Update user data
+    if (user && passage) {
+      user.stats.readingsCompleted = (user.stats.readingsCompleted || 0) + 1;
+      if (level === 4) user.stats.perfectReadings = (user.stats.perfectReadings || 0) + 1;
+      if (evaluation.wordsPerMinute > (user.stats.fastestWpm || 0)) user.stats.fastestWpm = evaluation.wordsPerMinute;
+
+      if (!user.passages) user.passages = {};
+      if (!user.passages[passage.id]) user.passages[passage.id] = { bestLevel: 0, bestWpm: 0, attempts: [] };
+
+      var pd = user.passages[passage.id];
+      if (!Array.isArray(pd.attempts)) pd.attempts = [];
+      pd.attempts.push({
+        date: new Date().toISOString(),
+        level: level,
+        wpm: evaluation.wordsPerMinute,
+        errors: evaluation.errorCount,
+        duration: evaluation.durationSeconds
+      });
+      if (level > pd.bestLevel) pd.bestLevel = level;
+      if (evaluation.wordsPerMinute > pd.bestWpm) pd.bestWpm = evaluation.wordsPerMinute;
+
+      // Stars
+      user.totalStars = (user.totalStars || 0) + level;
+
+      // XP & Coins
+      user.xp = (user.xp || 0) + 15 + (level >= 3 ? 25 : 0) + (level === 4 ? 40 : 0);
+      user.coins = (user.coins || 0) + level * 3;
+      user.level = Math.floor(Math.sqrt(user.xp / 40)) + 1;
+
+      // Garden
+      if (!user.garden) user.garden = { flowers: 0, wilted: 0, items: [] };
+      if (!user.garden.items) user.garden.items = [];
+      var wordsCorrect = evaluation.wordsCorrect || 0;
+      var errorCount = evaluation.errorCount || 0;
+      user.garden.flowers += wordsCorrect;
+      user.garden.wilted += errorCount;
+      for (var fi = 0; fi < wordsCorrect; fi++) {
+        user.garden.items.push({ type: TIER_FLOWERS[passage.tier] || '🌸', tier: passage.tier });
+      }
+      for (var wi = 0; wi < errorCount; wi++) {
+        user.garden.items.push({ type: '🥀', tier: passage.tier });
+      }
+
+      // Advance if level >= 3
+      if (level >= 3 && passage.id === (user.currentPassageId || 1)) {
+        user.currentPassageId = passage.id + 1;
+        user.stats.passagesCleared = (user.stats.passagesCleared || 0) + 1;
+      }
+
+      // Streak
+      var today = new Date().toISOString().split('T')[0];
+      if (user.lastActiveDate !== today) {
+        var yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+        user.streak = (user.lastActiveDate === yesterday) ? (user.streak || 0) + 1 : 1;
+        user.lastActiveDate = today;
+      }
+
+      // Check stickers
+      var newStickers = checkStickers(user);
+
+      saveLocalUser(user);
+
+      // Sync to server
+      if (state.token) {
+        fetch(API_BASE + '/scores/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + state.token },
+          body: JSON.stringify({
+            passageId: passage.id, passageTier: passage.tier, passageTitle: passage.title,
+            level: level, wpm: evaluation.wordsPerMinute, errorCount: evaluation.errorCount,
+            scores: evaluation.scores, durationSeconds: evaluation.durationSeconds,
+            transcript: evaluation.transcript,
+            wordByWord: evaluation.wordByWord || [],
+            mispronounced: evaluation.mispronounced || [],
+            audioData: state.lastAudioBase64 || null,
+            audioMime: state.lastAudioMime || null
+          })
+        }).then(function(r) { return r.json(); }).then(function(d) {
+          if (d.success && d.user) {
+            // Sync server state back
+            state.user.xp = d.user.xp;
+            state.user.level = d.user.level;
+            state.user.coins = d.user.coins;
+            state.user.streak = d.user.streak;
+            state.user.totalStars = d.user.totalStars;
+            state.user.stickers = d.user.stickers;
+            state.user.stats = d.user.stats;
+            state.user.currentPassageId = d.user.currentPassageId;
+            saveLocalUser(state.user);
+          }
+        }).catch(function(err) { console.warn('Score submit failed:', err); });
+      }
+
+      // Show new sticker toasts
+      newStickers.forEach(function(s, i) {
+        setTimeout(function() { showToast('New sticker: ' + s.icon + ' ' + s.name + '!'); }, (i + 1) * 1500);
+      });
+    }
+
+    // Render results
+    $('resultsMascot').textContent = (level >= 3 ? '🎉' : '💪') + ' ' + (state.theme === 'unicorn' ? '🦄' : '🏎️');
+
+    // Stars
+    var starsHtml = '';
+    for (var i = 1; i <= 4; i++) {
+      starsHtml += '<div class="result-star ' + (i <= level ? 'earned' : '') + '">⭐</div>';
+    }
+    $('resultsStars').innerHTML = starsHtml;
+
+    // Level badge
+    var badge = $('levelBadge');
+    badge.textContent = LEVEL_LABELS[level] || 'Needs Help';
+    badge.className = 'level-badge level-' + level;
+
+    // Encouragement
+    $('encouragement').textContent = evaluation.encouragement || 'Great effort! Keep practicing!';
+
+    // Speak encouragement
+    setTimeout(function() { speakText(evaluation.encouragement || 'Great job!'); }, 1500);
+
+    // Scores grid
+    var scoresHtml = '';
+    var scoreDims = [
+      { key: 'pronunciation', emoji: '🗣️', label: 'Pronunciation' },
+      { key: 'fluency', emoji: '🎵', label: 'Fluency' },
+      { key: 'accuracy', emoji: '🎯', label: 'Accuracy' },
+      { key: 'confidence', emoji: '💪', label: 'Confidence' },
+      { key: 'expression', emoji: '🎭', label: 'Expression' }
+    ];
+    scoreDims.forEach(function(dim) {
+      var val = (evaluation.scores && evaluation.scores[dim.key]) || 0;
+      var pct = (val / 5) * 100;
+      scoresHtml += '<div class="score-row">';
+      scoresHtml += '<div class="score-emoji">' + dim.emoji + '</div>';
+      scoresHtml += '<div class="score-label">' + dim.label + '</div>';
+      scoresHtml += '<div class="score-bar-track"><div class="score-bar-fill" style="width:' + pct + '%"></div></div>';
+      scoresHtml += '</div>';
+    });
+    $('scoresGrid').innerHTML = scoresHtml;
+
+    // Transcript — use word-by-word data from server-side comparison
+    var wordByWord = evaluation.wordByWord || [];
+
+    if (wordByWord.length > 0 && !evaluation.fallback) {
+      var misCount = wordByWord.filter(function(w){return w.status === 'mispronunciation'}).length;
+
+      var tHtml = '<strong>📖 Your Reading:</strong><br>';
+      wordByWord.forEach(function(w) {
+        if (w.status === 'correct') {
+          tHtml += '<span class="word-correct">' + w.expected + '</span> ';
+        } else if (w.status === 'mispronunciation') {
+          tHtml += '<span class="word-mispronounced">' + (w.said || w.expected) + '<span class="error-hint">expected: ' + w.expected + '</span></span> ';
+        } else if (w.status === 'omission') {
+          tHtml += '<span class="word-error" style="text-decoration:line-through;opacity:0.5">' + w.expected + '<span class="error-hint">skipped</span></span> ';
+        } else if (w.status === 'addition') {
+          tHtml += '<span style="color:var(--secondary);font-style:italic;font-size:0.85em">+' + w.said + '</span> ';
+        } else {
+          tHtml += '<span class="word-error">' + (w.said || w.expected) + '<span class="error-hint">expected: ' + w.expected + '</span></span> ';
+        }
+      });
+      // Summary line
+      tHtml += '<div style="margin-top:0.6rem;font-size:0.8rem;color:#888">';
+      tHtml += '✅ ' + (evaluation.wordsCorrect || 0) + ' correct';
+      tHtml += ' · ❌ ' + (evaluation.errorCount || 0) + ' errors';
+      if (misCount > 0) tHtml += ' · 🗣️ ' + misCount + ' mispronounced';
+      tHtml += ' · ⏱️ ' + (evaluation.wordsPerMinute || 0) + ' WPM';
+      if (evaluation.emotional_tone) tHtml += ' · 😊 ' + evaluation.emotional_tone;
+      tHtml += '</div>';
+      $('transcriptSection').innerHTML = tHtml;
+      $('transcriptSection').style.display = '';
+    } else {
+      var transcript = evaluation.transcript || '';
+      $('transcriptSection').innerHTML = transcript ? '<strong>📖 What you said:</strong><br><em>' + transcript + '</em>' : '';
+    }
+
+    // Action buttons
+    var actHtml = '';
+    if (level >= 3) {
+      actHtml += '<button class="btn-primary" onclick="App.nextPassage()">Next Passage 🚀 <span class="shine"></span></button>';
+      actHtml += '<button class="btn-secondary" onclick="App.readAgain()">Read Again ⭐</button>';
+    } else {
+      actHtml += '<button class="btn-primary" onclick="App.readAgain()">Read Again 🔄 <span class="shine"></span></button>';
+      actHtml += '<button class="btn-secondary" onclick="App.nextPassage()">Next Passage ⏭️</button>';
+    }
+    actHtml += '<button class="btn-secondary" onclick="App.showScreen(\'dashboard\')" style="font-size:0.85rem;border-color:#999;color:#999;min-width:auto;flex:0 1 auto;padding:0.7rem 1.2rem">Close ✕</button>';
+    $('resultsActions').innerHTML = actHtml;
+
+    showScreen('results');
+
+    // Confetti for good results
+    if (level >= 3) {
+      setTimeout(playConfetti, 500);
+    }
+  }
+
+  function checkStickers(user) {
+    var newOnes = [];
+    if (!user.stickers) user.stickers = [];
+    STICKER_DEFS.forEach(function(sd) {
+      if (!user.stickers.includes(sd.id) && sd.check(user)) {
+        user.stickers.push(sd.id);
+        newOnes.push(sd);
+      }
+    });
+    return newOnes;
+  }
+
+
+  function readAgain() {
+    if (state.currentPassage) {
+      openPassage(state.currentPassage.id);
+    }
+  }
+
+  function nextPassage() {
+    var passages = typeof AGN_PASSAGES !== 'undefined' ? AGN_PASSAGES : [];
+    var currentId = state.currentPassage ? state.currentPassage.id : 1;
+    var next = passages.find(function(p) { return p.id === currentId + 1; });
+    if (next) {
+      openPassage(next.id);
+    } else {
+      showToast('You finished all passages! Amazing! 🎉🏆');
+      showScreen('dashboard');
+    }
+  }
+
+  var currentPlayback = null;
+  function playRecording() {
+    if (currentPlayback) { currentPlayback.pause(); currentPlayback = null; }
+    if (state.audioUrl) {
+      currentPlayback = new Audio(state.audioUrl);
+      currentPlayback.play();
+      currentPlayback.onended = function() { currentPlayback = null; };
+    } else {
+      showToast('No recording available');
+    }
+  }
+
+  // ── Garden ──
+  function renderGarden() {
+    var user = state.user;
+    if (!user || !user.garden) {
+      $('gardenFlowers').textContent = '🌸 0 blooming';
+      $('gardenWilted').textContent = '🥀 0 need care';
+      $('gardenFlowerGrid').innerHTML = '<div style="text-align:center;padding:3rem;font-size:1.2rem;color:#fff">Read a passage to grow your first flower! 🌱</div>';
+      return;
+    }
+
+    $('gardenFlowers').textContent = '🌸 ' + (user.garden.flowers || 0) + ' blooming';
+    $('gardenWilted').textContent = '🥀 ' + (user.garden.wilted || 0) + ' need care';
+
+    var items = user.garden.items || [];
+    var html = '';
+    // Show last 80 flowers max
+    var displayItems = items.slice(-80);
+    displayItems.forEach(function(item) {
+      var cls = item.type === '🥀' ? 'garden-flower wilted' : 'garden-flower';
+      html += '<span class="' + cls + '">' + item.type + '</span>';
+    });
+    if (items.length === 0) {
+      html = '<div style="text-align:center;padding:3rem;font-size:1.2rem;color:#fff">Read a passage to grow your first flower! 🌱</div>';
+    }
+    $('gardenFlowerGrid').innerHTML = html;
+  }
+
+  // ── Stickers ──
+  function renderStickers() {
+    var user = state.user;
+    var earned = user && user.stickers ? user.stickers : [];
+    var html = '';
+    STICKER_DEFS.forEach(function(sd) {
+      var isEarned = earned.includes(sd.id);
+      html += '<div class="sticker-slot ' + (isEarned ? 'earned' : '') + '" onclick="App.showStickerPopup(\'' + sd.id + '\')">';
+      html += '<div class="sticker-icon">' + sd.icon + '</div>';
+      html += '<div class="sticker-label">' + sd.name + '</div>';
+      html += '</div>';
+    });
+    $('stickerGrid').innerHTML = html;
+  }
+
+  function showStickerPopup(id) {
+    var sd = STICKER_DEFS.find(function(s) { return s.id === id; });
+    if (!sd) return;
+    var earned = state.user && state.user.stickers && state.user.stickers.includes(id);
+    $('stickerPopupIcon').textContent = sd.icon;
+    $('stickerPopupTitle').textContent = sd.name;
+    $('stickerPopupDesc').textContent = earned ? sd.desc + ' ✅ Earned!' : sd.desc;
+    $('stickerPopupDate').textContent = earned ? 'Collected!' : 'Keep reading to earn this!';
+    $('stickerPopup').classList.add('active');
+  }
+
+  // ── Leaderboard ──
+  async function renderLeaderboard() {
+    var board = [];
+    try {
+      var res = await fetch(API_BASE + '/leaderboard');
+      var data = await res.json();
+      board = data.leaderboard || [];
+    } catch(e) {
+      // Show local user only
+      if (state.user) {
+        board = [{ name: state.user.name, avatar: state.user.avatar, totalStars: state.user.totalStars || 0, streak: state.user.streak || 0, readingsCompleted: (state.user.stats && state.user.stats.readingsCompleted) || 0 }];
+      }
+    }
+
+    // Podium
+    var podiumHtml = '';
+    var medals = ['🥇','🥈','🥉'];
+    var places = ['first','second','third'];
+    for (var i = 0; i < 3; i++) {
+      var entry = board[i];
+      if (entry) {
+        podiumHtml += '<div class="podium-place ' + places[i] + '">';
+        podiumHtml += '<div class="podium-medal">' + medals[i] + '</div>';
+        podiumHtml += '<div class="podium-avatar">' + (entry.avatar || '🦁') + '</div>';
+        podiumHtml += '<div class="podium-name">' + entry.name + '</div>';
+        podiumHtml += '<div class="podium-stars">⭐ ' + (entry.totalStars || 0) + '</div>';
+        podiumHtml += '</div>';
+      }
+    }
+    $('podium').innerHTML = podiumHtml;
+
+    // List
+    var listHtml = '';
+    board.forEach(function(entry, idx) {
+      if (idx < 3) return;
+      var isMe = state.user && entry.name.toLowerCase() === state.user.name.toLowerCase();
+      listHtml += '<div class="lb-row ' + (isMe ? 'me' : '') + '">';
+      listHtml += '<div class="lb-rank">' + (idx + 1) + '</div>';
+      listHtml += '<div class="lb-avatar">' + (entry.avatar || '🦁') + '</div>';
+      listHtml += '<div class="lb-name">' + entry.name + '</div>';
+      listHtml += '<div class="lb-stats-cell">⭐ ' + (entry.totalStars || 0) + '</div>';
+      listHtml += '<div class="lb-stats-cell">🔥 ' + (entry.streak || 0) + '</div>';
+      listHtml += '</div>';
+    });
+    $('lbList').innerHTML = listHtml || '<div style="text-align:center;padding:2rem;color:#999">No students yet!</div>';
+  }
+
+  // ── Admin Panel ──
+  function renderAdmin() {
+    var isAdmin = state.user && state.user.role === 'admin';
+    var isTeacher = state.user && state.user.role === 'teacher';
+    $('adminTitle').textContent = isAdmin ? 'Admin Panel 👑' : 'Teacher Panel 📋';
+
+    // Show/hide tabs based on role
+    var tabs = $('adminTabs');
+    if (tabs) {
+      var teachersTab = tabs.children[1]; // Teachers tab
+      var settingsTab = tabs.children[4]; // Settings tab
+      if (teachersTab) teachersTab.style.display = isAdmin ? '' : 'none';
+      if (settingsTab) settingsTab.style.display = isAdmin ? '' : 'none';
+    }
+
+    renderAdminStudents();
+    if (isAdmin) renderAdminTeachers();
+    renderAdminAddUser();
+    renderAdminScale();
+    if (isAdmin) renderAdminSettings();
+  }
+
+  function showAdminTab(tab) {
+    document.querySelectorAll('.admin-tab').forEach(function(t) { t.classList.remove('active'); });
+    document.querySelectorAll('.admin-content').forEach(function(c) { c.classList.remove('active'); });
+    event.target.classList.add('active');
+    $('admin-' + tab).classList.add('active');
+  }
+
+  function renderAdminUserList(containerId, roleFilter) {
+    var el = $(containerId);
+    el.innerHTML = '<div style="padding:1rem;text-align:center;color:#999">Loading...</div>';
+
+    var headers = state.token ? { 'Authorization': 'Bearer ' + state.token } : {};
+    fetch(API_BASE + '/admin/users', { headers: headers }).then(function(r) { return r.json(); }).then(function(data) {
+      var users = (data.users || []).filter(function(u) { return u.role === roleFilter; });
+      if (users.length === 0) {
+        el.innerHTML = '<div style="padding:1rem;text-align:center;color:#999">No ' + roleFilter + 's yet</div>';
+        return;
+      }
+      var html = '';
+      users.forEach(function(u) {
+        html += '<div class="admin-student-row">';
+        html += '<div class="avatar">' + (u.avatar || '🦁') + '</div>';
+        html += '<div class="name">' + u.name + ' <span style="font-size:0.65rem;color:#999">' + (u.className || '') + '</span></div>';
+        html += '<div class="stats">⭐' + (u.totalStars || 0) + ' 📖' + (u.readingsCompleted || 0) + '</div>';
+        html += '<button class="admin-btn-small" onclick="App.adminResetPin(\'' + u.name + '\',\'' + u.role + '\')">Reset PIN</button> ';
+        if (state.user && state.user.role === 'admin') {
+          html += '<button class="admin-btn-small" onclick="App.adminResetProgress(\'' + u.name + '\',\'' + u.role + '\')" style="color:#e53935">Reset</button> ';
+          html += '<button class="admin-btn-small" onclick="App.adminDeleteUser(\'' + u.name + '\',\'' + u.role + '\')" style="color:#c62828">Delete</button>';
+        }
+        html += '</div>';
+      });
+      el.innerHTML = html;
+    }).catch(function() {
+      el.innerHTML = '<div style="padding:1rem;text-align:center;color:#999">Offline — cannot load users</div>';
+    });
+  }
+
+  function renderAdminStudents() { renderAdminUserList('admin-students', 'student'); }
+  function renderAdminTeachers() { renderAdminUserList('admin-teachers', 'teacher'); }
+
+  async function adminResetPin(name, role) {
+    var newPin = prompt('Enter new PIN/password for ' + name + ':');
+    if (!newPin) return;
+    try {
+      var res = await fetch(API_BASE + '/admin/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + state.token },
+        body: JSON.stringify({ action: 'reset-pin', targetName: name, targetRole: role, newPin: newPin })
+      });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed');
+      showToast('PIN reset for ' + name + ' ✅');
+    } catch(e) { showToast('Error: ' + e.message); }
+  }
+
+  async function adminResetProgress(name, role) {
+    if (!confirm('Reset ALL progress for ' + name + '? This cannot be undone.')) return;
+    try {
+      var res = await fetch(API_BASE + '/admin/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + state.token },
+        body: JSON.stringify({ action: 'reset-progress', targetName: name, targetRole: role })
+      });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed');
+      showToast('Progress reset for ' + name + ' ✅');
+      renderAdminStudents();
+    } catch(e) { showToast('Error: ' + e.message); }
+  }
+
+  async function adminDeleteUser(name, role) {
+    if (!confirm('DELETE ' + name + '? This cannot be undone!')) return;
+    try {
+      var res = await fetch(API_BASE + '/admin/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + state.token },
+        body: JSON.stringify({ action: 'delete', targetName: name, targetRole: role })
+      });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed');
+      showToast(name + ' deleted ✅');
+      renderAdminStudents();
+      renderAdminTeachers();
+    } catch(e) { showToast('Error: ' + e.message); }
+  }
+
+  function renderAdminScale() {
+    var scale = state.settings || DEFAULT_SCALE;
+    var html = '<h3 style="font-size:1.1rem;margin-bottom:1rem">Assessment Scale</h3>';
+    [1,2,3,4].forEach(function(lvl) {
+      var s = scale[lvl] || {};
+      html += '<div style="margin-bottom:0.8rem;padding:0.6rem;background:#f9f9f9;border-radius:10px">';
+      html += '<strong>Level ' + lvl + ': ' + (LEVEL_LABELS[lvl] || '') + '</strong><br>';
+      if (s.maxWpm) html += 'Max WPM: <input type="number" value="' + s.maxWpm + '" style="width:60px" data-scale="' + lvl + '" data-field="maxWpm"><br>';
+      if (s.minWpm) html += 'Min WPM: <input type="number" value="' + s.minWpm + '" style="width:60px" data-scale="' + lvl + '" data-field="minWpm"><br>';
+      if (s.maxErrors !== undefined) html += 'Max Errors: <input type="number" value="' + s.maxErrors + '" style="width:60px" data-scale="' + lvl + '" data-field="maxErrors"><br>';
+      if (s.minErrors !== undefined) html += 'Min Errors: <input type="number" value="' + s.minErrors + '" style="width:60px" data-scale="' + lvl + '" data-field="minErrors"><br>';
+      html += '</div>';
+    });
+    html += '<button class="btn-primary" onclick="App.saveScale()" style="font-size:1rem;padding:0.7rem">Save Scale <span class="shine"></span></button>';
+    $('admin-scale').innerHTML = html;
+  }
+
+  function saveScale() {
+    var inputs = document.querySelectorAll('[data-scale]');
+    inputs.forEach(function(inp) {
+      var lvl = inp.getAttribute('data-scale');
+      var field = inp.getAttribute('data-field');
+      if (!state.settings[lvl]) state.settings[lvl] = {};
+      state.settings[lvl][field] = parseInt(inp.value) || 0;
+    });
+    var d = loadData();
+    d.settings = state.settings;
+    saveData(d);
+    // Also save to server if admin
+    if (state.token && state.user && state.user.role === 'admin') {
+      fetch(API_BASE + '/admin/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + state.token },
+        body: JSON.stringify({ assessmentScale: state.settings })
+      }).catch(function() {});
+    }
+    showToast('Scale saved! ✅');
+  }
+
+  function renderAdminAddUser() {
+    var isAdmin = state.user && state.user.role === 'admin';
+    var roleOptions = '<option value="student">Student</option>';
+    if (isAdmin) {
+      roleOptions += '<option value="teacher">Teacher</option>';
+      roleOptions += '<option value="admin">Admin</option>';
+    }
+    $('admin-adduser').innerHTML =
+      '<h3 style="font-size:1.1rem;margin-bottom:1rem">Add New User</h3>' +
+      '<div class="admin-form-group"><label>Role</label><select id="adminAddRole" style="width:100%;padding:0.6rem;border-radius:10px;border:2px solid #ddd;font-size:1rem;font-family:Nunito,sans-serif" onchange="App.onAddRoleChange()">' + roleOptions + '</select></div>' +
+      '<div class="admin-form-group"><label>Name</label><input type="text" id="adminAddName" placeholder="Enter name" maxlength="20"></div>' +
+      '<div class="admin-form-group" id="adminAddPinGroup"><label id="adminAddCredLabel">4-Digit PIN</label><input type="text" id="adminAddCred" placeholder="1234" maxlength="20"></div>' +
+      '<div class="admin-form-group"><label>Class (optional)</label><input type="text" id="adminAddClass" placeholder="KG-A" maxlength="10"></div>' +
+      '<button class="btn-primary" onclick="App.adminCreateUser()" style="font-size:1rem;padding:0.7rem">Create User <span class="shine"></span></button>' +
+      '<div id="adminAddResult" style="margin-top:0.5rem;text-align:center"></div>';
+  }
+
+  function onAddRoleChange() {
+    var role = $('adminAddRole').value;
+    if (role === 'student') {
+      $('adminAddCredLabel').textContent = '4-Digit PIN';
+      $('adminAddCred').placeholder = '1234';
+      $('adminAddCred').maxLength = 4;
+      $('adminAddCred').inputMode = 'numeric';
+    } else {
+      $('adminAddCredLabel').textContent = 'Password (4+ chars)';
+      $('adminAddCred').placeholder = 'Enter password';
+      $('adminAddCred').maxLength = 50;
+      $('adminAddCred').inputMode = 'text';
+    }
+  }
+
+  async function adminCreateUser() {
+    var role = $('adminAddRole').value;
+    var name = $('adminAddName').value.trim();
+    var cred = $('adminAddCred').value.trim();
+    var className = $('adminAddClass').value.trim();
+    if (!name || !cred) { showToast('Fill in name and PIN/password'); return; }
+
+    var body = { name: name, avatar: role === 'student' ? '🦁' : role === 'teacher' ? '📚' : '👑', className: className, role: role };
+    if (role === 'student') body.pin = cred;
+    else body.password = cred;
+
+    try {
+      var res = await fetch(API_BASE + '/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + (state.token || '') },
+        body: JSON.stringify(body)
+      });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed');
+      $('adminAddResult').innerHTML = '<span style="color:green">✅ Created ' + role + ': ' + name + '</span>';
+      $('adminAddName').value = '';
+      $('adminAddCred').value = '';
+      renderAdminStudents();
+      renderAdminTeachers();
+    } catch(e) {
+      $('adminAddResult').innerHTML = '<span style="color:red">❌ ' + e.message + '</span>';
+    }
+  }
+
+  // ── Admin Settings (Gemini Key, School Name) ──
+  function renderAdminSettings() {
+    if (!state.user || state.user.role !== 'admin') {
+      $('admin-settings').innerHTML = '<div style="padding:1rem;text-align:center;color:#999">Admin access required</div>';
+      return;
+    }
+    $('admin-settings').innerHTML = '<div style="padding:1rem;text-align:center;color:#999">Loading settings...</div>';
+
+    fetch(API_BASE + '/admin/settings', {
+      headers: { 'Authorization': 'Bearer ' + state.token }
+    }).then(function(r) { return r.json(); }).then(function(data) {
+      var s = data.settings || {};
+      $('admin-settings').innerHTML =
+        '<h3 style="font-size:1.1rem;margin-bottom:1rem">App Settings</h3>' +
+        '<div class="admin-form-group"><label>Gemini API Key</label>' +
+        '<input type="password" id="settingsGeminiKey" placeholder="' + (s.geminiKeySet ? s.geminiKey : 'AIza...') + '" style="font-family:monospace">' +
+        '<div style="font-size:0.7rem;color:#999;margin-top:0.2rem">' + (s.geminiKeySet ? 'Current: ' + s.geminiKey : 'Using default from environment') + '</div></div>' +
+        '<div class="admin-form-group"><label>School Name</label>' +
+        '<input type="text" id="settingsSchoolName" value="' + (s.schoolName || 'AGN School') + '" maxlength="50"></div>' +
+        '<button class="btn-primary" onclick="App.saveSettings()" style="font-size:1rem;padding:0.7rem">Save Settings <span class="shine"></span></button>' +
+        '<div id="settingsResult" style="margin-top:0.5rem;text-align:center"></div>' +
+        '<hr style="margin:1.5rem 0;border:none;border-top:1px solid #eee">' +
+        '<h3 style="font-size:1rem;margin-bottom:0.5rem;color:#e53935">First-Time Admin Setup</h3>' +
+        '<p style="font-size:0.8rem;color:#888;margin-bottom:0.5rem">If this is a fresh deployment, create your first admin account here (only works if no admin exists yet).</p>' +
+        '<div class="admin-form-group"><label>Admin Name</label><input type="text" id="setupAdminName" placeholder="Admin" maxlength="20"></div>' +
+        '<div class="admin-form-group"><label>Admin Password</label><input type="password" id="setupAdminPass" placeholder="Password (4+ chars)" maxlength="50"></div>' +
+        '<button class="btn-primary" onclick="App.setupFirstAdmin()" style="font-size:0.9rem;padding:0.6rem;background:linear-gradient(135deg,#e53935,#c62828)">Create Admin Account <span class="shine"></span></button>' +
+        '<div id="setupAdminResult" style="margin-top:0.5rem;text-align:center"></div>';
+    }).catch(function() {
+      $('admin-settings').innerHTML =
+        '<h3 style="font-size:1.1rem;margin-bottom:1rem">App Settings (Offline)</h3>' +
+        '<div class="admin-form-group"><label>Gemini API Key</label>' +
+        '<input type="password" id="settingsGeminiKey" placeholder="AIza..." style="font-family:monospace"></div>' +
+        '<p style="font-size:0.8rem;color:#999">Settings will sync when online.</p>' +
+        '<hr style="margin:1.5rem 0;border:none;border-top:1px solid #eee">' +
+        '<h3 style="font-size:1rem;margin-bottom:0.5rem">First-Time Admin Setup</h3>' +
+        '<p style="font-size:0.8rem;color:#888;margin-bottom:0.5rem">Create the first admin account for a fresh deployment.</p>' +
+        '<div class="admin-form-group"><label>Admin Name</label><input type="text" id="setupAdminName" placeholder="Admin" maxlength="20"></div>' +
+        '<div class="admin-form-group"><label>Admin Password</label><input type="password" id="setupAdminPass" placeholder="Password (4+ chars)" maxlength="50"></div>' +
+        '<button class="btn-primary" onclick="App.setupFirstAdmin()" style="font-size:0.9rem;padding:0.6rem;background:linear-gradient(135deg,#e53935,#c62828)">Create Admin Account <span class="shine"></span></button>' +
+        '<div id="setupAdminResult" style="margin-top:0.5rem;text-align:center"></div>';
+    });
+  }
+
+  async function saveSettings() {
+    var geminiKey = $('settingsGeminiKey').value.trim();
+    var schoolName = $('settingsSchoolName') ? $('settingsSchoolName').value.trim() : '';
+    var body = {};
+    if (geminiKey) body.geminiKey = geminiKey;
+    if (schoolName) body.schoolName = schoolName;
+
+    try {
+      var res = await fetch(API_BASE + '/admin/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + state.token },
+        body: JSON.stringify(body)
+      });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed');
+      $('settingsResult').innerHTML = '<span style="color:green">✅ ' + (data.message || 'Saved') + '</span>';
+    } catch(e) {
+      $('settingsResult').innerHTML = '<span style="color:red">❌ ' + e.message + '</span>';
+    }
+  }
+
+  async function setupFirstAdmin() {
+    var name = $('setupAdminName').value.trim();
+    var pass = $('setupAdminPass').value.trim();
+    if (!name || !pass || pass.length < 4) { showToast('Enter admin name and password (4+ chars)'); return; }
+    try {
+      var res = await fetch(API_BASE + '/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, password: pass, role: 'admin', avatar: '👑' })
+      });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed');
+      $('setupAdminResult').innerHTML = '<span style="color:green">✅ Admin "' + name + '" created! You can now log in.</span>';
+    } catch(e) {
+      $('setupAdminResult').innerHTML = '<span style="color:red">❌ ' + e.message + '</span>';
+    }
+  }
+
+  // ── Confetti ──
+  function playConfetti() {
+    var canvas = $('confetti-canvas');
+    var ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    var particles = [];
+    var colors = ['#e91e63','#ab47bc','#ffd700','#66bb6a','#42a5f5','#ff7043','#26c6da','#ffca28'];
+
+    for (var i = 0; i < 80; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        w: Math.random() * 10 + 5,
+        h: Math.random() * 6 + 3,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        vx: (Math.random() - 0.5) * 4,
+        vy: Math.random() * 3 + 2,
+        rot: Math.random() * 360,
+        rotV: (Math.random() - 0.5) * 10
+      });
+    }
+
+    var frames = 0;
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(function(p) {
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot * Math.PI / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.rotV;
+        p.vy += 0.05;
+      });
+      frames++;
+      if (frames < 150) requestAnimationFrame(animate);
+      else ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    animate();
+  }
+
+  // ── TTS ──
+  function speakText(text) {
+    if (!text || !window.speechSynthesis) return;
+    var utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.85;
+    utterance.pitch = 1.2;
+    utterance.volume = 0.8;
+    window.speechSynthesis.speak(utterance);
+  }
+
+  // ── Toast ──
+  function showToast(msg) {
+    var el = $('toast');
+    el.textContent = msg;
+    el.classList.add('visible');
+    setTimeout(function() { el.classList.remove('visible'); }, 3000);
+  }
+
+  // ── Signup Modal ──
+  function showSignupModal() { $('signupModal').classList.add('active'); }
+  function hideSignupModal() { $('signupModal').classList.remove('active'); }
+
+  // ── Init ──
+  function init() {
+    var d = loadData();
+
+    // Restore theme
+    if (d.theme) {
+      applyTheme(d.theme);
+    }
+
+    // Restore settings
+    if (d.settings) {
+      state.settings = d.settings;
+    }
+
+    // Input listeners
+    $('loginName').addEventListener('input', checkLoginReady);
+    $('loginPin').addEventListener('input', checkLoginReady);
+
+    // Check URL hash first
+    var hash = window.location.hash.replace('#', '');
+
+    // Restore user
+    if (hash === 'welcome' || hash === 'login') {
+      // Always show welcome (home) page when explicitly requested
+      showScreen('welcome');
+    } else if (d.user) {
+      state.user = d.user;
+      state.token = d.token;
+      if (hash === 'admin') {
+        showScreen('admin');
+      } else {
+        showScreen('dashboard');
+      }
+    } else if (d.theme) {
+      // Theme selected but no user — show login
+      showScreen('login');
+    } else {
+      showScreen('welcome');
+    }
+  }
+
+  // ── Public API ──
+  window.App = {
+    selectTheme: selectTheme,
+    doLogin: doLogin,
+    doSignup: doSignup,
+    showScreen: showScreen,
+    showDashTab: showDashTab,
+    openPassage: openPassage,
+    listenPassage: listenPassage,
+    toggleRecording: toggleRecording,
+    cancelRecording: cancelRecording,
+    playRecording: playRecording,
+    readAgain: readAgain,
+    nextPassage: nextPassage,
+    showStickerPopup: showStickerPopup,
+    showSignupModal: showSignupModal,
+    hideSignupModal: hideSignupModal,
+    showAdminTab: showAdminTab,
+    saveScale: saveScale,
+    changeTheme: changeTheme,
+    saveStudentProfile: saveStudentProfile,
+    adminCreateUser: adminCreateUser,
+    adminResetPin: adminResetPin,
+    adminResetProgress: adminResetProgress,
+    adminDeleteUser: adminDeleteUser,
+    onAddRoleChange: onAddRoleChange,
+    saveSettings: saveSettings,
+    setupFirstAdmin: setupFirstAdmin,
+    logout: logout
+  };
+
+  // Boot
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
+</script>
+</body>
+</html>
