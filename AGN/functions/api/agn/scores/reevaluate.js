@@ -221,7 +221,8 @@ async function getPassageText(env, passageId, passageTitle) {
 
 // ── Word comparison (same logic as reading-evaluate.js) ──
 function compareWords(passageText, transcript, mispronounced, names) {
-  const normalize = (w) => w.toLowerCase().replace(/[^a-z']/g, '');
+  // Strip everything except letters — apostrophes are removed so "that's" matches "thats", "don't" matches "dont", etc.
+  const normalize = (w) => w.toLowerCase().replace(/[^a-z]/g, '');
   const passageWords = passageText.trim().split(/\s+/).map(normalize).filter(Boolean);
   const spokenWords = transcript.trim().split(/\s+/).map(normalize).filter(Boolean);
   const fillers = new Set(['um', 'uh', 'uhh', 'hmm', 'mmm', 'ah', 'ahh', 'er', 'erm']);

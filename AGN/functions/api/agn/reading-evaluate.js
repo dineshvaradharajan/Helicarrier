@@ -267,7 +267,8 @@ Respond ONLY with JSON:
 // name pronunciation differences are tolerated by spec.
 // Returns: { correct, mispronouncedCount, errors[], wordByWord[] }
 function compareWords(passageText, transcript, mispronounced, names) {
-  const normalize = (w) => w.toLowerCase().replace(/[^a-z']/g, '');
+  // Strip everything except letters — apostrophes are removed so "that's" matches "thats", "don't" matches "dont", etc.
+  const normalize = (w) => w.toLowerCase().replace(/[^a-z]/g, '');
   const passageWords = passageText.trim().split(/\s+/).map(normalize).filter(Boolean);
   const spokenWords = transcript.trim().split(/\s+/).map(normalize).filter(Boolean);
 
