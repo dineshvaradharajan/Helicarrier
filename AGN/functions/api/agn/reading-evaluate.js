@@ -124,17 +124,20 @@ Compare these two texts word by word. Identify ALL pronunciation differences. Do
 
 A "mispronunciation" means the child clearly attempted the SAME word but pronounced part of it differently (e.g., passage says "messy" but child said "meeesy", or passage says "thank" and child said "tank"). Words that sound similar but mean something different (e.g., passage says "thank" and child said "think") are SUBSTITUTIONS — do NOT include them in mispronounced.
 
+Also list every proper name (people, places, characters) that appears in the passage in a "names" array. Names are tolerated: do not include them in mispronounced even if pronounced differently. Example: ["Meena", "Sagar"].
+
 Score: pronunciation (1-5): 0-1 mispronounced=5, 2-3=4, 4-5=3, 6-8=2, 9+=1
 
 Respond ONLY with JSON:
 {
   "mispronounced": [{"expected": "<passage word>", "said": "<how child said it>"}],
+  "names": ["<name>", ...],
   "pronunciation": <1-5>
 }`;
 
     // Pass 2 = text-only diff. Flash is plenty here; Pro is overkill for plain text.
     const pass2Models = ['gemini-3-flash-preview', 'gemini-2.5-flash'];
-    let pass2Result = { mispronounced: [], pronunciation: 3 };
+    let pass2Result = { mispronounced: [], names: [], pronunciation: 3 };
     try {
       const pass2Body = JSON.stringify({
         contents: [{ parts: [{ text: pass2Prompt }] }],
@@ -165,6 +168,7 @@ Respond ONLY with JSON:
     const geminiResult = {
       transcript: rawTranscript,
       mispronounced: pass2Result.mispronounced || [],
+      names: pass2Result.names || [],
       scores: {
         pronunciation: pass2Result.pronunciation || 3,
         fluency: (pass1Result.scores || {}).fluency || 3,
@@ -181,12 +185,14 @@ Respond ONLY with JSON:
 
     const transcript = geminiResult.transcript;
     const mispronounced = geminiResult.mispronounced || [];
+    const names = geminiResult.names || [];
 
     // ═══════════════════════════════════════════
     // STEP 2: Server-side word comparison
     // Comparison runs on RAW transcript; mispronunciations are surfaced as such, not silently corrected.
+    // Proper names are fuzzy-matched and treated as correct — the user explicitly tolerates name variants.
     // ═══════════════════════════════════════════
-    const comparison = compareWords(passageText, transcript, mispronounced);
+    const comparison = compareWords(passageText, transcript, mispronounced, names);
 
     // wordsCorrect = exact correct words (not mispronounced)
     // mispronunciations are tracked separately and visible to teachers
@@ -255,38 +261,30 @@ Respond ONLY with JSON:
 }
 
 // ── Word-by-word comparison ──
-// Aligns the raw transcript against the passage. Words that the AI flagged as
-// mispronunciations of a passage word are aligned to that passage word with
-// status='mispronunciation' (visible, not silently corrected). Other close
-// matches that are not in the mispronunciation list are treated as substitutions.
+// Aligns the raw transcript against the passage. AI-flagged mispronunciations
+// of a passage word are aligned with status='mispronunciation' (visible).
+// Proper names from the passage are fuzzy-matched and counted as correct —
+// name pronunciation differences are tolerated by spec.
 // Returns: { correct, mispronouncedCount, errors[], wordByWord[] }
-function compareWords(passageText, transcript, mispronounced) {
+function compareWords(passageText, transcript, mispronounced, names) {
   const normalize = (w) => w.toLowerCase().replace(/[^a-z']/g, '');
   const passageWords = passageText.trim().split(/\s+/).map(normalize).filter(Boolean);
   const spokenWords = transcript.trim().split(/\s+/).map(normalize).filter(Boolean);
 
-  // Remove filler words from spoken (um, uh, hmm, etc.)
   const fillers = new Set(['um', 'uh', 'uhh', 'hmm', 'mmm', 'ah', 'ahh', 'er', 'erm']);
   const noFillers = spokenWords.filter(w => !fillers.has(w));
-
-  // Remove consecutive duplicate words — KG children naturally stutter/repeat
   const cleanSpoken = [];
   for (let k = 0; k < noFillers.length; k++) {
-    if (k === 0 || noFillers[k] !== noFillers[k - 1]) {
-      cleanSpoken.push(noFillers[k]);
-    }
+    if (k === 0 || noFillers[k] !== noFillers[k - 1]) cleanSpoken.push(noFillers[k]);
   }
 
-  // Build a lookup of AI-flagged mispronunciations: said-word -> expected-word
   const misMap = {};
   (mispronounced || []).forEach(function(m) {
-    if (m && m.expected && m.said) {
-      misMap[normalize(m.said)] = normalize(m.expected);
-    }
+    if (m && m.expected && m.said) misMap[normalize(m.said)] = normalize(m.expected);
   });
 
-  // Levenshtein-based alignment (DP for word sequences)
-  // Scoring: exact match=0, mispronunciation (AI-flagged)=0.5, anything else=1
+  const nameSet = new Set((names || []).map(normalize).filter(Boolean));
+
   const m = passageWords.length;
   const n = cleanSpoken.length;
   const dp = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
@@ -299,16 +297,12 @@ function compareWords(passageText, transcript, mispronounced) {
       const said = cleanSpoken[j-1];
       let subCost = 1;
       if (exp === said) subCost = 0;
-      else if (misMap[said] === exp) subCost = 0.5; // AI-flagged mispronunciation: align but mark
-      dp[i][j] = Math.min(
-        dp[i-1][j-1] + subCost,
-        dp[i-1][j] + 1,    // omission
-        dp[i][j-1] + 1     // addition
-      );
+      else if (nameSet.has(exp) && fuzzyNameMatch(exp, said)) subCost = 0; // name variant: treat as correct
+      else if (misMap[said] === exp) subCost = 0.5;
+      dp[i][j] = Math.min(dp[i-1][j-1] + subCost, dp[i-1][j] + 1, dp[i][j-1] + 1);
     }
   }
 
-  // Backtrack
   const wordByWord = [];
   const errors = [];
   let i = m, j = n;
@@ -319,6 +313,9 @@ function compareWords(passageText, transcript, mispronounced) {
     const said = j > 0 ? cleanSpoken[j-1] : null;
 
     if (i > 0 && j > 0 && exp === said && Math.abs(dp[i][j] - dp[i-1][j-1]) < 0.01) {
+      wordByWord.unshift({ expected: exp, said, status: 'correct' });
+      i--; j--;
+    } else if (i > 0 && j > 0 && nameSet.has(exp) && fuzzyNameMatch(exp, said) && Math.abs(dp[i][j] - dp[i-1][j-1]) < 0.01) {
       wordByWord.unshift({ expected: exp, said, status: 'correct' });
       i--; j--;
     } else if (i > 0 && j > 0 && misMap[said] === exp && Math.abs(dp[i][j] - (dp[i-1][j-1] + 0.5)) < 0.01) {
@@ -343,6 +340,28 @@ function compareWords(passageText, transcript, mispronounced) {
 
   const correct = wordByWord.filter(w => w.status === 'correct').length;
   return { correct, mispronouncedCount, errors, wordByWord };
+}
+
+// Names: tolerant match — same first letter and ≤40% character distance.
+function fuzzyNameMatch(a, b) {
+  if (!a || !b) return false;
+  if (a[0] !== b[0]) return false;
+  const dist = levenshtein(a, b);
+  const maxLen = Math.max(a.length, b.length);
+  return dist <= 2 || (dist / maxLen) <= 0.4;
+}
+
+function levenshtein(a, b) {
+  const m = a.length, n = b.length;
+  const dp = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1] : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
+    }
+  }
+  return dp[m][n];
 }
 
 // ── Level calculation — uses admin-configured scale or defaults ──

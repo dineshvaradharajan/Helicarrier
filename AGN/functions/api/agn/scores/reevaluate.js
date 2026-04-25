@@ -78,13 +78,15 @@ Transcribe EXACTLY what the child says — write the words as they sound, not as
 
 Do ALL of the following in ONE response:
 1. Transcribe exactly what the child said (no normalization, no correction)
-2. List ALL mispronounced words — where the child's pronunciation differs from the passage word in any way. Do not ignore accent patterns; flag every difference.
-3. Rate qualitative scores (generous for age 4-6)
+2. List ALL mispronounced words — where the child's pronunciation differs from the passage word in any way. Do not ignore accent patterns; flag every difference. EXCEPT proper names: do NOT include proper names in mispronounced.
+3. List every proper name (people, places, characters) that appears in the passage in a "names" array. Names are tolerated.
+4. Rate qualitative scores (generous for age 4-6)
 
 Respond ONLY with JSON:
 {
   "transcript": "<exact words as they sounded — no corrections>",
   "mispronounced": [{"expected": "<passage word>", "said": "<how child said it>"}],
+  "names": ["<name>", ...],
   "scores": { "pronunciation": <1-5>, "fluency": <1-5>, "confidence": <1-5>, "expression": <1-5> },
   "emotional_tone": "<nervous|hesitant|calm|confident|excited>",
   "hesitations": <count>, "repetitions": <count>, "self_corrections": <count>,
@@ -145,7 +147,8 @@ Respond ONLY with JSON:
     // ═══════════════════════════════════════════
     const transcript = (geminiResult.transcript || '').trim();
     const mispronounced = geminiResult.mispronounced || [];
-    const comparison = compareWords(passageText, transcript, mispronounced);
+    const names = geminiResult.names || [];
+    const comparison = compareWords(passageText, transcript, mispronounced, names);
 
     const wordsCorrect = comparison.correct;
     const duration = record.durationSeconds || 1;
@@ -174,6 +177,7 @@ Respond ONLY with JSON:
     record.transcript = transcript;
     record.wordByWord = comparison.wordByWord;
     record.mispronounced = mispronounced;
+    record.names = names;
     record.wordsCorrect = wordsCorrect;
     record.wpm = wordsPerMinute;
     record.errorCount = errorCount;
@@ -216,7 +220,7 @@ async function getPassageText(env, passageId, passageTitle) {
 }
 
 // ── Word comparison (same logic as reading-evaluate.js) ──
-function compareWords(passageText, transcript, mispronounced) {
+function compareWords(passageText, transcript, mispronounced, names) {
   const normalize = (w) => w.toLowerCase().replace(/[^a-z']/g, '');
   const passageWords = passageText.trim().split(/\s+/).map(normalize).filter(Boolean);
   const spokenWords = transcript.trim().split(/\s+/).map(normalize).filter(Boolean);
@@ -231,6 +235,7 @@ function compareWords(passageText, transcript, mispronounced) {
   (mispronounced || []).forEach(function(m) {
     if (m && m.expected && m.said) misMap[normalize(m.said)] = normalize(m.expected);
   });
+  const nameSet = new Set((names || []).map(normalize).filter(Boolean));
 
   const m = passageWords.length, n = cleanSpoken.length;
   const dp = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
@@ -242,6 +247,7 @@ function compareWords(passageText, transcript, mispronounced) {
       const said = cleanSpoken[j-1];
       let subCost = 1;
       if (exp === said) subCost = 0;
+      else if (nameSet.has(exp) && fuzzyNameMatch(exp, said)) subCost = 0;
       else if (misMap[said] === exp) subCost = 0.5;
       dp[i][j] = Math.min(dp[i-1][j-1] + subCost, dp[i-1][j] + 1, dp[i][j-1] + 1);
     }
@@ -253,6 +259,9 @@ function compareWords(passageText, transcript, mispronounced) {
     const exp = i > 0 ? passageWords[i-1] : null;
     const said = j > 0 ? cleanSpoken[j-1] : null;
     if (i > 0 && j > 0 && exp === said && Math.abs(dp[i][j] - dp[i-1][j-1]) < 0.01) {
+      wordByWord.unshift({ expected: exp, said, status: 'correct' });
+      i--; j--;
+    } else if (i > 0 && j > 0 && nameSet.has(exp) && fuzzyNameMatch(exp, said) && Math.abs(dp[i][j] - dp[i-1][j-1]) < 0.01) {
       wordByWord.unshift({ expected: exp, said, status: 'correct' });
       i--; j--;
     } else if (i > 0 && j > 0 && misMap[said] === exp && Math.abs(dp[i][j] - (dp[i-1][j-1] + 0.5)) < 0.01) {
@@ -275,6 +284,27 @@ function compareWords(passageText, transcript, mispronounced) {
     }
   }
   return { correct: wordByWord.filter(w => w.status === 'correct').length, mispronouncedCount, errors, wordByWord };
+}
+
+function fuzzyNameMatch(a, b) {
+  if (!a || !b) return false;
+  if (a[0] !== b[0]) return false;
+  const dist = levenshtein(a, b);
+  const maxLen = Math.max(a.length, b.length);
+  return dist <= 2 || (dist / maxLen) <= 0.4;
+}
+
+function levenshtein(a, b) {
+  const m = a.length, n = b.length;
+  const dp = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1] : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
+    }
+  }
+  return dp[m][n];
 }
 
 function calculateLevel(wpm, errorCount, scale) {
